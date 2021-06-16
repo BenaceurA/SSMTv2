@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\adminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\jobController;
+use App\Http\Controllers\jobAdminController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/postemploi', [jobController::class, 'postEmploi']);
+
+Route::post('/createJobOffer', [jobAdminController::class, 'createJobOffer']);
+
+Route::post('/deleteJobApplications', [jobAdminController::class, 'deleteJobApplications']);
