@@ -16,6 +16,10 @@
             background-attachment: fixed;
             height: 100%;
         }
+        .required::after{
+            content : "*";
+            color: red;
+        }
     </style>
 </head>
 
@@ -55,22 +59,22 @@
             </div>
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start  md:w-1/4">
-                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Nom_Prenom">
+                    <label class="required block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Nom_Prenom">
                         Nom & Prenom
                     </label>
                 </div>
                 <div class="md:w-3/4">
-                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Nom_Prenom" id="Nom_Prenom" type="text">
+                    <input required class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Nom_Prenom" id="Nom_Prenom" type="text">
                 </div>
             </div>
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start  md:w-1/4">
-                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Adresse_mail">
+                    <label class="required block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Adresse_mail">
                         Adresse mail
                     </label>
                 </div>
                 <div class="md:w-3/4">
-                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Adresse_mail" id="Adresse_mail" type="email">
+                    <input required class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Adresse_mail" id="Adresse_mail" type="email">
                 </div>
             </div>
             <div class="md:flex md:items-center mb-6">
@@ -95,13 +99,13 @@
             </div>
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start  md:w-1/4">
-                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Ville">
+                    <label class="required block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Ville">
                         Ville
                     </label>
                 </div>
                 <div class="md:w-3/4">
-                    <select class=" border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Ville" id="Ville">
-                        <option value="null" disabled selected hidden>-Choisir-</option>
+                    <select required class=" border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Ville" id="Ville">
+                        <option value="" disabled selected hidden>-Choisir-</option>
                         <option value="Agadir">Agadir</option>
                         <option value="Asilah">Asilah</option>
                         <option value="Béni Mellal">Béni Mellal</option>
@@ -135,18 +139,18 @@
             </div>
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start  md:w-1/4">
-                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Sexe">
+                    <label  class="required block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Sexe">
                         Sexe
                     </label>
                 </div>
                 <div class="md:w-3/4">
-                    <input class="border-2 mr-1 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" value="Masculin" name="Sexe" id="Male" type="radio">
+                    <input required class="border-2 mr-1 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" value="Masculin" name="Sexe" id="Male" type="radio">
                     <label class="text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Male">
                         Masculin
                     </label>
-                    <input class="border-2 mr-1 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" value="Féminin" name="Sexe" id="Female" type="radio">
+                    <input required class="border-2 mr-1 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" value="Féminin" name="Sexe" id="Female" type="radio">
                     <label class="text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Female">
-                        Female
+                        Féminin
                     </label>
                 </div>
             </div>
@@ -162,7 +166,7 @@
             </div>
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start  md:w-1/4">
-                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Niveau_d'étude">
+                    <label class="required block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Niveau_d'étude">
                         Niveau d'étude
                     </label>
                 </div>
@@ -189,7 +193,7 @@
             </div>
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start  md:w-1/4">
-                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Années_d'expérience">
+                    <label class="required block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Années_d'expérience">
                         Années d'expérience
                     </label>
                 </div>
@@ -207,12 +211,12 @@
             </div>
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start  md:w-1/4">
-                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="CV">
+                    <label class="required block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="CV">
                         Joindre CV:
                     </label>
                 </div>
                 <div class="md:w-3/4">
-                    <input class="appearance-none rounded w-full py-2  text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="CV" id="CV" type="file">
+                    <input required class="appearance-none rounded w-full py-2  text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="CV" id="CV" type="file">
                 </div>
             </div>
             <div class="md:flex md:items-center mb-6">

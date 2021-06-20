@@ -12,27 +12,33 @@ class jobAdminController extends Controller
 {
     function jobCreationIndex()
     {
-        return view("/admin/create", ["view" => "create"]);
+        $result = DB::table('job_offers')->get();
+        return view("/admin/create", ["view" => "create", "data" => $result]);
     }
 
     function jobApplicationsIndex(Request $request)
     {
         $data = $request->all();
-        $option = array_splice($data, 0, 1);
-        switch ($option["Option"]) {
-            case "AND":
-                $result = DB::table('jobs')->where($data)->get();
-                break;
+        if (isset($data["Option"])) {
+            $option = array_splice($data, 0, 1);
+            switch ($option["Option"]) {
+                case "AND":
+                    $result = DB::table('jobs')->where($data)->get();
+                    break;
 
-            case "OR":
-
-                break;
+                case "OR":
+                    $result = DB::table('jobs')->orWhere($data)->get();
+                    break;
+            }
+        } else {
+            $result = DB::table('jobs')->where($data)->get();
         }
         return view("/admin/jobs", ["view" => "jobs", "data" => $result]);
     }
 
     function createJobOffer(Request $request)
     {
+        //id creer offre Direction Département Description Activation
         $job_offer = new Job_Offers();
         $data = $request->input();
         $job_offer->Offre = $data["Offre"];
@@ -56,17 +62,32 @@ class jobAdminController extends Controller
         return Job::destroy($request->all());
     }
 
-    function filter(Request $request)
+    function activateJobOffers(Request $request)
     {
-        echo $request->all();
-        //sexe- ville- niveau d’étude- stage ou offre d’emploi- année d’expérience – âge
+        $array = $request->all();
+        $activation = $array[0];
+        $data = $array[1];
 
-        // $query = DB::table('jobs')->where();
-        // return view("/admin/jobs", ["view" => "jobs", "data" => $result]);
-
+        return DB::table("job_offers")->whereIn("id", $data)->update(['Activation' => $activation]);
     }
 
-    function downloadCV(Request $request)
+    function deleteJobOffers(Request $request)
     {
+        $data = $request->all();
+
+        return DB::table("job_offers")->whereIn("id", $data)->delete();
+    }
+
+    function downloadCVs(Request $request)
+    {
+        $id = $request->query('id');
+        $cvName = DB::table('jobs')->where('id', $id)->first('CV')->CV;
+        return Storage::download("public/CVs/" . $cvName);
+    }
+    function downloadLetters(Request $request)
+    {
+        $id = $request->query('id');
+        $LettreName = DB::table('jobs')->where('id', $id)->first('Lettre_motivation')->Lettre_motivation;
+        return Storage::download("public/Lettres/" . $LettreName);
     }
 }

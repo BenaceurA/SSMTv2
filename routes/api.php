@@ -25,3 +25,11 @@ Route::post('/postemploi', [jobController::class, 'postEmploi']);
 Route::post('/createJobOffer', [jobAdminController::class, 'createJobOffer']);
 
 Route::post('/deleteJobApplications', [jobAdminController::class, 'deleteJobApplications']);
+
+Route::post('/activateJobs', [jobAdminController::class, 'activateJobOffers']);
+
+Route::post('/deleteJobs', [jobAdminController::class, 'deleteJobOffers']);
+
+Route::get('/DownloadCVs', [jobAdminController::class, 'downloadCVs']);
+
+Route::get('/DownloadLetters', [jobAdminController::class, 'downloadLetters']);

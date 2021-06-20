@@ -55,7 +55,7 @@
                     </div>
                     <div class="inline mr-2 " style="width: 40%;">
                         <select class="shadow-lg rounded py-2 px-5 " name="select2" id="select2">
-                            <option selected hidden disabled value="null">Quel département</option>
+                            <option selected hidden disabled value="null">Quel département ?</option>
                         </select>
                     </div>
                     <button onclick="" class="shadow-lg bg-yellow-500 hover:bg-yellow-400 focus:shadow-outline focus:outline-none font-bold text-white rounded py-2 px-auto " type="submit" value="Lancer" style="width: 20%;">

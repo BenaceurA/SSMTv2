@@ -37,9 +37,9 @@
     </style>
 </head>
 
-<body class="h-screen w-screen background-img">
+<body class="h-screen background-img">
 <div class="h-full w-full flex-col">
-    <div class=" flex w-full">
+    <div class="bg-white bg-opacity-50 flex w-full">
         <a class="flex-1" href="/create">
         <div>   
             <div class="menu shadow  @if($view == "create") bg-yellow-500 @endif hover:bg-yellow-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4 border-r border-opacity-5">                        
@@ -64,7 +64,7 @@
         </a> 
         <a class="flex-1" href=""> 
             <div class="menu shadow  hover:bg-yellow-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4 border-r">
-                Candidature spontanée
+                C.S
             </div>
         </a> 
         <a class="flex-1" href=""> 
@@ -78,7 +78,7 @@
             </div>
         </a>
     </div>
-    <div class="flex p-3 box-border w-full">
+    <div class="mt-8 flex justify-center box-border">
         @yield("main")
     </div>
 </div>

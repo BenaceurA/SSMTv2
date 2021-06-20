@@ -2,20 +2,21 @@
 
 @section('main')
 
-<div class="w-2/12 p-4 bg-white bg-opacity-90 mt-4 flex flex-wrap">
+<div class="w-2/12 mt-4 ml-4 ">
+<div class = "bg-white p-4 bg-opacity-90 border-t-4 border-b-4 rounded mb-4">
   <div class="w-full">
     <button onclick="deleteItems()" class="w-full shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
       Supprimer
     </button>
-    <button onclick="deleteItems()" class="mt-4 w-full shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
-      Curriculum
+    <button onclick="DownloadCVs()" class="mt-4 w-full shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+      Curriculum vitae
     </button>
-    <button onclick="deleteItems()" class="mt-4 w-full shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
-      Lettre
+    <button onclick="DownloadLetters()" class="mt-4 w-full shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+      Lettre de motivation
     </button>
   </div>
-  <form method="GET" action="/jobs" class="mt-4 flex-col">
-  <div class="mt-4 flex-col w-auto">
+  <form method="GET" action="/jobs" class="m-0 flex-col">
+    <div class="mt-4 flex-col w-auto">
       <label class="whitespace-nowrap text-gray-500 font-bold ">
         Option
       </label>
@@ -51,15 +52,62 @@
           <option value="Bac+5 et plus">Bac+5 et plus</option>
       </select>
     </div>
+    <div class="mt-4 flex-col w-auto">
+      <label class="whitespace-nowrap text-gray-500 font-bold ">
+        Sexe
+      </label>
+      <select id="Sexe" class="mt-1 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Sexe">
+          <option selected hidden value="null"></option>
+          <option value="Masculin">Masculin</option>
+          <option value="Féminin">Féminin</option>
+      </select>
+    </div>
+    <div class="mt-4 flex-col w-auto">
+      <label class="whitespace-nowrap text-gray-500 font-bold ">
+        Ville
+      </label>
+      <select id="Ville" class="mt-1 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Ville">
+          <option selected hidden value="null"></option>
+          <option value="Agadir">Agadir</option>
+          <option value="Asilah">Asilah</option>
+          <option value="Béni Mellal">Béni Mellal</option>
+          <option value="Casablanca">Casablanca</option>
+          <option value="Chefchaouen">Chefchaouen</option>
+          <option value="El Jadida">El Jadida</option>
+          <option value="El hoceima">El hoceima</option>
+          <option value="El Kelâa des Sraghna">El Kelâa des Sraghna</option>
+          <option value="Fès">Fès</option>
+          <option value="Khénifra">Khénifra</option>
+          <option value="Khémisset">Khémisset</option>
+          <option value="Kénitra">Kénitra</option>
+          <option value="Khouribga">Khouribga</option>
+          <option value="Laâyoune">Laâyoune</option>
+          <option value="Marrakech">Marrakech</option>
+          <option value="Meknès">Meknès</option>
+          <option value="Mohammédia">Mohammédia</option>
+          <option value="Nador">Nador</option>
+          <option value="Oujda">Oujda</option>
+          <option value="Rabat">Rabat</option>
+          <option value="Safi">Safi</option>
+          <option value="Salé">Salé</option>
+          <option value="Taroudant">Taroudant</option>
+          <option value="Tiznit">Tiznit</option>
+          <option value="Taza">Taza</option>
+          <option value="Témara">Témara</option>
+          <option value="Tanger">Tanger</option>
+          <option value="Tétouan">Tétouan</option>
+      </select>
+    </div>
     
     <button id="submitFilter" class="mt-4 w-full shadow bg-yellow-500 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
       Filter
     </button>
-  </form> 
+  </form>
+</div>
 </div>
 
 <div class="w-10/12 ml-4 mr-4 mt-4 flex flex-col">
-  <div class="overflow-x-scroll max-w-full">
+  <div class="overflow-x-scroll max-w-full  border-b-4 rounded mb-4">
     <div class="align-middle inline-block">
       <div class="shadow overflow-hidden border-b border-gray-200">
         <table class="min-w-full divide-y divide-gray-200">
@@ -249,36 +297,48 @@
         };
         console.log(checkedIds);
     }
+
     window.onload = ()=>{
     let sf = document.getElementById("submitFilter");
     document.addEventListener("submit",()=>{
       let AE = document.getElementById("AE");
       let NE = document.getElementById("NE");
+      let Sexe = document.getElementById("Sexe");
+      let Ville = document.getElementById("Ville");
         if(AE.value == 'null'){
           AE.name = "";
         }
         if(NE.value == 'null'){
           NE.name = "";
         }
+        if(Sexe.value == 'null'){
+          Sexe.name = "";
+        }
+        if(Ville.value == 'null'){
+          Ville.name = "";
+        }
     })
     }
     
-    {{-- function filter(){
-      let AE = document.getElementById("AE").value;
-      let NE = document.getElementById("NE").value;
-      let data = [AE,NE];
-      var xhr = new XMLHttpRequest();
-        xhr.open("POST", '/api/filter', true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(JSON.stringify(
-            data
-        ));
-        xhr.onreadystatechange = function () {
-            if (this.status == 200 && this.readyState == 4) {
-                if(this.responseText>0){
-                    location.reload();
-                }
-            }
-        };
-    } --}}
+    function DownloadCVs(){
+      checkedIds.forEach(element =>{
+        var link = document.createElement("a");
+        link.download = "";
+        link.href = '/api/DownloadCVs?id='+element;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      })     
+    }
+    
+    function DownloadLetters(){
+      checkedIds.forEach(element =>{
+        var link = document.createElement("a");
+        link.download = "";
+        link.href = '/api/DownloadLetters?id='+element;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      })
+    }
 </script>

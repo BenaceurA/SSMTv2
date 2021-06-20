@@ -34,7 +34,7 @@ class jobController extends Controller
         $job->Années_expérience = $data["Années_d'expérience"];
         $job->Motivation = $data["Motivation"];
 
-        if ($request->hasFile('CV')) {
+        if ($request->hasFile('CV')) { // TODO : CHECK IF DOC/PDF
             $filenameWithExt = $request->file('CV')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('CV')->getClientOriginalExtension();
@@ -44,7 +44,7 @@ class jobController extends Controller
         } else {
             return back();
         }
-        if ($request->hasFile('lettre')) {
+        if ($request->hasFile('lettre')) { // TODO : CHECK IF DOC/PDF
             $filenameWithExt = $request->file('lettre')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('lettre')->getClientOriginalExtension();
