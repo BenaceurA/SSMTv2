@@ -2,10 +2,10 @@
 
 @section('main')
 
-<div class="w-2/12 mt-4 ml-4 ">
+<div class="small-width text-sm mt-4 ml-4 ">
 <div class = "bg-white p-4 bg-opacity-90 border-t-4 border-b-4 rounded mb-4">
   <div class="w-full">
-    <button onclick="deleteItems()" class="w-full shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+    <button onclick="deleteItems()" class=" w-full shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
       Supprimer
     </button>
     <button onclick="DownloadCVs()" class="mt-4 w-full shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
@@ -20,7 +20,7 @@
       <label class="whitespace-nowrap text-gray-500 font-bold ">
         Option
       </label>
-      <select id="Option" class="mt-1 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Option">
+      <select id="Option" class="mt-1 border-gray-200 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Option">
           <option selected value="AND">AND</option>
           <option value="OR">OR</option>
       </select>
@@ -29,7 +29,7 @@
       <label class="whitespace-nowrap text-gray-500 font-bold">
         Année d’expérience
       </label>
-      <select id="AE" class="mt-1 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Années_expérience">
+      <select id="AE" class="mt-1 border-gray-200 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Années_expérience">
         <option selected hidden value="null"></option>
         <option value="Dédutant">Dédutant</option>
         <option value="Moins de 1 an">Moins de 1 an</option>
@@ -43,7 +43,7 @@
       <label class="whitespace-nowrap text-gray-500 font-bold ">
         Niveau d’étude
       </label>
-      <select id="NE" class="mt-1 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Niveau_étude">
+      <select id="NE" class="mt-1 border-gray-200 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Niveau_étude">
           <option selected hidden value="null"></option>
           <option value="Qualification avant Bac">Qualification avant Bac</option>
           <option value="Bac">Bac</option>
@@ -56,7 +56,7 @@
       <label class="whitespace-nowrap text-gray-500 font-bold ">
         Sexe
       </label>
-      <select id="Sexe" class="mt-1 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Sexe">
+      <select id="Sexe" class="mt-1 border-gray-200 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Sexe">
           <option selected hidden value="null"></option>
           <option value="Masculin">Masculin</option>
           <option value="Féminin">Féminin</option>
@@ -66,7 +66,7 @@
       <label class="whitespace-nowrap text-gray-500 font-bold ">
         Ville
       </label>
-      <select id="Ville" class="mt-1 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Ville">
+      <select id="Ville" class="mt-1 border-gray-200 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Ville">
           <option selected hidden value="null"></option>
           <option value="Agadir">Agadir</option>
           <option value="Asilah">Asilah</option>
@@ -106,7 +106,7 @@
 </div>
 </div>
 
-<div class="w-10/12 ml-4 mr-4 mt-4 flex flex-col">
+<div class="big-width ml-4 mr-4 mt-4 flex flex-col">
   <div class="overflow-x-scroll max-w-full  border-b-4 rounded mb-4">
     <div class="align-middle inline-block">
       <div class="shadow overflow-hidden border-b border-gray-200">

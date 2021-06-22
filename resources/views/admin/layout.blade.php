@@ -33,13 +33,27 @@
             padding: 8px;
         }
 
+        .small-width{
+            width : 20%;
+        }
+        .big-width{
+            width : 80%;
+        }
+        @media only screen and (min-width: 1650px) {
+            .small-width{
+            width : 15%;
+            }
+            .big-width{
+            width : 85%;
+            }
+        }
 
     </style>
 </head>
 
 <body class="h-screen background-img">
 <div class="h-full w-full flex-col">
-    <div class="bg-white bg-opacity-50 flex w-full">
+    <div class="text-sm sticky top-0 bg-gray-500 bg-opacity-90 z-50 flex w-full">
         <a class="flex-1" href="/create">
         <div>   
             <div class="menu shadow  @if($view == "create") bg-yellow-500 @endif hover:bg-yellow-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4 border-r border-opacity-5">                        
@@ -64,7 +78,7 @@
         </a> 
         <a class="flex-1" href=""> 
             <div class="menu shadow  hover:bg-yellow-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4 border-r">
-                C.S
+                Candidatures spontanée
             </div>
         </a> 
         <a class="flex-1" href="/settings"> 
