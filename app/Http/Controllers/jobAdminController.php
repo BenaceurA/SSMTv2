@@ -48,7 +48,7 @@ class jobAdminController extends Controller
         $job_offer->Activation = $data["Activation"];
         $job_offer->save();
 
-        return redirect("/");
+        return redirect("/create");
     }
 
     function deleteJobApplications(Request $request)
