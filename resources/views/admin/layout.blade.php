@@ -67,8 +67,8 @@
                 C.S
             </div>
         </a> 
-        <a class="flex-1" href=""> 
-            <div class="menu shadow  hover:bg-yellow-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4 border-r border-opacity-25">
+        <a class="flex-1" href="/settings"> 
+            <div class="menu shadow  @if($view == "settings") bg-yellow-500 @endif hover:bg-yellow-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4 border-r border-opacity-25">
                 Paramètres
             </div>
         </a>
