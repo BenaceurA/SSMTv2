@@ -18,16 +18,6 @@ Route::get('/formulaireEmploi/{id}', [jobController::class, 'JobForm']);
 
 //admin routes
 
-Route::get('/email/verify', function () {
-    return view('admin/verify-email-notice');
-})->middleware('auth')->name('verification.notice');
-
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
-
-    return redirect('/jobs');
-})->middleware(['auth', 'signed'])->name('verification.verify');
-
 Route::get('/login', [adminController::class, 'login'])->name("login")->middleware("guest");
 
 Route::get('/logout', function () {

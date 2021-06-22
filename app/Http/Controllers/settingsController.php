@@ -19,17 +19,15 @@ class settingsController extends Controller
 
         //extract user info
         $name = $data["Username"];
-        $email = $data["Email"];
         $password = $data["Password"];
 
         //extract permissions
-        array_splice($data, 0, 3);
+        array_splice($data, 0, 2);
         $permission = $data;
 
         //insert the user
         $user = new User;
         $user->name = $name;
-        $user->email = $email;
         $user->password = password_hash($password, PASSWORD_BCRYPT);
         $user->save();
 
@@ -40,6 +38,5 @@ class settingsController extends Controller
             $user_permissions->$key = 1;
         }
         $user_permissions->save();
-        event(new Registered($user));
     }
 }

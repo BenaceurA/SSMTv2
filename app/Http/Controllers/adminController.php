@@ -16,11 +16,11 @@ class adminController extends Controller
     function auth(Request $request)
     {
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
+            'name' => ['required'],
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials, $request->remember)) {
+        if (Auth::attempt($credentials, false/*$request->remember*/)) {
             $request->session()->regenerate();
 
             return redirect()->intended('jobs');

@@ -10,16 +10,6 @@
                     <input required class="bg-white-200 appearance-none border-2 border-white-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Username" id="Username" type="text">
                 </div>
             </div>
-            <div class="md:flex md:items-center mb-6">
-                <div class="flex justify-start md:w-1/4">
-                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Email">
-                        Adresse e-mail
-                    </label>
-                </div>
-                <div class="md:w-3/4">
-                    <input required class="bg-white-200 appearance-none border-2 border-white-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Email" id="Email" type="email">
-                </div>
-            </div>
             <div class="md:flex md:items-center mb-8">
                 <div class="flex justify-start md:w-1/4">
                     <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Password">
