@@ -6,12 +6,17 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\User_Permissions;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class settingsController extends Controller
 {
     function settingsIndex()
     {
-        return view("/admin/paramètres/settingsIndex", ["view" => "settings"]);
+        $id = Auth::id();
+
+        $add_user_perm = DB::table("user_permissions")->where('user_id', $id)->first('AU')->AU;
+        return view("/admin/paramètres/settingsIndex", ["view" => "settings", "add_user_perm" => $add_user_perm]);
     }
     function addUser(Request $request)
     {

@@ -48,6 +48,7 @@ class User_Permissions extends Model
         'TC-CS' => 0,
         'TL-CS' => 0,
         'SC-E-CS' => 0,
-        'SC-S-CS' => 0
+        'SC-S-CS' => 0,
+        'AU' => 0
     ];
 }

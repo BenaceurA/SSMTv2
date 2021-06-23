@@ -22,7 +22,7 @@ Route::get('/login', [adminController::class, 'login'])->name("login")->middlewa
 
 Route::get('/logout', function () {
     Auth::logout();
-    return redirect('/');
+    return redirect('/login');
 })->middleware("auth");
 
 Route::post('/auth', [adminController::class, 'auth']);

@@ -163,11 +163,22 @@
                     </div>
                 </div>
             </div>
+            <div class="md:flex mb-6">
+                <div class="flex justify-start  md:w-1/4">
+                    <label  class="required block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="AU">
+                        Ajouter les utilisateurs
+                    </label>
+                </div>
+                <div class="md:w-3/4">
+                    <div>
+                        <input class="border-2 mr-1 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="AU" id="AU" type="checkbox">
+                    </div>
+                </div>
+            </div>
             <!-- END RIGHTS !-->
             <div class="flex justify-center">
                 <button class="mt-4 w-1/6 shadow bg-yellow-500 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
                       Ajouter
                 </button>
-            </div>
-            
+            </div>         
     </form>
