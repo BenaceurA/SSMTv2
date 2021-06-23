@@ -28,11 +28,18 @@ class settingsController extends Controller
         $password = $data["Password"];
 
         //extract permissions
-        array_splice($data, 0, 2);
+        array_splice($data, 0, 3);
         $permission = $data;
 
+        //check if the user already exists return with error
+        if (DB::table("users")->where('name', $name)->first()) {
+            return back()->withErrors([
+                'addusererror' => 'le nom existe deja',
+            ]);
+        }
+
         //insert the user
-        //TODO : check if the user already exists return with error
+
         $user = new User;
         $user->name = $name;
         $user->password = password_hash($password, PASSWORD_BCRYPT);
@@ -57,20 +64,20 @@ class settingsController extends Controller
 
         if ($confirmPassword != $newPassword) {
             return back()->withErrors([
-                'error' => 'confirmer votre mot de passe',
+                'pwderror' => 'confirmer votre mot de passe',
             ]);
         }
 
         if (!Hash::check($currentPassword, DB::table('users')->where('id', Auth::id())->first()->password)) {
             return back()->withErrors([
-                'error' => 'le mot de passe actuelle n\'est pas correct',
+                'pwderror' => 'le mot de passe actuelle n\'est pas correct',
             ]);
         }
 
         //change password
         DB::table('users')->where('id', Auth::id())->update(['password' => Hash::make($newPassword)]);
         return back()->withErrors([
-            'success' => 'votre mot de passe a été changé',
+            'pwdsuccess' => 'votre mot de passe a été changé',
         ]);
     }
 }

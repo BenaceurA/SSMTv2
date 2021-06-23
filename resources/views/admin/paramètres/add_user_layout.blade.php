@@ -1,4 +1,10 @@
-   <form class="w-full max-w-5xl m-10 bg-opacity-90 bg-white p-10 pt-5 rounded-md" action="/api/addUser" method="post" enctype="multipart/form-data">
+   <form class="w-full max-w-5xl m-10 bg-opacity-90 bg-white p-10 pt-5 rounded-md" action="/addUser" method="post" enctype="multipart/form-data">
+        @csrf
+        @error("addusererror")
+        <div class="mb-4">
+        <strong class="text-red-700 font-bold">{{ $message }}</strong>
+        </div>
+        @enderror
         <h1 class="block text-gray-500 font-bold mb-5 text-xl pr-4">Ajouter un nouveau utilisateur</h1>
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start md:w-1/4">

@@ -2,12 +2,12 @@
 <form class="w-full max-w-5xl m-10 bg-opacity-90 bg-white p-10 pt-5 rounded-md" action="/modifyPassword" method="post" enctype="multipart/form-data">
     @csrf
     <h1 class="block text-gray-500 font-bold mb-5 text-xl pr-4">Changer votre mot de passe</h1>
-        @error("error")
+        @error("pwderror")
         <div class="mb-4">
         <strong class="text-red-700 font-bold">{{ $message }}</strong>
         </div>
         @enderror
-        @error("success")
+        @error("pwdsuccess")
         <div class="mb-4">
         <strong class="text-green-700 font-bold">{{ $message }}</strong>
         </div>

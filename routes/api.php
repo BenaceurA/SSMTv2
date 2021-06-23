@@ -34,5 +34,3 @@ Route::post('/deleteJobs', [jobAdminController::class, 'deleteJobOffers']);
 Route::get('/DownloadCVs', [jobAdminController::class, 'downloadCVs']);
 
 Route::get('/DownloadLetters', [jobAdminController::class, 'downloadLetters']);
-
-Route::post('/addUser', [settingsController::class, 'addUser']);

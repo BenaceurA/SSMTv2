@@ -33,4 +33,6 @@ Route::get('/jobs', [jobAdminController::class, 'jobApplicationsIndex'])->middle
 
 Route::get('/settings', [settingsController::class, 'settingsIndex'])->middleware("auth");
 
+Route::post('/addUser', [settingsController::class, 'addUser']);
+
 Route::post('/modifyPassword', [settingsController::class, 'modifyPassword']);
