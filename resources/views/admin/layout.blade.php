@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{{$username}}</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
     <style>

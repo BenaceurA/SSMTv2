@@ -7,13 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Job_Offers;
+use Illuminate\Support\Facades\Auth;
 
 class jobAdminController extends Controller
 {
     function jobCreationIndex()
     {
         $result = DB::table('job_offers')->get();
-        return view("/admin/create", ["view" => "create", "data" => $result]);
+        return view("/admin/create", ["view" => "create", "data" => $result, "username" => adminController::getUsername()]);
     }
 
     function jobApplicationsIndex(Request $request)
@@ -33,7 +34,7 @@ class jobAdminController extends Controller
         } else {
             $result = DB::table('jobs')->where($data)->get();
         }
-        return view("/admin/jobs", ["view" => "jobs", "data" => $result]);
+        return view("/admin/jobs", ["view" => "jobs", "data" => $result, "username" => adminController::getUsername()]);
     }
 
     function createJobOffer(Request $request)

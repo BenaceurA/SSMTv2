@@ -30,4 +30,8 @@ class adminController extends Controller
             'email' => 'The provided credentials do not match.',
         ]);
     }
+    static function getUsername()
+    {
+        return  DB::table('users')->where('id', Auth::id())->first()->name;
+    }
 }

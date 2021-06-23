@@ -1,4 +1,4 @@
-@extends('admin/layout')
+@extends('admin/layout',['username' => $username])
 
 @section("main")
 <div class="flex-col w-full ">
