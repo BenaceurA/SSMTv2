@@ -179,10 +179,14 @@
                     {{$row->id}}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    <button class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-2 rounded">Télécharger</button>
+                    <button onclick="DownloadCV({{$row->id}})" class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-2 rounded">Télécharger</button>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    <button class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-2 rounded">Télécharger</button>
+                    @if($row->Lettre_motivation)
+                    <button onclick="DownloadLetter({{$row->id}})" class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-2 rounded">Télécharger</button>
+                    @else
+                    <span>NULL</span>
+                    @endif
                 </td>
                 
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
@@ -319,26 +323,33 @@
         }
     })
     }
-    
-    function DownloadCVs(){
-      checkedIds.forEach(element =>{
-        var link = document.createElement("a");
+
+    function DownloadLetter(id){ //check if letter exists before download
+      var link = document.createElement("a");
         link.download = "";
-        link.href = '/api/DownloadCVs?id='+element;
+        link.href = '/api/DownloadLetters?id='+id;
         document.body.appendChild(link);
         link.click();
         link.remove();
-      })     
+    }
+    function DownloadCV(id){
+      var link = document.createElement("a");
+        link.download = "";
+        link.href = '/api/DownloadCVs?id='+id;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+    }
+        
+    function DownloadCVs(){
+      checkedIds.forEach(element =>{
+        DownloadCV(element);
+      })
     }
     
     function DownloadLetters(){
       checkedIds.forEach(element =>{
-        var link = document.createElement("a");
-        link.download = "";
-        link.href = '/api/DownloadLetters?id='+element;
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
+        DownloadLetter(element);
       })
     }
 </script>

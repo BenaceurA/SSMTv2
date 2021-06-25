@@ -33,11 +33,27 @@
                     
                 </div>
                 <div class="md:w-5/6">
-                    <select class=" appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Département" id="Département">
-                        <option value="DE1">DE1</option>
-                        <option value="DE2">DE2</option>
-                        <option value="DE3">DE3</option>
-                        <option value="DE4">DE4</option>
+                    <select id="selectDep" class=" appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Département" id="Département">
+                        <option selected hidden disabled value=""></option>
+                        <option value="Département d'Audit  contrôle gestion et audit interne">Département d'Audit  contrôle gestion et audit interne</option>
+                        <option value="Département  d’informatique">Département  d’informatique</option>
+                        <option value="Département d'Hygiène Sécurité Environnement">Département d'Hygiène Sécurité Environnement </option>
+                        <option value="Département d'administration et finance">Département d'administration et finance</option>
+                        <option value="Département gestion matériel">Département gestion matériel</option>
+                        <option value="Département de la comptabilité">Département de la comptabilité</option>
+                        <option value="Département de finance">Département de finance</option>
+                        <option value="Département administratif et juridique">Département administratif et juridique</option>
+                        <option value="Département administratif des ventes">Département administratif des ventes</option>
+                        <option value="Département de ressources humaines">Département de ressources humaines</option>
+                        <option value="Département d'achats">Département d'achats</option>
+                        <option value="Département Gestion Matériels">Département Gestion Matériels</option>
+                        <option value="Département d'atelier">Département d'atelier</option>
+                        <option value="Département bureau méthode maintenance">Département bureau méthode maintenance</option>
+                        <option value="Département logistique">Département logistique</option>
+                        <option value="Département d'exploitation ">Département d'exploiatation</option>
+                        <option value="Département d'étude des prix">Département d'étude des prix</option>
+                        <option value="Département topographe">Département topographe</option>
+                        <option value="Département administration marchés publiques">Département administration marchés publiques</option>
                     </select>
                 </div>
             </div>

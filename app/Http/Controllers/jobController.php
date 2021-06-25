@@ -51,8 +51,6 @@ class jobController extends Controller
             $filenameToStore = $filename . '_' . time() . '.' . $extension;
             $request->file('lettre')->storeAs('public/Lettres', $filenameToStore);
             $job->Lettre_motivation = $filenameToStore;
-        } else {
-            return back();
         }
 
         $job->save();

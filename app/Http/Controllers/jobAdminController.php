@@ -89,6 +89,8 @@ class jobAdminController extends Controller
     {
         $id = $request->query('id');
         $LettreName = DB::table('jobs')->where('id', $id)->first('Lettre_motivation')->Lettre_motivation;
-        return Storage::download("public/Lettres/" . $LettreName);
+        if ($LettreName) {
+            return Storage::download("public/Lettres/" . $LettreName);
+        }
     }
 }
