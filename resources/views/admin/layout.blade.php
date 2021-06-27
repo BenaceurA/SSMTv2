@@ -56,38 +56,38 @@
     <div class="text-sm sticky top-0 bg-gray-500 bg-opacity-90 z-50 flex w-full">
         <a class="flex-1" href="/create">
         <div>   
-            <div class="menu shadow  @if($view == "create") bg-yellow-500 @endif hover:bg-yellow-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4 border-r border-opacity-5">                        
+            <div class="menu shadow  @if($view == "create") bg-yellow-500 @endif hover:bg-gray-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4 border-r border-opacity-5">                        
                 Offre emploi
             </div>
         </div>
         </a>
         <a class="flex-1" href="">
-            <div class="menu shadow  hover:bg-yellow-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4 border-r">
+            <div class="menu shadow  hover:bg-gray-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4 border-r">
                 Offre stage
             </div>
         </a> 
         <a class="flex-1" href="/jobs">    
-            <div class="menu shadow  @if($view == "jobs") bg-yellow-500 @endif hover:bg-yellow-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4 border-r">
+            <div class="menu shadow  @if($view == "jobs") bg-yellow-500 @endif hover:bg-gray-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4 border-r">
                 BD emploi
             </div>
         </a> 
         <a class="flex-1" href="">   
-            <div class="menu shadow  hover:bg-yellow-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4 border-r">
+            <div class="menu shadow  hover:bg-gray-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4 border-r">
                 BD stage
             </div>
         </a> 
         <a class="flex-1" href=""> 
-            <div class="menu shadow  hover:bg-yellow-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4 border-r">
+            <div class="menu shadow  hover:bg-gray-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4 border-r">
                 Candidatures spontanée
             </div>
         </a> 
         <a class="flex-1" href="/settings"> 
-            <div class="menu shadow  @if($view == "settings") bg-yellow-500 @endif hover:bg-yellow-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4 border-r border-opacity-25">
+            <div class="menu shadow  @if($view == "settings") bg-yellow-500 @endif hover:bg-gray-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4 border-r border-opacity-25">
                 Paramètres
             </div>
         </a>
         <a class="flex-1" href="/logout">
-            <div class="menu shadow  hover:bg-yellow-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4">
+            <div class="menu shadow  hover:bg-gray-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4">
                 Dèconnexion
             </div>
         </a>

@@ -3,7 +3,7 @@
 @section("main")
 <div class="flex-col w-full ">
     <div class="flex justify-center ">
-        <form class="bg-white bg-opacity-90 w-2/3 p-10 rounded-md" action="/api/createJobOffer" method="post" enctype="multipart/form-data">
+        <form class="bg-white bg-opacity-90 w-11/12 p-10 rounded-md" action="/api/createJobOffer" method="post" enctype="multipart/form-data">
             @csrf
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start md:w-1/6">
@@ -155,9 +155,9 @@
                 <tr class ="min-h-80">
                     <td>
                         @if($row->Activation == 1)
-                        <button onclick="Activate([{{$row->id}}],false)" class="inline-block shadow bg-green-500 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white font-bold mb-3 py-2 px-2 rounded-full"></button>
+                        <button id="availableBtn-{{$row->id}}" onclick="Activate([{{$row->id}}],false)" class="inline-block shadow bg-green-500 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white font-bold mb-3 py-2 px-2 rounded-full"></button>
                         @else
-                        <button onclick="Activate([{{$row->id}}],true)" class="inline-block shadow bg-yellow-500 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold mb-3 py-2 px-2 rounded-full"></button>
+                        <button id="availableBtn-{{$row->id}}" onclick="Activate([{{$row->id}}],true)" class="inline-block shadow bg-yellow-500 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold mb-3 py-2 px-2 rounded-full"></button>
                         @endif 
                     </td>
                     <td>
@@ -247,6 +247,7 @@
     }
 
         function Activate(ids,option){
+            console.log("activate");
             var xhr = new XMLHttpRequest();
             xhr.open("POST", '/api/activateJobs', true);
             xhr.setRequestHeader('Content-Type', 'application/json');
@@ -254,9 +255,21 @@
                 [option,ids]
             ));
             xhr.onreadystatechange = function () {
-                if (this.status == 200 && this.readyState == 4) {
+                console.log("state change");
+                if (this.status === 200 && this.readyState == 4) {
                     if(this.responseText>0){
-                        location.reload();
+                        console.log(this.responseText);
+                        ids.forEach(el => {
+                            console.log("hello");
+                            let btn =  document.getElementById("availableBtn-"+el);
+                            btn.onclick = ()=>{
+                                Activate([el],!option);
+                            }
+                            let color;
+                            if(option == true) color = "green";
+                            else color = "yellow";
+                            btn.className = "inline-block shadow bg-"+color+"-500 hover:bg-"+color+"-400 focus:shadow-outline focus:outline-none text-white font-bold mb-3 py-2 px-2 rounded-full"
+                        })
                     }
                 }
             };

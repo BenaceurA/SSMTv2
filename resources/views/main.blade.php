@@ -51,12 +51,6 @@
                 <form class="flex justify-center" style="width: 100%;" action="/search" method="POST">
                     @csrf
                     <div class="relative inline mr-2 " style="width: 40%;">
-                        {{-- <select onchange="checkChoise()" class=" shadow-lg rounded py-2 px-5 " name="select1" id="select1">
-                            <option selected hidden disabled value="null">Qu'est-ce que tu cherches ?</option>
-                            <option value="Offre d'emploi">Offre d'emploi</option>
-                            <option value="Offre de stage">Offre de stage</option>
-                            <option value="Candidature spontanée">Candidature spontanée</option>
-                        </select> --}}
                         <input onclick="showSelect1()"  readonly placeholder="Qu'est-ce que tu cherches ?" class="select shadow-lg rounded py-2 px-5" type="text" name="select1" id="select1">
                         <div id="select1Elements" style="display:none;" class="bg-opacity-85 w-full bg-white absolute top-12 right-0 rounded">
                             <ul>
@@ -68,9 +62,6 @@
                     </div>
 
                     <div class="relative inline mr-2 " style="width: 40%;">
-                        {{-- <select size="1" class="shadow-lg rounded py-2 px-5 " name="select2" id="select2">
-                            <option selected hidden disabled value="null">Quel département ?</option>
-                        </select> --}}
                         <input onclick="showSelect2()" readonly placeholder="Quel département ?" class="select shadow-lg rounded py-2 px-5" type="text" name="select2" id="select2">
                         <div  id="select2Elements" class="overflow-y-auto max-h-60 bg-opacity-100 w-full bg-white absolute top-12 right-0 rounded">
                             <ul>

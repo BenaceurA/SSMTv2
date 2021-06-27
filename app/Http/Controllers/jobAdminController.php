@@ -20,17 +20,67 @@ class jobAdminController extends Controller
     function jobApplicationsIndex(Request $request)
     {
         $data = $request->all();
+
         if (isset($data["Option"])) {
             $option = array_splice($data, 0, 1);
+            if (isset($data["Date_de_naissance"])) {
+                $i = array_search("Date_de_naissance", array_keys($data));
+                $dob = array_splice($data, $i, 1);
+            }
             switch ($option["Option"]) {
                 case "AND":
-                    $result = DB::table('jobs')->where($data)->get();
+                    $result = DB::table('jobs')->where($data);
                     break;
 
                 case "OR":
-                    $result = DB::table('jobs')->orWhere($data)->get();
+                    $result = DB::table('jobs')->orWhere($data);
                     break;
             }
+
+            if (isset($dob)) {
+
+                switch ($dob["Date_de_naissance"]) {
+                    case '18-22':
+                        $from = date('Y-m-d', strtotime('now -22 years'));
+                        $to = date('Y-m-d', strtotime('now -18 years'));
+                        break;
+
+                    case '23-27':
+                        $from = date('Y-m-d', strtotime('now -27 years'));
+                        $to = date('Y-m-d', strtotime('now -23 years'));
+                        break;
+
+                    case '28-32':
+                        $from = date('Y-m-d', strtotime('now -32 years'));
+                        $to = date('Y-m-d', strtotime('now -28 years'));
+                        break;
+
+                    case '33-37':
+                        $from = date('Y-m-d', strtotime('now -37 years'));
+                        $to = date('Y-m-d', strtotime('now -33 years'));
+                        break;
+
+                    case '38-42':
+                        $from = date('Y-m-d', strtotime('now -42 years'));
+                        $to = date('Y-m-d', strtotime('now -38 years'));
+                        break;
+
+                    case '42+':
+                        $from = date('Y-m-d', strtotime('now -100 years'));
+                        $to = date('Y-m-d', strtotime('now -42 years'));
+                        break;
+                }
+                switch ($option["Option"]) {
+                    case "AND":
+                        $result = $result->whereBetween('Date_de_naissance', [$from, $to]);
+                        break;
+
+                    case "OR":
+                        $result = $result->orWhereBetween('Date_de_naissance', [$from, $to]);
+                        break;
+                }
+            }
+            $result = $result->get();
         } else {
             $result = DB::table('jobs')->where($data)->get();
         }

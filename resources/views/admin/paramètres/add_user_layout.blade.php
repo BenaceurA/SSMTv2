@@ -1,4 +1,4 @@
-   <form class="w-full max-w-5xl m-10 bg-opacity-90 bg-white p-10 pt-5 rounded-md" action="/addUser" method="post" enctype="multipart/form-data">
+   <form class="w-full bg-opacity-90 bg-white p-10 pt-5 rounded-md" action="/addUser" method="post" enctype="multipart/form-data">
         @csrf
         @error("addusererror")
         <div class="mb-4">

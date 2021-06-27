@@ -98,7 +98,20 @@
           <option value="Tétouan">Tétouan</option>
       </select>
     </div>
-    
+    <div class="mt-4 flex-col w-auto">
+      <label class="whitespace-nowrap text-gray-500 font-bold ">
+        Age
+      </label>
+      <select id="Age" class="mt-1 border-gray-200 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Date_de_naissance">
+          <option selected hidden value="null"></option>
+          <option value="18-22">18-22</option>
+          <option value="23-27">23-27</option>
+          <option value="28-32">28-32</option>
+          <option value="33-37">33-37</option>
+          <option value="38-42">38-42</option>
+          <option value="42+">42+</option>     
+      </select>
+    </div>
     <button id="submitFilter" class="mt-4 w-full shadow bg-yellow-500 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
       Filter
     </button>
@@ -174,7 +187,7 @@
           <tbody class="bg-white divide-y divide-gray-200">
           @foreach ($data as $row )
             <tr>
-                <td><input id="checkbox-{{$row->id}}" onchange="addId({{$row->id}},this)" type="checkbox"></td>
+                <td><input id="checkbox-{{$row->id}}" onchange="addId({{$row->id}},@if($row->Lettre_motivation)'{{$row->Lettre_motivation}}'@else null @endif,this)" type="checkbox"></td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     {{$row->id}}
                 </td>
@@ -247,16 +260,15 @@
 
 <script>
     let checkedIds = [];
-    function addId(id,checkbox){
+    function addId(id,lettre,checkbox){
         if(checkbox.checked == true){
-            checkedIds.push(id);            
+          let obj={};
+          obj["id"] = id;
+          obj["lettre"] = lettre;
+            checkedIds.push(obj);            
         }
         else{
-            const index = checkedIds.indexOf(id);
-            if (index > -1) {
-                checkedIds.splice(index, 1);
-                
-            }
+          checkedIds = checkedIds.filter( el => el.id !== id );
         }
         console.log(checkedIds);
     }
@@ -264,11 +276,14 @@
     function addAll(checkbox){
         let identifier;
         if(checkbox.checked == true){
+          let obj={};
         @foreach ($data as $row )
-        identifier = {{$row->id}}
-            if(checkedIds.indexOf(identifier) == -1){
-                checkedIds.push(identifier);
-                document.getElementById("checkbox-"+identifier).checked = true;
+        obj = {};
+        obj["id"] = {{$row->id}}
+        obj["lettre"] = @if($row->Lettre_motivation)"{{$row->Lettre_motivation}}"@else null @endif;
+            if(!checkedIds.some(obj => obj.id === {{$row->id}})){
+                checkedIds.push(obj);
+                document.getElementById("checkbox-"+obj["id"]).checked = true;
             }
         @endforeach
         }
@@ -276,15 +291,18 @@
         let index;
         @foreach ($data as $row )
         identifier = {{$row->id}}
-        index = checkedIds.indexOf(identifier);
-            if(index > -1){
-                checkedIds.splice(index,1);
-                document.getElementById("checkbox-"+identifier).checked = false;
-            }
+        checkedIds = checkedIds.filter( el => 
+          {
+            let result = el.id !== identifier
+            if(!result) document.getElementById("checkbox-"+identifier).checked = false;
+            return result;
+          }
+        );
         @endforeach
         }
         console.log(checkedIds);
     }
+
     function deleteItems(){
         var xhr = new XMLHttpRequest();
         xhr.open("POST", '/api/deleteJobApplications', true);
@@ -321,10 +339,13 @@
         if(Ville.value == 'null'){
           Ville.name = "";
         }
+        if(Age.value == 'null'){
+          Age.name = "";
+        }
     })
     }
 
-    function DownloadLetter(id){ //check if letter exists before download
+    function DownloadLetter(id){ 
       var link = document.createElement("a");
         link.download = "";
         link.href = '/api/DownloadLetters?id='+id;
@@ -342,14 +363,15 @@
     }
         
     function DownloadCVs(){
-      checkedIds.forEach(element =>{
-        DownloadCV(element);
+      checkedIds.forEach(obj =>{
+        DownloadCV(obj["id"]);
       })
     }
     
-    function DownloadLetters(){
-      checkedIds.forEach(element =>{
-        DownloadLetter(element);
+    function DownloadLetters(){ 
+      checkedIds.forEach(obj =>{
+        if(obj["lettre"] !== null) DownloadLetter(obj["id"]);
+        else console.log("nope");
       })
     }
 </script>
