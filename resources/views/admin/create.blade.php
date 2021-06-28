@@ -36,7 +36,7 @@
                 <div class="md:w-5/6">
                     <select class=" appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Département" id="Département">
                         <option selected hidden disabled value=""></option>
-                        <option value="Département d'Audit  contrôle gestion et audit interne">Département d'Audit  contrôle gestion et audit interne</option>
+                        <option value="Département d'Audit contrôle gestion et audit interne">Département d'Audit contrôle gestion et audit interne</option>
                         <option value="Département d’informatique">Département d’informatique</option>
                         <option value="Département d'Hygiène Sécurité Environnement">Département d'Hygiène Sécurité Environnement </option>
                         <option value="Département d'administration et finance">Département d'administration et finance</option>

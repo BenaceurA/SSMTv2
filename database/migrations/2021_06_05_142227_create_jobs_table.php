@@ -25,7 +25,7 @@ class CreateJobsTable extends Migration
             $table->string("Adresse")->nullable();
             $table->string("Ville");
             $table->string("Sexe");
-            $table->string("Date_de_naissance");
+            $table->string("Date_de_naissance")->nullable();
             $table->string("Niveau_étude");
             $table->string("Etablissement_de_formation")->nullable();
             $table->string("Années_expérience");

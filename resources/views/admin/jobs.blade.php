@@ -198,7 +198,7 @@
                     @if($row->Lettre_motivation)
                     <button onclick="DownloadLetter({{$row->id}})" class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-2 rounded">Télécharger</button>
                     @else
-                    <span>NULL</span>
+                    <span></span>
                     @endif
                 </td>
                 
@@ -304,11 +304,17 @@
     }
 
     function deleteItems(){
+        //retrieve only the ids from checkedIds (disgard letter)
+        let ids = [];
+        checkedIds.forEach(obj=>{
+          ids.push(obj.id);
+        })
+
         var xhr = new XMLHttpRequest();
         xhr.open("POST", '/api/deleteJobApplications', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify(
-            checkedIds
+            ids
         ));
         xhr.onreadystatechange = function () {
             if (this.status == 200 && this.readyState == 4) {

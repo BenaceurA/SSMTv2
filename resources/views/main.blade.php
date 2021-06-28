@@ -103,8 +103,8 @@
             case "Offre d'emploi":
                 console.log("1");
                 loadSelect2(
-                    [   "Département d'Audit  contrôle gestion et audit interne",
-                        "Département  d’informatique",
+                    [   "Département d'Audit contrôle gestion et audit interne",
+                        "Département d’informatique",
                         "Département d'Hygiène Sécurité Environnement ",
                         "Département d'administration et finance",
                         "Département gestion matériel",
