@@ -25,6 +25,8 @@ Route::post('/postemploi', [jobController::class, 'postEmploi']);
 
 Route::post('/createJobOffer', [jobAdminController::class, 'createJobOffer']);
 
+Route::post('/updateJobOffer', [jobAdminController::class, 'updateJobOffer']);
+
 Route::post('/deleteJobApplications', [jobAdminController::class, 'deleteJobApplications']);
 
 Route::post('/activateJobs', [jobAdminController::class, 'activateJobOffers']);

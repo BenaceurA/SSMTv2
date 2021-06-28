@@ -102,6 +102,19 @@ class jobAdminController extends Controller
         return redirect("/create");
     }
 
+    function updateJobOffer(Request $request)
+    {
+        $data = $request->input();
+        DB::table('job_offers')->where("id", $data["id"])->update([
+            "Offre" => $data["Offre"],
+            "Direction" => $data["Direction"],
+            "Département" => $data["Département"],
+            "Description" => $data["Description"],
+            "Activation" => $data["Activation"]
+        ]);
+        return redirect("/create");
+    }
+
     function deleteJobApplications(Request $request)
     {
         //delete files

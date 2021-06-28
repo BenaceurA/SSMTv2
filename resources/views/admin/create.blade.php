@@ -3,8 +3,9 @@
 @section("main")
 <div class="flex-col w-full ">
     <div class="flex justify-center ">
-        <form class="bg-white bg-opacity-90 w-11/12 p-10 rounded-md" action="/api/createJobOffer" method="post" enctype="multipart/form-data">
+        <form id="form" class="bg-white bg-opacity-90 w-11/12 p-10 rounded-md" action="/api/createJobOffer" method="post" enctype="multipart/form-data">
             @csrf
+            <input id="id" name="id" type="hidden">
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start md:w-1/6">
                     <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Poste">
@@ -33,10 +34,10 @@
                     
                 </div>
                 <div class="md:w-5/6">
-                    <select id="selectDep" class=" appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Département" id="Département">
+                    <select class=" appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Département" id="Département">
                         <option selected hidden disabled value=""></option>
                         <option value="Département d'Audit  contrôle gestion et audit interne">Département d'Audit  contrôle gestion et audit interne</option>
-                        <option value="Département  d’informatique">Département  d’informatique</option>
+                        <option value="Département d’informatique">Département d’informatique</option>
                         <option value="Département d'Hygiène Sécurité Environnement">Département d'Hygiène Sécurité Environnement </option>
                         <option value="Département d'administration et finance">Département d'administration et finance</option>
                         <option value="Département gestion matériel">Département gestion matériel</option>
@@ -64,7 +65,7 @@
                     </label>
                 </div>
                 <div class="md:w-5/6">
-                    <textarea id="editor1" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="Description" name="Description"></textarea>
+                    <textarea id="editor1" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Description"></textarea>
                 </div>
             </div>
             <div class="md:flex md:items-center mb-6">
@@ -85,11 +86,10 @@
                     </label>
                 </div>
             </div>
-            <div class="md:flex md:items-center">
-                <div class="md:w-1/3"></div>
-                <div class="md:w-2/3">
-                    <button class="shadow bg-yellow-500 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
-                        Enregistrer
+            <div class="">
+                <div id="btnDiv" class="md:w-full flex justify-center">
+                    <button id="formBtn" class="shadow bg-yellow-500 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+                        Ajouter
                     </button>
                 </div>
             </div>
@@ -187,7 +187,7 @@
                         </div>
                     </td>
                     <td>
-                        <button onclick="" class="inline-block shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-2 rounded">Modifier</button>
+                        <button onclick='Modify("{!!$row->Description!!}","{{$row->Offre}}","{{$row->Direction}}","{{$row->Département}}","{{$row->id}}")' class="inline-block shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-2 rounded">Modifier</button>
                     </td>
                 </tr>
                 @endforeach
@@ -290,5 +290,42 @@
                 }
             };
         }
+
+        function Modify(desc,ofr,drc,dep,id){ //modify the job offer
+        CKEDITOR.instances.editor1.setData(desc);
+        document.getElementById("Offre").value = ofr;
+        document.getElementById("Direction").value=drc;
+        document.getElementById("Département").value=dep;
+        document.getElementById("id").value = id;
+        document.getElementById("form").action = "api/updateJobOffer"
+        document.getElementById("formBtn").innerHTML = "Modifer"
+        if(document.getElementById("cancelBtn") == null){
+            let cancelBtn = document.createElement("Button");
+            cancelBtn.id = "cancelBtn";
+            cancelBtn.type = "button";
+            cancelBtn.innerHTML = "Cancel";
+            cancelBtn.style.marginLeft = "20px";
+            cancelBtn.onclick = ()=>{
+                cancelModify();
+            }
+            cancelBtn.className= "shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded";
+            document.getElementById("btnDiv").appendChild(cancelBtn);
+        }
+        
+        window.scrollTo(0, 0);
+        }
+
+        function cancelModify(){
+        CKEDITOR.instances.editor1.setData("");
+        document.getElementById("Offre").value = "";
+        document.getElementById("Direction").value= "";
+        document.getElementById("Département").value= "";
+        document.getElementById("id").value = null;
+        document.getElementById("form").action = "api/createJobOffer"
+        document.getElementById("formBtn").innerHTML = "Ajouter"    
+        document.getElementById("btnDiv").removeChild(document.getElementById("cancelBtn"));
+        return false;
+        }
+
     </script>
 @endsection
