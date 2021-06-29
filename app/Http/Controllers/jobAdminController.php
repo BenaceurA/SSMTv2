@@ -20,7 +20,6 @@ class jobAdminController extends Controller
     function jobApplicationsIndex(Request $request)
     {
         $data = $request->all();
-
         if (isset($data["Option"])) {
             $option = array_splice($data, 0, 1);
             if (isset($data["Date_de_naissance"])) {
@@ -84,35 +83,58 @@ class jobAdminController extends Controller
         } else {
             $result = DB::table('jobs')->where($data)->get();
         }
+
         return view("/admin/jobs", ["view" => "jobs", "data" => $result, "username" => adminController::getUsername()]);
     }
 
     function createJobOffer(Request $request)
     {
-        //id creer offre Direction Département Description Activation
-        $job_offer = new Job_Offers();
-        $data = $request->input();
-        $job_offer->Offre = $data["Offre"];
-        $job_offer->Direction = $data["Direction"];
-        $job_offer->Département = $data["Département"];
-        $job_offer->Description = $data["Description"];
-        $job_offer->Activation = $data["Activation"];
-        $job_offer->save();
+        // get the authenticated user then check if AO_E is true;
+        $data = $request->validate([
+            'Offre' => 'required',
+            'Direction' => 'required',
+            'Département' => 'required',
+            'Description' => 'required',
+            'Activation' => 'required',
+        ]);
+        $userId = Auth::id();
+        $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
-        return redirect("/create");
+        if ($permission->AO_E) {
+            $job_offer = new Job_Offers();
+
+            $job_offer->Offre = $data["Offre"];
+            $job_offer->Direction = $data["Direction"];
+            $job_offer->Département = $data["Département"];
+            $job_offer->Description = $data["Description"];
+            $job_offer->Activation = $data["Activation"];
+            $job_offer->save();
+        } else {
+            return response("", 405);
+        }
+        return response("ok", 200);
     }
 
     function updateJobOffer(Request $request)
     {
-        $data = $request->input();
-        DB::table('job_offers')->where("id", $data["id"])->update([
-            "Offre" => $data["Offre"],
-            "Direction" => $data["Direction"],
-            "Département" => $data["Département"],
-            "Description" => $data["Description"],
-            "Activation" => $data["Activation"]
-        ]);
-        return redirect("/create");
+
+        $userId = Auth::id();
+        $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
+
+        if ($permission->MO_E) {
+            $data = $request->input();
+            DB::table('job_offers')->where("id", $data["id"])->update([
+                "Offre" => $data["Offre"],
+                "Direction" => $data["Direction"],
+                "Département" => $data["Département"],
+                "Description" => $data["Description"],
+                "Activation" => $data["Activation"]
+            ]);
+        } else {
+            return response("", 405);
+        }
+
+        return response("ok", 200);
     }
 
     function deleteJobApplications(Request $request)
@@ -137,9 +159,15 @@ class jobAdminController extends Controller
 
     function deleteJobOffers(Request $request)
     {
-        $data = $request->all();
+        $userId = Auth::id();
+        $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
-        return DB::table("job_offers")->whereIn("id", $data)->delete();
+        if ($permission->SO_E) {
+            $data = $request->all();
+            return DB::table("job_offers")->whereIn("id", $data)->delete();
+        } else {
+            return response("", 405);
+        }
     }
 
     function downloadCVs(Request $request)

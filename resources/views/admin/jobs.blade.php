@@ -256,8 +256,6 @@
   </div>
 </div>
 
-@endsection
-
 <script>
     let checkedIds = [];
     function addId(id,lettre,checkbox){
@@ -381,3 +379,4 @@
       })
     }
 </script>
+@endsection

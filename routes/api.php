@@ -21,17 +21,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
 Route::post('/postemploi', [jobController::class, 'postEmploi']);
 
 Route::post('/createJobOffer', [jobAdminController::class, 'createJobOffer']);
 
-Route::post('/updateJobOffer', [jobAdminController::class, 'updateJobOffer']);
+Route::put('/updateJobOffer', [jobAdminController::class, 'updateJobOffer']);
 
 Route::post('/deleteJobApplications', [jobAdminController::class, 'deleteJobApplications']);
 
 Route::post('/activateJobs', [jobAdminController::class, 'activateJobOffers']);
 
-Route::post('/deleteJobs', [jobAdminController::class, 'deleteJobOffers']);
+Route::delete('/deleteJobs', [jobAdminController::class, 'deleteJobOffers']);
 
 Route::get('/DownloadCVs', [jobAdminController::class, 'downloadCVs']);
 

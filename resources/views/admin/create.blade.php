@@ -3,8 +3,7 @@
 @section("main")
 <div class="flex-col w-full ">
     <div class="flex justify-center ">
-        <form id="form" class="bg-white bg-opacity-90 w-11/12 p-10 rounded-md" action="/api/createJobOffer" method="post" enctype="multipart/form-data">
-            @csrf
+        <form id="form" class="bg-white bg-opacity-90 w-11/12 p-10 rounded-md" method="post" enctype="multipart/form-data">
             <input id="id" name="id" type="hidden">
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start md:w-1/6">
@@ -87,8 +86,8 @@
                 </div>
             </div>
             <div class="">
-                <div id="btnDiv" class="md:w-full flex justify-center">
-                    <button id="formBtn" class="shadow bg-yellow-500 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+                <div id="btnDiv" class=":w-full flex justify-center">
+                    <button id="formBtn" onclick="Send()" class="shadow bg-yellow-500 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
                         Ajouter
                     </button>
                 </div>
@@ -205,62 +204,53 @@
 
     <script>
         CKEDITOR.replace('editor1');
-
         let checkedIds = [];
-    function addId(id,checkbox){
-        if(checkbox.checked == true){
-            checkedIds.push(id);            
-        }
-        else{
-            const index = checkedIds.indexOf(id);
-            if (index > -1) {
-                checkedIds.splice(index, 1);
-                
+        
+        function addId(id,checkbox){
+            if(checkbox.checked == true){
+                checkedIds.push(id);            
             }
+            else{
+                const index = checkedIds.indexOf(id);
+                if (index > -1) {
+                    checkedIds.splice(index, 1);
+                    
+                }
+            }
+            console.log(checkedIds);
         }
-        console.log(checkedIds);
-    }
 
-    function addAll(checkbox){
-        let identifier;
-        if(checkbox.checked == true){
-        @foreach ($data as $row )
-        identifier = {{$row->id}}
-            if(checkedIds.indexOf(identifier) == -1){
-                checkedIds.push(identifier);
-                document.getElementById("checkbox-"+identifier).checked = true;
+        function addAll(checkbox){
+            let identifier;
+            if(checkbox.checked == true){
+            @foreach ($data as $row )
+            identifier = {{$row->id}}
+                if(checkedIds.indexOf(identifier) == -1){
+                    checkedIds.push(identifier);
+                    document.getElementById("checkbox-"+identifier).checked = true;
+                }
+            @endforeach
             }
-        @endforeach
-        }
-        else{
-        let index;
-        @foreach ($data as $row )
-        identifier = {{$row->id}}
-        index = checkedIds.indexOf(identifier);
-            if(index > -1){
-                checkedIds.splice(index,1);
-                document.getElementById("checkbox-"+identifier).checked = false;
+            else{
+            let index;
+            @foreach ($data as $row )
+            identifier = {{$row->id}}
+            index = checkedIds.indexOf(identifier);
+                if(index > -1){
+                    checkedIds.splice(index,1);
+                    document.getElementById("checkbox-"+identifier).checked = false;
+                }
+            @endforeach
             }
-        @endforeach
+            console.log(checkedIds);
         }
-        console.log(checkedIds);
-    }
 
-        function Activate(ids,option){
-            console.log("activate");
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", '/api/activateJobs', true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.send(JSON.stringify(
-                [option,ids]
-            ));
-            xhr.onreadystatechange = function () {
-                console.log("state change");
-                if (this.status === 200 && this.readyState == 4) {
-                    if(this.responseText>0){
-                        console.log(this.responseText);
-                        ids.forEach(el => {
-                            console.log("hello");
+        function Activate(ids,option){ 
+            axios.post('/api/activateJobs', [option,ids])
+            .then(function (response) {
+                if(response.data>0){
+                    console.log(response.data);
+                    ids.forEach(el => {
                             let btn =  document.getElementById("availableBtn-"+el);
                             btn.onclick = ()=>{
                                 Activate([el],!option);
@@ -270,62 +260,116 @@
                             else color = "yellow";
                             btn.className = "inline-block shadow bg-"+color+"-500 hover:bg-"+color+"-400 focus:shadow-outline focus:outline-none text-white font-bold mb-3 py-2 px-2 rounded-full"
                         })
-                    }
                 }
-            };
+            })
+            .catch(function (error) {
+                if(error.response.status == 405){
+                    // he's not allowed to create new posts
+                    window.alert("Vous n'avez pas l'autorisation!");
+                }
+            });
         }
 
         function Delete(ids){
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", '/api/deleteJobs', true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.send(JSON.stringify(
-                ids
-            ));
-            xhr.onreadystatechange = function () {
-                if (this.status == 200 && this.readyState == 4) {
-                    if(this.responseText>0){
-                        location.reload();
-                    }
+            axios.delete('/api/deleteJobs', {
+                data : ids
+            })
+            .then(function (response) {
+                if(response.data>0){
+                    location.reload();
                 }
-            };
+            })
+            .catch(function (error) {
+                if(error.response.status == 405){
+                    // he's not allowed to create new posts
+                    window.alert("Vous n'avez pas l'autorisation!");
+                }
+            });  
         }
 
         function Modify(desc,ofr,drc,dep,id){ //modify the job offer
-        CKEDITOR.instances.editor1.setData(desc);
-        document.getElementById("Offre").value = ofr;
-        document.getElementById("Direction").value=drc;
-        document.getElementById("Département").value=dep;
-        document.getElementById("id").value = id;
-        document.getElementById("form").action = "api/updateJobOffer"
-        document.getElementById("formBtn").innerHTML = "Modifer"
-        if(document.getElementById("cancelBtn") == null){
-            let cancelBtn = document.createElement("Button");
-            cancelBtn.id = "cancelBtn";
-            cancelBtn.type = "button";
-            cancelBtn.innerHTML = "Cancel";
-            cancelBtn.style.marginLeft = "20px";
-            cancelBtn.onclick = ()=>{
-                cancelModify();
+            CKEDITOR.instances.editor1.setData(desc);
+            document.getElementById("Offre").value = ofr;
+            document.getElementById("Direction").value=drc;
+            document.getElementById("Département").value=dep;
+            document.getElementById("id").value = id;
+            document.getElementById("form").action = "api/updateJobOffer"
+            let formBtn = document.getElementById("formBtn");
+            formBtn.innerHTML = "Modifer";
+            formBtn.onclick = ()=>{Update()};
+            if(document.getElementById("cancelBtn") == null){
+                let cancelBtn = document.createElement("Button");
+                cancelBtn.id = "cancelBtn";
+                cancelBtn.type = "button";
+                cancelBtn.innerHTML = "Cancel";
+                cancelBtn.style.marginLeft = "20px";
+                cancelBtn.onclick = ()=>{
+                    cancelModify();
+                }
+                cancelBtn.className= "shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded";
+                document.getElementById("btnDiv").appendChild(cancelBtn);
             }
-            cancelBtn.className= "shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded";
-            document.getElementById("btnDiv").appendChild(cancelBtn);
-        }
-        
-        window.scrollTo(0, 0);
+            
+            window.scrollTo(0, 0);
         }
 
         function cancelModify(){
-        CKEDITOR.instances.editor1.setData("");
-        document.getElementById("Offre").value = "";
-        document.getElementById("Direction").value= "";
-        document.getElementById("Département").value= "";
-        document.getElementById("id").value = null;
-        document.getElementById("form").action = "api/createJobOffer"
-        document.getElementById("formBtn").innerHTML = "Ajouter"    
-        document.getElementById("btnDiv").removeChild(document.getElementById("cancelBtn"));
-        return false;
+            CKEDITOR.instances.editor1.setData("");
+            document.getElementById("Offre").value = "";
+            document.getElementById("Direction").value= "";
+            document.getElementById("Département").value= "";
+            document.getElementById("id").value = null;
+            let formBtn = document.getElementById("formBtn");
+            formBtn.innerHTML = "Ajouter";
+            formBtn.onclick = ()=>{Send()};
+            document.getElementById("btnDiv").removeChild(document.getElementById("cancelBtn"));
+            return false;
+        }
+        
+        function Send(){
+            axios.post('/api/createJobOffer', {
+                Offre: document.getElementById("Offre").value,
+                Direction: document.getElementById("Direction").value,
+                Département:document.getElementById("Département").value,
+                Description:CKEDITOR.instances.editor1.getData(),
+                Activation:document.querySelector('input[name="Activation"]:checked').value    
+            })
+            .then(function (response) {
+                if(response.status == 200){
+                    location.reload();
+                }
+            })
+            .catch(function (error) {
+                if(error.response.status == 405){
+                    // he's not allowed to create new posts
+                    window.alert("Vous n'avez pas l'autorisation!");
+                }
+                else if(error.response.status == 422){
+                    // he's not allowed to create new posts
+                    window.alert("Tous les champs sont obligatoires!");
+                }
+            });  
         }
 
+        function Update(){
+            axios.put('/api/updateJobOffer', {
+                id : document.getElementById("id").value,
+                Offre: document.getElementById("Offre").value,
+                Direction: document.getElementById("Direction").value,
+                Département:document.getElementById("Département").value,
+                Description:CKEDITOR.instances.editor1.getData(),
+                Activation:document.querySelector('input[name="Activation"]:checked').value    
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                if(error.response.status == 405){
+                    //he's not allowed to update posts
+                    window.alert("Vous n'avez pas l'autorisation!");
+                }
+            });  
+        }
+        
     </script>
 @endsection

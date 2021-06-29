@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\jobAdminController;
 
 class adminController extends Controller
 {
@@ -22,8 +23,7 @@ class adminController extends Controller
 
         if (Auth::attempt($credentials, false/*$request->remember*/)) {
             $request->session()->regenerate();
-
-            return redirect()->intended('jobs');
+            return redirect()->action([jobAdminController::class, 'jobApplicationsIndex']);
         }
 
         return back()->withErrors([
