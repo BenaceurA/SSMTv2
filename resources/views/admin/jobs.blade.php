@@ -6,7 +6,7 @@
 <div class = "bg-white p-4 bg-opacity-90 border-t-4 border-b-4 rounded mb-4">
   <div class="w-full">
     <button onclick="deleteItems()" class=" w-full shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
-      Supprimer
+      <i id="loadingDelete" class=""></i>Supprimer
     </button>
     <button onclick="DownloadCVs()" class="mt-4 w-full shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
       Curriculum vitae
@@ -258,6 +258,8 @@
 
 <script>
     let checkedIds = [];
+    let DownloadCVPerm = 0;
+    let DownloadLetterPerm = 0;
     function addId(id,lettre,checkbox){
         if(checkbox.checked == true){
           let obj={};
@@ -302,26 +304,30 @@
     }
 
     function deleteItems(){
-        //retrieve only the ids from checkedIds (disgard letter)
-        let ids = [];
+      let loadingDelete = document.getElementById("loadingDelete");
+      //retrieve only the ids from checkedIds (disgard letter)
+      let ids = [];
         checkedIds.forEach(obj=>{
           ids.push(obj.id);
         })
-
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", '/api/deleteJobApplications', true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(JSON.stringify(
-            ids
-        ));
-        xhr.onreadystatechange = function () {
-            if (this.status == 200 && this.readyState == 4) {
-                if(this.responseText>0){
+      loadingDelete.className = "fa fa-circle-o-notch fa-spin mr-2";
+      axios.delete('/api/deleteJobApplications', {
+                data : ids
+            })
+            .then(function (response) {
+                if(response.data>0){
                     location.reload();
                 }
-            }
-        };
-        console.log(checkedIds);
+                else{
+                  loadingDelete.className = "";
+                }
+            })
+            .catch(function (error) {
+                if(error.response.status == 405){
+                    // he's not allowed to create new posts
+                    window.alert("Vous n'avez pas l'autorisation!");
+                }
+            });   
     }
 
     window.onload = ()=>{
@@ -347,36 +353,63 @@
           Age.name = "";
         }
     })
+
+    //GET DOWNLOADS PERMISIONS HERE AND STORE THEM FOR CHECKING
+    axios.get('/api/getPermissions')
+            .then(function (response) {
+                DownloadCVPerm = response.data.TC_E;
+                DownloadLetterPerm = response.data.TL_E
+            })
     }
 
     function DownloadLetter(id){ 
-      var link = document.createElement("a");
+      if(DownloadCVPerm){
+        var link = document.createElement("a");
         link.download = "";
         link.href = '/api/DownloadLetters?id='+id;
         document.body.appendChild(link);
         link.click();
         link.remove();
+      } else{
+        alert("Vous n'avez pas l'autorisation!");
+      }   
     }
+
     function DownloadCV(id){
-      var link = document.createElement("a");
+      if(DownloadLetterPerm){
+        var link = document.createElement("a");
         link.download = "";
         link.href = '/api/DownloadCVs?id='+id;
         document.body.appendChild(link);
         link.click();
         link.remove();
+      }
+      else{
+        alert("Vous n'avez pas l'autorisation!");
+      }    
     }
         
     function DownloadCVs(){
-      checkedIds.forEach(obj =>{
+      if(DownloadCVPerm){
+        checkedIds.forEach(obj =>{
         DownloadCV(obj["id"]);
-      })
+        })
+      }
+      else{
+        alert("Vous n'avez pas l'autorisation!");
+      }   
     }
     
     function DownloadLetters(){ 
-      checkedIds.forEach(obj =>{
-        if(obj["lettre"] !== null) DownloadLetter(obj["id"]);
-        else console.log("nope");
-      })
+      if(DownloadLetterPerm){
+        checkedIds.forEach(obj =>{
+          if(obj["lettre"] !== null) DownloadLetter(obj["id"]);
+          else console.log("nope");
+        })
+      }
+      else{
+        alert("Vous n'avez pas l'autorisation!");
+      }
     }
 </script>
 @endsection

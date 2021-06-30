@@ -5,7 +5,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\jobController;
 use App\Http\Controllers\jobAdminController;
-use App\Http\Controllers\settingsController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -28,7 +27,7 @@ Route::post('/createJobOffer', [jobAdminController::class, 'createJobOffer']);
 
 Route::put('/updateJobOffer', [jobAdminController::class, 'updateJobOffer']);
 
-Route::post('/deleteJobApplications', [jobAdminController::class, 'deleteJobApplications']);
+Route::delete('/deleteJobApplications', [jobAdminController::class, 'deleteJobApplications']);
 
 Route::post('/activateJobs', [jobAdminController::class, 'activateJobOffers']);
 
@@ -37,3 +36,5 @@ Route::delete('/deleteJobs', [jobAdminController::class, 'deleteJobOffers']);
 Route::get('/DownloadCVs', [jobAdminController::class, 'downloadCVs']);
 
 Route::get('/DownloadLetters', [jobAdminController::class, 'downloadLetters']);
+
+Route::get('/getPermissions', [adminController::class, 'getPermissions']);

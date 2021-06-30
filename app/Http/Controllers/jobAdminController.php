@@ -139,13 +139,17 @@ class jobAdminController extends Controller
 
     function deleteJobApplications(Request $request)
     {
-        //delete files
-        foreach ($request->all() as $key => $value) {
-            $query =  DB::table('jobs')->where('id', $value)->get(["CV", "Lettre_motivation"])->first();
-            Storage::delete(["public/CVs/" . $query->CV, "public/Lettres/" . $query->Lettre_motivation]);
+        $userId = Auth::id();
+        $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
+        if ($permission->SC_E) {
+            foreach ($request->all() as $key => $value) {
+                $query =  DB::table('jobs')->where('id', $value)->get(["CV", "Lettre_motivation"])->first();
+                Storage::delete(["public/CVs/" . $query->CV, "public/Lettres/" . $query->Lettre_motivation]); //delete files
+            }
+            return Job::destroy($request->all());
+        } else {
+            return response("", 405);
         }
-
-        return Job::destroy($request->all());
     }
 
     function activateJobOffers(Request $request)
@@ -172,16 +176,27 @@ class jobAdminController extends Controller
 
     function downloadCVs(Request $request)
     {
-        $id = $request->query('id');
-        $cvName = DB::table('jobs')->where('id', $id)->first('CV')->CV;
-        return Storage::download("public/CVs/" . $cvName);
+        $userId = Auth::id();
+        $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
+
+        if ($permission->TC_E) {
+            $id = $request->query('id');
+            $cvName = DB::table('jobs')->where('id', $id)->first('CV')->CV;
+            return Storage::download("public/CVs/" . $cvName);
+        }
     }
+
     function downloadLetters(Request $request)
     {
-        $id = $request->query('id');
-        $LettreName = DB::table('jobs')->where('id', $id)->first('Lettre_motivation')->Lettre_motivation;
-        if ($LettreName) {
-            return Storage::download("public/Lettres/" . $LettreName);
+        $userId = Auth::id();
+        $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
+
+        if ($permission->TL_E) {
+            $id = $request->query('id');
+            $LettreName = DB::table('jobs')->where('id', $id)->first('Lettre_motivation')->Lettre_motivation;
+            if ($LettreName) {
+                return Storage::download("public/Lettres/" . $LettreName);
+            }
         }
     }
 }

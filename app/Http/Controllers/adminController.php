@@ -34,4 +34,10 @@ class adminController extends Controller
     {
         return  DB::table('users')->where('id', Auth::id())->first()->name;
     }
+    function getPermissions(Request $request)
+    {
+        $userId = Auth::id();
+        $permissions = DB::table("user_permissions")->where('user_id', $userId)->first();
+        return json_encode($permissions);
+    }
 }
