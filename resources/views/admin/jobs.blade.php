@@ -9,10 +9,10 @@
       <i id="loadingDelete" class=""></i>Supprimer
     </button>
     <button onclick="DownloadCVs()" class="mt-4 w-full shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
-      Curriculum vitae
+      <i id="loadingCVs" class=""></i>Curriculum vitae
     </button>
     <button onclick="DownloadLetters()" class="mt-4 w-full shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
-      Lettre de motivation
+      <i id="loadingLetters" class=""></i>Lettre de motivation
     </button>
   </div>
   <form method="GET" action="/jobs" class="m-0 flex-col">
@@ -260,6 +260,39 @@
     let checkedIds = [];
     let DownloadCVPerm = 0;
     let DownloadLetterPerm = 0;
+
+    window.onload = ()=>{
+      let sf = document.getElementById("submitFilter");
+      document.addEventListener("submit",()=>{
+      let AE = document.getElementById("AE");
+      let NE = document.getElementById("NE");
+      let Sexe = document.getElementById("Sexe");
+      let Ville = document.getElementById("Ville");
+        if(AE.value == 'null'){
+          AE.name = "";
+        }
+        if(NE.value == 'null'){
+          NE.name = "";
+        }
+        if(Sexe.value == 'null'){
+          Sexe.name = "";
+        }
+        if(Ville.value == 'null'){
+          Ville.name = "";
+        }
+        if(Age.value == 'null'){
+          Age.name = "";
+        }
+    });
+    //GET DOWNLOADS PERMISIONS HERE AND STORE THEM FOR CHECKING
+    axios.get('/api/getPermissions')
+        .then(function (response) {
+            DownloadCVPerm = response.data.TC_E;
+            DownloadLetterPerm = response.data.TL_E
+        })
+
+    }
+
     function addId(id,lettre,checkbox){
         if(checkbox.checked == true){
           let obj={};
@@ -330,39 +363,7 @@
             });   
     }
 
-    window.onload = ()=>{
-    let sf = document.getElementById("submitFilter");
-    document.addEventListener("submit",()=>{
-      let AE = document.getElementById("AE");
-      let NE = document.getElementById("NE");
-      let Sexe = document.getElementById("Sexe");
-      let Ville = document.getElementById("Ville");
-        if(AE.value == 'null'){
-          AE.name = "";
-        }
-        if(NE.value == 'null'){
-          NE.name = "";
-        }
-        if(Sexe.value == 'null'){
-          Sexe.name = "";
-        }
-        if(Ville.value == 'null'){
-          Ville.name = "";
-        }
-        if(Age.value == 'null'){
-          Age.name = "";
-        }
-    })
-
-    //GET DOWNLOADS PERMISIONS HERE AND STORE THEM FOR CHECKING
-    axios.get('/api/getPermissions')
-            .then(function (response) {
-                DownloadCVPerm = response.data.TC_E;
-                DownloadLetterPerm = response.data.TL_E
-            })
-    }
-
-    function DownloadLetter(id){ 
+    function DownloadLetter(id){
       if(DownloadCVPerm){
         var link = document.createElement("a");
         link.download = "";
@@ -372,7 +373,7 @@
         link.remove();
       } else{
         alert("Vous n'avez pas l'autorisation!");
-      }   
+      }  
     }
 
     function DownloadCV(id){
@@ -404,7 +405,6 @@
       if(DownloadLetterPerm){
         checkedIds.forEach(obj =>{
           if(obj["lettre"] !== null) DownloadLetter(obj["id"]);
-          else console.log("nope");
         })
       }
       else{
