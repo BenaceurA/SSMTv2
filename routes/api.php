@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\jobController;
 use App\Http\Controllers\jobAdminController;
+use App\Http\Controllers\internshipAdminController;
+use App\Http\Controllers\internshipController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -40,3 +42,17 @@ Route::get('/DownloadLetters', [jobAdminController::class, 'downloadLetters']);
 Route::get('/getPermissions', [adminController::class, 'getPermissions']);
 
 Route::get('/jobDescription', [jobAdminController::class, 'jobDescription']);
+
+//--------------------------------------------------------------------------
+
+Route::post('/poststage', [internshipController::class, 'postStage']);
+
+Route::post('/createInternshipOffer', [internshipAdminController::class, 'createInternshipOffer']);
+
+Route::put('/updateInternshipOffer', [internshipAdminController::class, 'updateInternshipOffer']);
+
+Route::post('/activateInternships', [internshipAdminController::class, 'activateInternshipOffers']);
+
+Route::delete('/deleteInternships', [internshipAdminController::class, 'deleteInternshipOffers']);
+
+Route::get('/InternshipDescription', [internshipAdminController::class, 'InternshipDescription']);

@@ -12,7 +12,7 @@ class jobController extends Controller
     function JobForm($id)
     {
         $job_offer = DB::table('job_offers')->where('id', $id)->first();
-        return view("formemploi")->with('offer', $job_offer);
+        return view("form")->with(['offer' => $job_offer, "type" => "emploi"]);
     }
 
     function postEmploi(Request $request)

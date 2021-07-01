@@ -27,12 +27,12 @@ class Controller extends BaseController
             case "Offre d'emploi":
                 $query = DB::table('job_offers')->where(['Département' => $data["select2"], 'Activation' => 1]);
                 $result = $query->get();
-                return view("offres")->with("result", $result);
+                return view("offres")->with(["result" => $result, "type" => "emploi"]);
                 break;
             case "Offre de stage":
-                $query = DB::table('intern_offers')->where('Département', $data["select2"]);
+                $query = DB::table('internship_offers')->where(['Département' => $data["select2"], 'Activation' => 1]);
                 $result = $query->get();
-                return view("offres")->with("result", $result);
+                return view("offres")->with(["result" => $result, "type" => "stage"]);
                 break;
 
             case "Candidature spontanée":

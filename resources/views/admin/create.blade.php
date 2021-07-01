@@ -249,6 +249,7 @@
             console.log(checkedIds);
         }
 
+@if($view == "createJobs")
         function Activate(ids,option){ 
             axios.post('/api/activateJobs', [option,ids])
             .then(function (response) {
@@ -308,7 +309,6 @@
             loadDepartements() // load departemens before selecting
             document.getElementById("Département").value=dep;
             document.getElementById("id").value = id;
-            document.getElementById("form").action = "api/updateJobOffer"
             let formBtn = document.getElementById("formBtn");
             formBtn.innerHTML = "Modifer";
             formBtn.onclick = ()=>{Update()};
@@ -439,6 +439,197 @@
                     break;
                 }
         }
+@endif
+@if($view == "createInternships")
+        function Activate(ids,option){ 
+            axios.post('/api/activateInternships', [option,ids])
+            .then(function (response) {
+                if(response.data>0){
+                    console.log(response.data);
+                    ids.forEach(el => {
+                            let btn =  document.getElementById("availableBtn-"+el);
+                            btn.onclick = ()=>{
+                                Activate([el],!option);
+                            }
+                            let color;
+                            if(option == true) color = "green";
+                            else color = "yellow";
+                            btn.className = "inline-block shadow bg-"+color+"-500 hover:bg-"+color+"-400 focus:shadow-outline focus:outline-none text-white font-bold mb-3 py-2 px-2 rounded-full"
+                        })
+                }
+            })
+            .catch(function (error) {
+                if(error.response.status == 405){
+                    // he's not allowed to create new posts
+                    window.alert("Vous n'avez pas l'autorisation!");
+                }
+            });
+        }
+
+        function Delete(ids){
+            axios.delete('/api/deleteInternships', {
+                data : ids
+            })
+            .then(function (response) {
+                if(response.data>0){
+                    location.reload();
+                }
+            })
+            .catch(function (error) {
+                if(error.response.status == 405){
+                    // he's not allowed to create new posts
+                    window.alert("Vous n'avez pas l'autorisation!");
+                }
+            });  
+        }
+
+        function Modify(ofr,drc,dep,id){
+            //SOLUTION : get the description from the API in JSON and set it to the editor
+            CKEDITOR.instances.editor1.setData("Chargement...");
+            axios.get('/api/InternshipDescription?id='+id)
+                .then(function (response) {
+                    CKEDITOR.instances.editor1.setData(response.data);
+                    console.log();
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+
+            document.getElementById("Offre").value = ofr;
+            document.getElementById("Direction").value=drc;
+            loadDepartements() // load departemens before selecting
+            document.getElementById("Département").value=dep;
+            document.getElementById("id").value = id;
+            let formBtn = document.getElementById("formBtn");
+            formBtn.innerHTML = "Modifer";
+            formBtn.onclick = ()=>{Update()};
+            if(document.getElementById("cancelBtn") == null){
+                let cancelBtn = document.createElement("Button");
+                cancelBtn.id = "cancelBtn";
+                cancelBtn.type = "button";
+                cancelBtn.innerHTML = "Cancel";
+                cancelBtn.style.marginLeft = "20px";
+                cancelBtn.onclick = ()=>{
+                    cancelModify();
+                }
+                cancelBtn.className= "shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded";
+                document.getElementById("btnDiv").appendChild(cancelBtn);
+            }
+            
+            window.scrollTo(0, 0);
+        }
+
+        function cancelModify(){
+            CKEDITOR.instances.editor1.setData("");
+            document.getElementById("Offre").value = "";
+            document.getElementById("Direction").value= "";
+            document.getElementById("Département").value= "";
+            document.getElementById("id").value = null;
+            let formBtn = document.getElementById("formBtn");
+            formBtn.innerHTML = "Ajouter";
+            formBtn.onclick = ()=>{Send()};
+            document.getElementById("btnDiv").removeChild(document.getElementById("cancelBtn"));
+            return false;
+        }
+        
+        function Send(){
+            axios.post('/api/createInternshipOffer', {
+                Offre: document.getElementById("Offre").value,
+                Direction: document.getElementById("Direction").value,
+                Département:document.getElementById("Département").value,
+                Description:CKEDITOR.instances.editor1.getData(),
+                Activation:document.querySelector('input[name="Activation"]:checked').value    
+            })
+            .then(function (response) {
+                if(response.status == 200){
+                    location.reload();
+                }
+            })
+            .catch(function (error) {
+                if(error.response.status == 405){
+                    // he's not allowed to create new posts
+                    window.alert("Vous n'avez pas l'autorisation!");
+                }
+                else if(error.response.status == 422){
+                    // he's not allowed to create new posts
+                    window.alert("Tous les champs sont obligatoires!");
+                }
+            });  
+        }
+
+        function Update(){
+            axios.put('/api/updateInternshipOffer', {
+                id : document.getElementById("id").value,
+                Offre: document.getElementById("Offre").value,
+                Direction: document.getElementById("Direction").value,
+                Département:document.getElementById("Département").value,
+                Description:CKEDITOR.instances.editor1.getData(),
+                Activation:document.querySelector('input[name="Activation"]:checked').value    
+            })
+            .then(function (response) {
+                location.reload();
+            })
+            .catch(function (error) {
+                if(error.response.status == 405){
+                    //he's not allowed to update posts
+                    window.alert("Vous n'avez pas l'autorisation!");
+                }
+            });  
+        }
+        
+        function loadDepartements(){
+            let departement = document.getElementById("Département");
+            let direction = document.getElementById("Direction");
+
+            function load(elements){
+                elements.forEach(element=>{
+                    let option  =  document.createElement("option");
+                    option.value = element;
+                    option.innerHTML = element;
+                    departement.appendChild(option);
+                })   
+            }
+
+            let childOption = departement.lastChild;
+
+            while (childOption.value != "null") {
+            departement.removeChild(childOption);
+            childOption = departement.lastChild;
+            }
+
+            switch(direction.value) {
+                case "Direction générale":
+                    load([
+                        "Département d'Audit contrôle gestion et audit interne",
+                        "Département d’informatique",
+                        "Département d'Hygiène Sécurité Environnement",
+                        "Département gestion matériel"
+                    ]);
+                    break;
+                case "Administration":
+                    load([
+                        "Département d'Audit contrôle gestion et audit interne",
+                        "Département d’informatique",
+                        "Département d'Hygiène Sécurité Environnement",
+                        "Département de la comptabilité",
+                        "Département de finance",
+                        "Département administratif et juridique",
+                        "Département administratif des ventes",
+                        "Département de ressources humaines",
+                        "Département d'achats",
+                        "Département gestion matériel",
+                        "Département d'atelier",
+                        "Département bureau méthode maintenance",
+                        "Département logistique",
+                        "Département d'exploiatation",
+                        "Département d'étude des prix",
+                        "Département topographe",
+                        "Département administration marchés publiques"
+                    ]);
+                    break;
+                }
+        }
+@endif
     function l(t){
         console.log(t);
     }

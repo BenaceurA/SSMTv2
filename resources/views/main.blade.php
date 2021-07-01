@@ -125,7 +125,26 @@
                 break;
             case "Offre de stage":
                 console.log("2");
-                loadSelect2(["DS1", "DS2", "DS3", "DS4"]);
+                loadSelect2(
+                    [
+                        "Département d'Audit contrôle gestion et audit interne",
+                        "Département d’informatique",
+                        "Département d'Hygiène Sécurité Environnement ",
+                        "Département gestion matériel",
+                        "Département de la comptabilité",
+                        "Département de finance",
+                        "Département administratif et juridique",
+                        "Département administratif des ventes",
+                        "Département de ressources humaines",
+                        "Département d'achats",
+                        "Département d'atelier",
+                        "Département bureau méthode maintenance",
+                        "Département logistique",
+                        "Département d'exploitation",
+                        "Département d'étude des prix",
+                        "Département topographe",
+                        "Département administration marchés publiques"
+                    ]);
                 break;
             case "Candidature spontanée":
                 console.log("3");

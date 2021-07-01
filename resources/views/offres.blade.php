@@ -72,9 +72,14 @@
         {!!$r->Description!!}
         <br>
 
+        @if($type == "emploi")
         <a href="/formulaireEmploi/{!!$r->id!!}">
+        @endif
+        @if($type == "stage")
+        <a href="/formulaireStage/{!!$r->id!!}">
+        @endif
             <button  class="shadow bg-yellow-500 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">          
-            Postuler     
+            Postuler
             </button>
         </a>
         </div>
@@ -82,7 +87,6 @@
         </div>
     </div>
     @endif
-
 
 </body>
 

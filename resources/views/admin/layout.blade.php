@@ -56,15 +56,15 @@
 <body class="h-screen background-img">
 <div class="h-full w-full flex-col">
     <div class="text-sm sticky top-0 bg-gray-500 bg-opacity-90 z-50 flex w-full">
-        <a class="flex-1" href="/create">
+        <a class="flex-1" href="/createJob">
         <div>   
-            <div class="menu shadow  @if($view == "create") bg-yellow-500 @endif hover:bg-gray-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4 border-r border-opacity-5">                        
+            <div class="menu shadow  @if($view == "createJobs") bg-yellow-500 @endif hover:bg-gray-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4 border-r border-opacity-5">                        
                 Offre emploi
             </div>
         </div>
         </a>
-        <a class="flex-1" href="">
-            <div class="menu shadow  hover:bg-gray-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4 border-r">
+        <a class="flex-1" href="/createInternship">
+            <div class="menu shadow @if($view == "createInternships") bg-yellow-500 @endif hover:bg-gray-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4 border-r">
                 Offre stage
             </div>
         </a> 

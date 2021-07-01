@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Job;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use App\Models\Job_Offers;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Internship_Offers;
+use App\Models\Internship;
 
-class jobAdminController extends Controller
+class internshipAdminController extends Controller
 {
-    function jobCreationIndex()
+    function internshipCreationIndex()
     {
-        $result = DB::table('job_offers')->get();
-        return view("/admin/create", ["view" => "createJobs", "data" => $result, "username" => adminController::getUsername()]);
+        $result = DB::table('internship_offers')->get();
+        return view("/admin/create", ["view" => "createInternships", "data" => $result, "username" => adminController::getUsername()]);
     }
 
-    function jobApplicationsIndex(Request $request)
+    function internshipApplicationsIndex(Request $request)
     {
         $data = $request->all();
         if (isset($data["Option"])) {
@@ -28,11 +28,11 @@ class jobAdminController extends Controller
             }
             switch ($option["Option"]) {
                 case "AND":
-                    $result = DB::table('jobs')->where($data);
+                    $result = DB::table('internships')->where($data);
                     break;
 
                 case "OR":
-                    $result = DB::table('jobs')->orWhere($data);
+                    $result = DB::table('internships')->orWhere($data);
                     break;
             }
 
@@ -81,13 +81,13 @@ class jobAdminController extends Controller
             }
             $result = $result->get();
         } else {
-            $result = DB::table('jobs')->where($data)->get();
+            $result = DB::table('internships')->where($data)->get();
         }
 
-        return view("/admin/jobs", ["view" => "jobs", "data" => $result, "username" => adminController::getUsername()]);
+        return view("/admin/internships", ["view" => "internships", "data" => $result, "username" => adminController::getUsername()]);
     }
 
-    function createJobOffer(Request $request)
+    function createInternshipOffer(Request $request)
     {
         // get the authenticated user then check if AO_E is true;
         $data = $request->validate([
@@ -101,29 +101,28 @@ class jobAdminController extends Controller
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
         if ($permission->AO_E) {
-            $job_offer = new Job_Offers();
+            $internship_offer = new Internship_Offers();
 
-            $job_offer->Offre = $data["Offre"];
-            $job_offer->Direction = $data["Direction"];
-            $job_offer->Département = $data["Département"];
-            $job_offer->Description = $data["Description"];
-            $job_offer->Activation = $data["Activation"];
-            $job_offer->save();
+            $internship_offer->Offre = $data["Offre"];
+            $internship_offer->Direction = $data["Direction"];
+            $internship_offer->Département = $data["Département"];
+            $internship_offer->Description = $data["Description"];
+            $internship_offer->Activation = $data["Activation"];
+            $internship_offer->save();
         } else {
             return response("", 405);
         }
         return response("ok", 200);
     }
 
-    function updateJobOffer(Request $request)
+    function updateInternshipOffer(Request $request)
     {
-
         $userId = Auth::id();
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
         if ($permission->MO_E) {
             $data = $request->input();
-            DB::table('job_offers')->where("id", $data["id"])->update([
+            DB::table('internship_offers')->where("id", $data["id"])->update([
                 "Offre" => $data["Offre"],
                 "Direction" => $data["Direction"],
                 "Département" => $data["Département"],
@@ -137,38 +136,38 @@ class jobAdminController extends Controller
         return response("ok", 200);
     }
 
-    function deleteJobApplications(Request $request)
+    function deleteInternshipApplications(Request $request)
     {
         $userId = Auth::id();
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
         if ($permission->SC_E) {
             foreach ($request->all() as $key => $value) {
-                $query =  DB::table('jobs')->where('id', $value)->get(["CV", "Lettre_motivation"])->first();
+                $query =  DB::table('internships')->where('id', $value)->get(["CV", "Lettre_motivation"])->first();
                 Storage::delete(["public/CVs/" . $query->CV, "public/Lettres/" . $query->Lettre_motivation]); //delete files
             }
-            return Job::destroy($request->all());
+            return Internship::destroy($request->all());
         } else {
             return response("", 405);
         }
     }
 
-    function activateJobOffers(Request $request)
+    function activateInternshipOffers(Request $request)
     {
         $array = $request->all();
         $activation = $array[0];
         $data = $array[1];
 
-        return DB::table("job_offers")->whereIn("id", $data)->update(['Activation' => $activation]);
+        return DB::table("internship_offers")->whereIn("id", $data)->update(['Activation' => $activation]);
     }
 
-    function deleteJobOffers(Request $request)
+    function deleteInternshipOffers(Request $request)
     {
         $userId = Auth::id();
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
         if ($permission->SO_E) {
             $data = $request->all();
-            return DB::table("job_offers")->whereIn("id", $data)->delete();
+            return DB::table("internship_offers")->whereIn("id", $data)->delete();
         } else {
             return response("", 405);
         }
@@ -181,7 +180,7 @@ class jobAdminController extends Controller
 
         if ($permission->TC_E) {
             $id = $request->query('id');
-            $cvName = DB::table('jobs')->where('id', $id)->first('CV')->CV;
+            $cvName = DB::table('internships')->where('id', $id)->first('CV')->CV;
             return Storage::download("public/CVs/" . $cvName);
         }
     }
@@ -193,16 +192,16 @@ class jobAdminController extends Controller
 
         if ($permission->TL_E) {
             $id = $request->query('id');
-            $LettreName = DB::table('jobs')->where('id', $id)->first('Lettre_motivation')->Lettre_motivation;
+            $LettreName = DB::table('internships')->where('id', $id)->first('Lettre_motivation')->Lettre_motivation;
             if ($LettreName) {
                 return Storage::download("public/Lettres/" . $LettreName);
             }
         }
     }
 
-    function jobDescription(Request $request)
+    function internshipDescription(Request $request)
     {
-        $description = DB::table('job_offers')->where('id', $request->all()["id"])->first()->Description;
+        $description = DB::table('internship_offers')->where('id', $request->all()["id"])->first()->Description;
         return $description;
     }
 }
