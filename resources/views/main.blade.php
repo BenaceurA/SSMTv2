@@ -114,7 +114,6 @@
                         "Département administratif des ventes",
                         "Département de ressources humaines",
                         "Département d'achats",
-                        "Département Gestion Matériels",
                         "Département d'atelier",
                         "Département bureau méthode maintenance",
                         "Département logistique",

@@ -290,7 +290,6 @@
             DownloadCVPerm = response.data.TC_E;
             DownloadLetterPerm = response.data.TL_E
         })
-
     }
 
     function addId(id,lettre,checkbox){

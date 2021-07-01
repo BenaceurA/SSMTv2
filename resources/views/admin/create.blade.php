@@ -22,7 +22,11 @@
                     </label>
                 </div>
                 <div class="md:w-5/6">
-                    <input class=" appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Direction" id="Direction" type="text">
+                    <select onchange="loadDepartements()" class=" appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Direction" id="Direction">
+                        <option selected hidden disabled value="null"></option>
+                        <option value="Direction générale">Direction générale</option>
+                        <option value="Administration">Administration</option>
+                    </select>
                 </div>
             </div>
             <div class="md:flex md:items-center mb-6">
@@ -34,8 +38,8 @@
                 </div>
                 <div class="md:w-5/6">
                     <select class=" appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Département" id="Département">
-                        <option selected hidden disabled value=""></option>
-                        <option value="Département d'Audit contrôle gestion et audit interne">Département d'Audit contrôle gestion et audit interne</option>
+                        <option selected hidden disabled value="null"></option>
+                        {{-- <option value="Département d'Audit contrôle gestion et audit interne">Département d'Audit contrôle gestion et audit interne</option>
                         <option value="Département d’informatique">Département d’informatique</option>
                         <option value="Département d'Hygiène Sécurité Environnement">Département d'Hygiène Sécurité Environnement </option>
                         <option value="Département d'administration et finance">Département d'administration et finance</option>
@@ -53,7 +57,7 @@
                         <option value="Département d'exploitation ">Département d'exploiatation</option>
                         <option value="Département d'étude des prix">Département d'étude des prix</option>
                         <option value="Département topographe">Département topographe</option>
-                        <option value="Département administration marchés publiques">Département administration marchés publiques</option>
+                        <option value="Département administration marchés publiques">Département administration marchés publiques</option> --}}
                     </select>
                 </div>
             </div>
@@ -371,5 +375,61 @@
             });  
         }
         
+        function loadDepartements(){
+            let departement = document.getElementById("Département");
+            let direction = document.getElementById("Direction");
+
+            function load(elements){
+                elements.forEach(element=>{
+                    let option  =  document.createElement("option");
+                    option.value = element;
+                    option.innerHTML = element;
+                    departement.appendChild(option);
+                })   
+            }
+
+            let childOption = departement.lastChild;
+
+            while (childOption.value != "null") {
+            departement.removeChild(childOption);
+            childOption = departement.lastChild;
+            }
+
+            switch(direction.value) {
+                case "Direction générale":
+                    load([
+                        "Département d'Audit contrôle gestion et audit interne",
+                        "Département d’informatique",
+                        "Département d'Hygiène Sécurité Environnement",
+                        "Département d'administration et finance",
+                        "Département gestion matériel"
+                    ]);
+                    break;
+                case "Administration":
+                    load([
+                        "Département d'Audit contrôle gestion et audit interne",
+                        "Département d’informatique",
+                        "Département d'Hygiène Sécurité Environnement",
+                        "Département de la comptabilité",
+                        "Département de finance",
+                        "Département administratif et juridique",
+                        "Département administratif des ventes",
+                        "Département de ressources humaines",
+                        "Département d'achats",
+                        "Département gestion matériel",
+                        "Département d'atelier",
+                        "Département bureau méthode maintenance",
+                        "Département logistique",
+                        "Département d'exploiatation",
+                        "Département d'étude des prix",
+                        "Département topographe",
+                        "Département administration marchés publiques"
+                    ]);
+                    break;
+                }
+        }
+    function l(t){
+        console.log(t);
+    }
     </script>
 @endsection
