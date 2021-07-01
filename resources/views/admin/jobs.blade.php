@@ -3,7 +3,7 @@
 @section('main')
 
 <div class="small-width text-sm mt-4 ml-4 ">
-  <div class = "small-width fixed bg-white p-4 bg-opacity-90 border-t-4 border-b-4 rounded mb-4">
+  <div class = "fixed w-60 bg-white p-4 bg-opacity-90 border-t-4 border-b-4 rounded mb-4">
     <div class="w-full">
       <button onclick="deleteItems()" class=" w-full shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
         <i id="loadingDelete" class=""></i>Supprimer
@@ -336,16 +336,14 @@
     }
 
     function deleteItems(){
-
-      if(confirm("Supprimer ?")){
-        let loadingDelete = document.getElementById("loadingDelete");
-              //retrieve only the ids from checkedIds (disgard letter)
-              let ids = [];
-                checkedIds.forEach(obj=>{
-                  ids.push(obj.id);
-                })
-              loadingDelete.className = "fa fa-circle-o-notch fa-spin mr-2";
-              axios.delete('/api/deleteJobApplications', {
+      let loadingDelete = document.getElementById("loadingDelete");
+      //retrieve only the ids from checkedIds (disgard letter)
+      let ids = [];
+        checkedIds.forEach(obj=>{
+          ids.push(obj.id);
+        })
+      loadingDelete.className = "fa fa-circle-o-notch fa-spin mr-2";
+      axios.delete('/api/deleteJobApplications', {
                 data : ids
             })
             .then(function (response) {
@@ -361,10 +359,7 @@
                     // he's not allowed to create new posts
                     window.alert("Vous n'avez pas l'autorisation!");
                 }
-            }); 
-      }
-
-        
+            });   
     }
 
     function DownloadLetter(id){
