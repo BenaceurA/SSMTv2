@@ -3,120 +3,120 @@
 @section('main')
 
 <div class="small-width text-sm mt-4 ml-4 ">
-<div class = "bg-white p-4 bg-opacity-90 border-t-4 border-b-4 rounded mb-4">
-  <div class="w-full">
-    <button onclick="deleteItems()" class=" w-full shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
-      <i id="loadingDelete" class=""></i>Supprimer
-    </button>
-    <button onclick="DownloadCVs()" class="mt-4 w-full shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
-      <i id="loadingCVs" class=""></i>Curriculum vitae
-    </button>
-    <button onclick="DownloadLetters()" class="mt-4 w-full shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
-      <i id="loadingLetters" class=""></i>Lettre de motivation
-    </button>
+  <div class = "fixed w-60 bg-white p-4 bg-opacity-90 border-t-4 border-b-4 rounded mb-4">
+    <div class="w-full">
+      <button onclick="deleteItems()" class=" w-full shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+        <i id="loadingDelete" class=""></i>Supprimer
+      </button>
+      <button onclick="DownloadCVs()" class="mt-4 w-full shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+        <i id="loadingCVs" class=""></i>Curriculum vitae
+      </button>
+      <button onclick="DownloadLetters()" class="mt-4 w-full shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+        <i id="loadingLetters" class=""></i>Lettre de motivation
+      </button>
+    </div>
+    <form method="GET" action="/jobs" class="m-0 flex-col">
+      <div class="mt-4 flex-col w-auto">
+        <label class="whitespace-nowrap text-gray-500 font-bold ">
+          Option
+        </label>
+        <select id="Option" class="mt-1 border-gray-200 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Option">
+            <option selected value="AND">AND</option>
+            <option value="OR">OR</option>
+        </select>
+      </div>
+      <div class="mt-4 flex-col w-auto">
+        <label class="whitespace-nowrap text-gray-500 font-bold">
+          Année d’expérience
+        </label>
+        <select id="AE" class="mt-1 border-gray-200 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Années_expérience">
+          <option selected hidden value="null"></option>
+          <option value="Dédutant">Dédutant</option>
+          <option value="Moins de 1 an">Moins de 1 an</option>
+          <option value="De 1 à 3 ans">De 1 à 3 ans</option>
+          <option value="De 3 à 5 ans">De 3 à 5 ans</option>
+          <option value="De 5 à 10 ans">De 5 à 10 ans</option>
+          <option value="Plus de 10 ans">Plus de 10 ans</option>
+        </select>
+      </div>
+      <div class="mt-4 flex-col w-auto">
+        <label class="whitespace-nowrap text-gray-500 font-bold ">
+          Niveau d’étude
+        </label>
+        <select id="NE" class="mt-1 border-gray-200 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Niveau_étude">
+            <option selected hidden value="null"></option>
+            <option value="Qualification avant Bac">Qualification avant Bac</option>
+            <option value="Bac">Bac</option>
+            <option value="Bac+2">Bac+2</option>
+            <option value="Bac+3/4">Bac+3/4</option>
+            <option value="Bac+5 et plus">Bac+5 et plus</option>
+        </select>
+      </div>
+      <div class="mt-4 flex-col w-auto">
+        <label class="whitespace-nowrap text-gray-500 font-bold ">
+          Sexe
+        </label>
+        <select id="Sexe" class="mt-1 border-gray-200 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Sexe">
+            <option selected hidden value="null"></option>
+            <option value="Masculin">Masculin</option>
+            <option value="Féminin">Féminin</option>
+        </select>
+      </div>
+      <div class="mt-4 flex-col w-auto">
+        <label class="whitespace-nowrap text-gray-500 font-bold ">
+          Ville
+        </label>
+        <select id="Ville" class="mt-1 border-gray-200 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Ville">
+            <option selected hidden value="null"></option>
+            <option value="Agadir">Agadir</option>
+            <option value="Asilah">Asilah</option>
+            <option value="Béni Mellal">Béni Mellal</option>
+            <option value="Casablanca">Casablanca</option>
+            <option value="Chefchaouen">Chefchaouen</option>
+            <option value="El Jadida">El Jadida</option>
+            <option value="El hoceima">El hoceima</option>
+            <option value="El Kelâa des Sraghna">El Kelâa des Sraghna</option>
+            <option value="Fès">Fès</option>
+            <option value="Khénifra">Khénifra</option>
+            <option value="Khémisset">Khémisset</option>
+            <option value="Kénitra">Kénitra</option>
+            <option value="Khouribga">Khouribga</option>
+            <option value="Laâyoune">Laâyoune</option>
+            <option value="Marrakech">Marrakech</option>
+            <option value="Meknès">Meknès</option>
+            <option value="Mohammédia">Mohammédia</option>
+            <option value="Nador">Nador</option>
+            <option value="Oujda">Oujda</option>
+            <option value="Rabat">Rabat</option>
+            <option value="Safi">Safi</option>
+            <option value="Salé">Salé</option>
+            <option value="Taroudant">Taroudant</option>
+            <option value="Tiznit">Tiznit</option>
+            <option value="Taza">Taza</option>
+            <option value="Témara">Témara</option>
+            <option value="Tanger">Tanger</option>
+            <option value="Tétouan">Tétouan</option>
+        </select>
+      </div>
+      <div class="mt-4 flex-col w-auto">
+        <label class="whitespace-nowrap text-gray-500 font-bold ">
+          Age
+        </label>
+        <select id="Age" class="mt-1 border-gray-200 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Date_de_naissance">
+            <option selected hidden value="null"></option>
+            <option value="18-22">18-22</option>
+            <option value="23-27">23-27</option>
+            <option value="28-32">28-32</option>
+            <option value="33-37">33-37</option>
+            <option value="38-42">38-42</option>
+            <option value="42+">42+</option>     
+        </select>
+      </div>
+      <button id="submitFilter" class="mt-4 w-full shadow bg-yellow-500 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+        Filter
+      </button>
+    </form>
   </div>
-  <form method="GET" action="/jobs" class="m-0 flex-col">
-    <div class="mt-4 flex-col w-auto">
-      <label class="whitespace-nowrap text-gray-500 font-bold ">
-        Option
-      </label>
-      <select id="Option" class="mt-1 border-gray-200 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Option">
-          <option selected value="AND">AND</option>
-          <option value="OR">OR</option>
-      </select>
-    </div>
-    <div class="mt-4 flex-col w-auto">
-      <label class="whitespace-nowrap text-gray-500 font-bold">
-        Année d’expérience
-      </label>
-      <select id="AE" class="mt-1 border-gray-200 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Années_expérience">
-        <option selected hidden value="null"></option>
-        <option value="Dédutant">Dédutant</option>
-        <option value="Moins de 1 an">Moins de 1 an</option>
-        <option value="De 1 à 3 ans">De 1 à 3 ans</option>
-        <option value="De 3 à 5 ans">De 3 à 5 ans</option>
-        <option value="De 5 à 10 ans">De 5 à 10 ans</option>
-        <option value="Plus de 10 ans">Plus de 10 ans</option>
-      </select>
-    </div>
-    <div class="mt-4 flex-col w-auto">
-      <label class="whitespace-nowrap text-gray-500 font-bold ">
-        Niveau d’étude
-      </label>
-      <select id="NE" class="mt-1 border-gray-200 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Niveau_étude">
-          <option selected hidden value="null"></option>
-          <option value="Qualification avant Bac">Qualification avant Bac</option>
-          <option value="Bac">Bac</option>
-          <option value="Bac+2">Bac+2</option>
-          <option value="Bac+3/4">Bac+3/4</option>
-          <option value="Bac+5 et plus">Bac+5 et plus</option>
-      </select>
-    </div>
-    <div class="mt-4 flex-col w-auto">
-      <label class="whitespace-nowrap text-gray-500 font-bold ">
-        Sexe
-      </label>
-      <select id="Sexe" class="mt-1 border-gray-200 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Sexe">
-          <option selected hidden value="null"></option>
-          <option value="Masculin">Masculin</option>
-          <option value="Féminin">Féminin</option>
-      </select>
-    </div>
-    <div class="mt-4 flex-col w-auto">
-      <label class="whitespace-nowrap text-gray-500 font-bold ">
-        Ville
-      </label>
-      <select id="Ville" class="mt-1 border-gray-200 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Ville">
-          <option selected hidden value="null"></option>
-          <option value="Agadir">Agadir</option>
-          <option value="Asilah">Asilah</option>
-          <option value="Béni Mellal">Béni Mellal</option>
-          <option value="Casablanca">Casablanca</option>
-          <option value="Chefchaouen">Chefchaouen</option>
-          <option value="El Jadida">El Jadida</option>
-          <option value="El hoceima">El hoceima</option>
-          <option value="El Kelâa des Sraghna">El Kelâa des Sraghna</option>
-          <option value="Fès">Fès</option>
-          <option value="Khénifra">Khénifra</option>
-          <option value="Khémisset">Khémisset</option>
-          <option value="Kénitra">Kénitra</option>
-          <option value="Khouribga">Khouribga</option>
-          <option value="Laâyoune">Laâyoune</option>
-          <option value="Marrakech">Marrakech</option>
-          <option value="Meknès">Meknès</option>
-          <option value="Mohammédia">Mohammédia</option>
-          <option value="Nador">Nador</option>
-          <option value="Oujda">Oujda</option>
-          <option value="Rabat">Rabat</option>
-          <option value="Safi">Safi</option>
-          <option value="Salé">Salé</option>
-          <option value="Taroudant">Taroudant</option>
-          <option value="Tiznit">Tiznit</option>
-          <option value="Taza">Taza</option>
-          <option value="Témara">Témara</option>
-          <option value="Tanger">Tanger</option>
-          <option value="Tétouan">Tétouan</option>
-      </select>
-    </div>
-    <div class="mt-4 flex-col w-auto">
-      <label class="whitespace-nowrap text-gray-500 font-bold ">
-        Age
-      </label>
-      <select id="Age" class="mt-1 border-gray-200 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Date_de_naissance">
-          <option selected hidden value="null"></option>
-          <option value="18-22">18-22</option>
-          <option value="23-27">23-27</option>
-          <option value="28-32">28-32</option>
-          <option value="33-37">33-37</option>
-          <option value="38-42">38-42</option>
-          <option value="42+">42+</option>     
-      </select>
-    </div>
-    <button id="submitFilter" class="mt-4 w-full shadow bg-yellow-500 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
-      Filter
-    </button>
-  </form>
-</div>
 </div>
 
 <div class="big-width ml-4 mr-4 mt-4 flex flex-col">
@@ -284,12 +284,12 @@
           Age.name = "";
         }
     });
-    //GET DOWNLOADS PERMISIONS HERE AND STORE THEM FOR CHECKING
+    //GET DOWNLOAD PERMISIONS AND STORE THEM FOR CHECKING
     axios.get('/api/getPermissions')
-        .then(function (response) {
-            DownloadCVPerm = response.data.TC_E;
-            DownloadLetterPerm = response.data.TL_E
-        })
+      .then(function (response) {
+        DownloadCVPerm = response.data.TC_E;
+        DownloadLetterPerm = response.data.TL_E
+      });
     }
 
     function addId(id,lettre,checkbox){
@@ -388,7 +388,7 @@
         alert("Vous n'avez pas l'autorisation!");
       }    
     }
-        
+    
     function DownloadCVs(){
       if(DownloadCVPerm){
         checkedIds.forEach(obj =>{
