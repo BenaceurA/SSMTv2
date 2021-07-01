@@ -199,4 +199,10 @@ class jobAdminController extends Controller
             }
         }
     }
+
+    function jobDescription(Request $request)
+    {
+        $description = DB::table('job_offers')->where('id', $request->all()["id"])->first()->Description;
+        return $description;
+    }
 }

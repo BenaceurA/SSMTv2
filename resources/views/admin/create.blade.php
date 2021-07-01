@@ -190,7 +190,7 @@
                         </div>
                     </td>
                     <td>
-                        <button onclick='Modify("{!!$row->Description!!}","{{$row->Offre}}","{{$row->Direction}}","{{$row->Département}}","{{$row->id}}")' class="inline-block shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-2 rounded">Modifier</button>
+                        <button onclick='Modify("{{$row->Offre}}","{{$row->Direction}}","{{$row->Département}}","{{$row->id}}")' class="inline-block shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-2 rounded">Modifier</button>
                     </td>
                 </tr>
                 @endforeach
@@ -291,10 +291,21 @@
             });  
         }
 
-        function Modify(desc,ofr,drc,dep,id){ //modify the job offer
-            CKEDITOR.instances.editor1.setData(desc);
+        function Modify(ofr,drc,dep,id){
+            //SOLUTION : get the description from the API in JSON and set it to the editor
+            CKEDITOR.instances.editor1.setData("Chargement...");
+            axios.get('/api/jobDescription?id='+id)
+                .then(function (response) {
+                    CKEDITOR.instances.editor1.setData(response.data);
+                    console.log();
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+
             document.getElementById("Offre").value = ofr;
             document.getElementById("Direction").value=drc;
+            loadDepartements() // load departemens before selecting
             document.getElementById("Département").value=dep;
             document.getElementById("id").value = id;
             document.getElementById("form").action = "api/updateJobOffer"
@@ -365,7 +376,7 @@
                 Activation:document.querySelector('input[name="Activation"]:checked').value    
             })
             .then(function (response) {
-                console.log(response);
+                location.reload();
             })
             .catch(function (error) {
                 if(error.response.status == 405){

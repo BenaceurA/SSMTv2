@@ -38,3 +38,5 @@ Route::get('/DownloadCVs', [jobAdminController::class, 'downloadCVs']);
 Route::get('/DownloadLetters', [jobAdminController::class, 'downloadLetters']);
 
 Route::get('/getPermissions', [adminController::class, 'getPermissions']);
+
+Route::get('/jobDescription', [jobAdminController::class, 'jobDescription']);
