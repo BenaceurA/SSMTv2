@@ -14,7 +14,7 @@ class jobAdminController extends Controller
     function jobCreationIndex()
     {
         $result = DB::table('job_offers')->get();
-        return view("/admin/create", ["view" => "create", "data" => $result, "username" => adminController::getUsername()]);
+        return view("/admin/createJobs", ["view" => "create", "data" => $result, "username" => adminController::getUsername()]);
     }
 
     function jobApplicationsIndex(Request $request)
