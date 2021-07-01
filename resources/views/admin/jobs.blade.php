@@ -3,7 +3,7 @@
 @section('main')
 
 <div class="small-width text-sm mt-4 ml-4 ">
-  <div class = "fixed w-60 bg-white p-4 bg-opacity-90 border-t-4 border-b-4 rounded mb-4">
+  <div class = "fixed small-width bg-white p-4 bg-opacity-90 border-t-4 border-b-4 rounded mb-4">
     <div class="w-full">
       <button onclick="deleteItems()" class=" w-full shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
         <i id="loadingDelete" class=""></i>Supprimer

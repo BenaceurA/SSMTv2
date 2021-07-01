@@ -36,20 +36,19 @@
         }
 
         .small-width{
-            width : 20%;
+            width : 17%;
         }
         .big-width{
             width : 80%;
         }
         @media only screen and (min-width: 1650px) {
             .small-width{
-            width : 15%;
+            width : 11%;
             }
             .big-width{
             width : 85%;
             }
         }
-
     </style>
 </head>
 
