@@ -53,7 +53,7 @@
 </head>
 
 <body class="h-screen background-img">
-<div class="h-full w-full flex-col">
+<div class="h-screen w-full flex-col">
     <div class="text-sm sticky top-0 bg-gray-500 bg-opacity-90 z-50 flex w-full">
         <a class="flex-1" href="/createJob">
         <div>   
@@ -93,7 +93,7 @@
             </div>
         </a>
     </div>
-    <div class="mt-8 flex justify-center box-border">
+    <div style="height:90.3%;" class="mt-4 flex justify-center box-border">
         @yield("main")
     </div>
 </div>

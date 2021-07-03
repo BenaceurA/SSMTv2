@@ -112,7 +112,7 @@
             <option value="42+">42+</option>     
         </select>
       </div>
-      <button id="submitFilter" class="mt-4 w-full shadow bg-yellow-500 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+      <button id="submitFilter" class="mt-8 w-full shadow bg-yellow-500 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
         Filter
       </button>
     </form>
@@ -121,7 +121,7 @@
 
 <div class="big-width ml-4 mr-4 mt-4 flex flex-col">
   <div class="overflow-x-scroll max-w-full  border-b-4 rounded mb-4">
-    <div class="align-middle inline-block">
+    <div class=" align-middle inline-block">
       <div class="shadow overflow-hidden border-b border-gray-200">
         <table class="min-w-full divide-y divide-gray-200">
           <thead class="bg-gray-200">
@@ -184,7 +184,7 @@
               </th>
             </tr>
           </thead>
-          <tbody class="bg-white divide-y divide-gray-200">
+          <tbody class=" bg-white divide-y divide-gray-200">
           @foreach ($data as $row )
             <tr>
                 <td><input id="checkbox-{{$row->id}}" onchange="addId({{$row->id}},@if($row->Lettre_motivation)'{{$row->Lettre_motivation}}'@else null @endif,this)" type="checkbox"></td>
