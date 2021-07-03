@@ -100,7 +100,7 @@ class internshipAdminController extends Controller
         $userId = Auth::id();
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
-        if ($permission->AO_E) {
+        if ($permission->AO_S) {
             $internship_offer = new Internship_Offers();
 
             $internship_offer->Offre = $data["Offre"];
@@ -120,7 +120,7 @@ class internshipAdminController extends Controller
         $userId = Auth::id();
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
-        if ($permission->MO_E) {
+        if ($permission->MO_S) {
             $data = $request->input();
             DB::table('internship_offers')->where("id", $data["id"])->update([
                 "Offre" => $data["Offre"],
@@ -140,7 +140,7 @@ class internshipAdminController extends Controller
     {
         $userId = Auth::id();
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
-        if ($permission->SC_E) {
+        if ($permission->SC_S) {
             foreach ($request->all() as $key => $value) {
                 $query =  DB::table('internships')->where('id', $value)->get(["CV", "Lettre_motivation"])->first();
                 Storage::delete(["public/CVs/" . $query->CV, "public/Lettres/" . $query->Lettre_motivation]); //delete files
@@ -165,7 +165,7 @@ class internshipAdminController extends Controller
         $userId = Auth::id();
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
-        if ($permission->SO_E) {
+        if ($permission->SO_S) {
             $data = $request->all();
             return DB::table("internship_offers")->whereIn("id", $data)->delete();
         } else {
@@ -178,7 +178,7 @@ class internshipAdminController extends Controller
         $userId = Auth::id();
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
-        if ($permission->TC_E) {
+        if ($permission->TC_S) {
             $id = $request->query('id');
             $cvName = DB::table('internships')->where('id', $id)->first('CV')->CV;
             return Storage::download("public/CVs/" . $cvName);
@@ -190,7 +190,7 @@ class internshipAdminController extends Controller
         $userId = Auth::id();
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
-        if ($permission->TL_E) {
+        if ($permission->TL_S) {
             $id = $request->query('id');
             $LettreName = DB::table('internships')->where('id', $id)->first('Lettre_motivation')->Lettre_motivation;
             if ($LettreName) {

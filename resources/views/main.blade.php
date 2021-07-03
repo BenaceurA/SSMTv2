@@ -81,7 +81,7 @@
     </style>
 </head>
 
-<body class=" relative h-full">
+<body class="text-md relative h-full">
     <div class="h-screen flex-col">
         <div class="absolute text-white">
         </div>
@@ -117,10 +117,10 @@
         </div>
         <div class="background-img text-white ">
         </div>
-        <div id="navbar" class="top-0 absolute text-white bg-opacity-70 bg-black w-full" style="height: 7%;">
+        <div id="navbar" class="top-0 absolute text-white bg-opacity-90 bg-black w-full" style="height: 7%;">
             <div class="w-full h-full flex justify-center mt-auto">
                 <div class="flex justify-between w-9/12 h-full mt-auto mb-auto">
-                    <img class="mt-auto mb-auto" id="logo" src="img/logo.png">
+                    <a class="flex" href="/"><img class="mt-auto mb-auto" id="logo" src="img/logo.png"></a>
                     <div class = "cursor-pointer mt-auto mb-auto">
                         <a class="">À propos</a>
                     </div>
@@ -267,7 +267,6 @@
           
     } --}}
 
-    window.addEventListener('mousemove',animate);
 </script>
 
 </html>
