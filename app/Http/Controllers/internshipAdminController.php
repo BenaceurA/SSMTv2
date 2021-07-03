@@ -122,13 +122,20 @@ class internshipAdminController extends Controller
 
         if ($permission->MO_S) {
             $data = $request->input();
-            DB::table('internship_offers')->where("id", $data["id"])->update([
-                "Offre" => $data["Offre"],
-                "Direction" => $data["Direction"],
-                "Département" => $data["Département"],
-                "Description" => $data["Description"],
-                "Activation" => $data["Activation"]
-            ]);
+            $internship_offer = Internship_Offers::find($data["id"]);
+            $internship_offer->Offre = $data["Offre"];
+            $internship_offer->Direction = $data["Direction"];
+            $internship_offer->Département = $data["Département"];
+            $internship_offer->Description = $data["Description"];
+            $internship_offer->Activation = $data["Activation"];
+            $internship_offer->save();
+            // DB::table('internship_offers')->where("id", $data["id"])->update([
+            //     "Offre" => $data["Offre"],
+            //     "Direction" => $data["Direction"],
+            //     "Département" => $data["Département"],
+            //     "Description" => $data["Description"],
+            //     "Activation" => $data["Activation"]
+            // ]);
         } else {
             return response("", 405);
         }

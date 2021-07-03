@@ -123,13 +123,20 @@ class jobAdminController extends Controller
 
         if ($permission->MO_E) {
             $data = $request->input();
-            DB::table('job_offers')->where("id", $data["id"])->update([
-                "Offre" => $data["Offre"],
-                "Direction" => $data["Direction"],
-                "Département" => $data["Département"],
-                "Description" => $data["Description"],
-                "Activation" => $data["Activation"]
-            ]);
+            $job_offer = Job_Offers::find($data["id"]);
+            $job_offer->Offre = $data["Offre"];
+            $job_offer->Direction = $data["Direction"];
+            $job_offer->Département = $data["Département"];
+            $job_offer->Description = $data["Description"];
+            $job_offer->Activation = $data["Activation"];
+            $job_offer->save();
+            // DB::table('job_offers')->where("id", $data["id"])->update([
+            //     "Offre" => $data["Offre"],
+            //     "Direction" => $data["Direction"],
+            //     "Département" => $data["Département"],
+            //     "Description" => $data["Description"],
+            //     "Activation" => $data["Activation"]
+            // ]);
         } else {
             return response("", 405);
         }
