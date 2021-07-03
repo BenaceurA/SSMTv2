@@ -93,7 +93,7 @@
             </div>
         </a>
     </div>
-    <div class="mt-4 flex justify-center box-border">
+    <div class="mt-8 flex justify-center box-border">
         @yield("main")
     </div>
 </div>

@@ -25,7 +25,7 @@
 
 <body class="relative h-screen background-img">
     <div class="flex justify-center ">
-        <form class="w-full max-w-5xl m-10 bg-opacity-90 bg-white p-10 rounded-md" @if($type == "emploi") action="/api/postemploi" @endif @if($type == "stage") action="/api/poststage" @endif method="post" enctype="multipart/form-data">
+        <form class="w-full max-w-full md:max-w-5xl lg:max-w-5xl my-5 md:my-10 lg:my-10 mx-5 bg-opacity-90 bg-white p-10 rounded-md" @if($type == "emploi") action="/api/postemploi" @endif @if($type == "stage") action="/api/poststage" @endif method="post" enctype="multipart/form-data">
             @csrf
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start md:w-1/4">
