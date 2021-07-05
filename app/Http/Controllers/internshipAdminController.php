@@ -84,7 +84,7 @@ class internshipAdminController extends Controller
             $result = DB::table('internships')->where($data)->get();
         }
 
-        return view("/admin/internships", ["view" => "internships", "data" => $result, "username" => adminController::getUsername()]);
+        return view("/admin/BD", ["view" => "internships", "data" => $result, "username" => adminController::getUsername()]);
     }
 
     function createInternshipOffer(Request $request)
@@ -188,7 +188,7 @@ class internshipAdminController extends Controller
         if ($permission->TC_S) {
             $id = $request->query('id');
             $cvName = DB::table('internships')->where('id', $id)->first('CV')->CV;
-            return Storage::download("public/CVs/" . $cvName);
+            return Storage::download("public/Internships/CVs/" . $cvName);
         }
     }
 
@@ -201,7 +201,7 @@ class internshipAdminController extends Controller
             $id = $request->query('id');
             $LettreName = DB::table('internships')->where('id', $id)->first('Lettre_motivation')->Lettre_motivation;
             if ($LettreName) {
-                return Storage::download("public/Lettres/" . $LettreName);
+                return Storage::download("public/Internships/Lettres/" . $LettreName);
             }
         }
     }

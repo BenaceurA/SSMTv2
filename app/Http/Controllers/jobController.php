@@ -39,7 +39,7 @@ class jobController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('CV')->getClientOriginalExtension();
             $filenameToStore = $filename . '_' . time() . '.' . $extension;
-            $request->file('CV')->storeAs('public/CVs', $filenameToStore);
+            $request->file('CV')->storeAs('public/Jobs/CVs', $filenameToStore);
             $job->CV = $filenameToStore;
         } else {
             return back();
@@ -49,7 +49,7 @@ class jobController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('lettre')->getClientOriginalExtension();
             $filenameToStore = $filename . '_' . time() . '.' . $extension;
-            $request->file('lettre')->storeAs('public/Lettres', $filenameToStore);
+            $request->file('lettre')->storeAs('public/Jobs/Lettres', $filenameToStore);
             $job->Lettre_motivation = $filenameToStore;
         }
 

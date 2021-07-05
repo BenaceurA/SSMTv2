@@ -35,9 +35,9 @@ Route::post('/activateJobs', [jobAdminController::class, 'activateJobOffers']);
 
 Route::delete('/deleteJobs', [jobAdminController::class, 'deleteJobOffers']);
 
-Route::get('/DownloadCVs', [jobAdminController::class, 'downloadCVs']);
+Route::get('/DownloadJobCVs', [jobAdminController::class, 'downloadCVs']);
 
-Route::get('/DownloadLetters', [jobAdminController::class, 'downloadLetters']);
+Route::get('/DownloadJobLetters', [jobAdminController::class, 'downloadLetters']);
 
 Route::get('/getPermissions', [adminController::class, 'getPermissions']);
 
@@ -51,8 +51,14 @@ Route::post('/createInternshipOffer', [internshipAdminController::class, 'create
 
 Route::put('/updateInternshipOffer', [internshipAdminController::class, 'updateInternshipOffer']);
 
+Route::delete('/deleteInternshipApplications', [InternshipAdminController::class, 'deleteInternshipApplications']);
+
 Route::post('/activateInternships', [internshipAdminController::class, 'activateInternshipOffers']);
 
 Route::delete('/deleteInternships', [internshipAdminController::class, 'deleteInternshipOffers']);
+
+Route::get('/DownloadInternshipCVs', [internshipAdminController::class, 'downloadCVs']);
+
+Route::get('/DownloadInternshipLetters', [internshipAdminController::class, 'downloadLetters']);
 
 Route::get('/InternshipDescription', [internshipAdminController::class, 'InternshipDescription']);

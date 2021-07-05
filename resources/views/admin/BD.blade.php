@@ -15,7 +15,7 @@
         <i id="loadingLetters" class=""></i>Lettre de motivation
       </button>
     </div>
-    <form method="GET" action="/jobs" class="m-0 flex-col">
+    <form method="GET" action="/BDemploi" class="m-0 flex-col">
       <div class="mt-4 flex-col w-auto">
         <label class="whitespace-nowrap text-gray-500 font-bold ">
           Option
@@ -287,8 +287,18 @@
     //GET DOWNLOAD PERMISIONS AND STORE THEM FOR CHECKING
     axios.get('/api/getPermissions')
       .then(function (response) {
+        
+        //get permission based on the loaded view
+
+        @if($view == "jobs")
         DownloadCVPerm = response.data.TC_E;
-        DownloadLetterPerm = response.data.TL_E
+        DownloadLetterPerm = response.data.TL_E;
+        @endif
+
+        @if($view == "internships")
+        DownloadCVPerm = response.data.TC_S;
+        DownloadLetterPerm = response.data.TL_S;
+        @endif
       });
     }
 
@@ -335,6 +345,7 @@
         console.log(checkedIds);
     }
 
+  @if($view == "jobs")
     function deleteItems(){
       let loadingDelete = document.getElementById("loadingDelete");
       //retrieve only the ids from checkedIds (disgard letter)
@@ -366,7 +377,7 @@
       if(DownloadCVPerm){
         var link = document.createElement("a");
         link.download = "";
-        link.href = '/api/DownloadLetters?id='+id;
+        link.href = '/api/DownloadJobLetters?id='+id;
         document.body.appendChild(link);
         link.click();
         link.remove();
@@ -379,7 +390,7 @@
       if(DownloadLetterPerm){
         var link = document.createElement("a");
         link.download = "";
-        link.href = '/api/DownloadCVs?id='+id;
+        link.href = '/api/DownloadJobCVs?id='+id;
         document.body.appendChild(link);
         link.click();
         link.remove();
@@ -388,7 +399,64 @@
         alert("Vous n'avez pas l'autorisation!");
       }    
     }
-    
+  @endif
+
+  @if($view == "internships")
+    function deleteItems(){
+      let loadingDelete = document.getElementById("loadingDelete");
+      //retrieve only the ids from checkedIds (disgard letter)
+      let ids = [];
+        checkedIds.forEach(obj=>{
+          ids.push(obj.id);
+        })
+      loadingDelete.className = "fa fa-circle-o-notch fa-spin mr-2";
+      axios.delete('/api/deleteInternshipApplications', {
+                data : ids
+            })
+            .then(function (response) {
+                if(response.data>0){
+                    location.reload();
+                }
+                else{
+                  loadingDelete.className = "";
+                }
+            })
+            .catch(function (error) {
+                if(error.response.status == 405){
+                    // he's not allowed to create new posts
+                    window.alert("Vous n'avez pas l'autorisation!");
+                }
+            });   
+    }
+
+    function DownloadLetter(id){
+      if(DownloadCVPerm){
+        var link = document.createElement("a");
+        link.download = "";
+        link.href = '/api/DownloadInternshipLetters?id='+id;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      } else{
+        alert("Vous n'avez pas l'autorisation!");
+      }  
+    }
+
+    function DownloadCV(id){
+      if(DownloadLetterPerm){
+        var link = document.createElement("a");
+        link.download = "";
+        link.href = '/api/DownloadInternshipCVs?id='+id;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      }
+      else{
+        alert("Vous n'avez pas l'autorisation!");
+      }    
+    }
+  @endif
+
     function DownloadCVs(){
       if(DownloadCVPerm){
         checkedIds.forEach(obj =>{

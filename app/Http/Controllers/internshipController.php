@@ -38,7 +38,7 @@ class internshipController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('CV')->getClientOriginalExtension();
             $filenameToStore = $filename . '_' . time() . '.' . $extension;
-            $request->file('CV')->storeAs('public/CVs', $filenameToStore);
+            $request->file('CV')->storeAs('public/Internships/CVs', $filenameToStore);
             $internship->CV = $filenameToStore;
         } else {
             return back();
@@ -48,7 +48,7 @@ class internshipController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('lettre')->getClientOriginalExtension();
             $filenameToStore = $filename . '_' . time() . '.' . $extension;
-            $request->file('lettre')->storeAs('public/Lettres', $filenameToStore);
+            $request->file('lettre')->storeAs('public/Internships/Lettres', $filenameToStore);
             $internship->Lettre_motivation = $filenameToStore;
         }
 

@@ -84,7 +84,7 @@ class jobAdminController extends Controller
             $result = DB::table('jobs')->where($data)->get();
         }
 
-        return view("/admin/jobs", ["view" => "jobs", "data" => $result, "username" => adminController::getUsername()]);
+        return view("/admin/BD", ["view" => "jobs", "data" => $result, "username" => adminController::getUsername()]);
     }
 
     function createJobOffer(Request $request)
@@ -189,7 +189,7 @@ class jobAdminController extends Controller
         if ($permission->TC_E) {
             $id = $request->query('id');
             $cvName = DB::table('jobs')->where('id', $id)->first('CV')->CV;
-            return Storage::download("public/CVs/" . $cvName);
+            return Storage::download("public/Jobs/CVs/" . $cvName);
         }
     }
 
@@ -202,7 +202,7 @@ class jobAdminController extends Controller
             $id = $request->query('id');
             $LettreName = DB::table('jobs')->where('id', $id)->first('Lettre_motivation')->Lettre_motivation;
             if ($LettreName) {
-                return Storage::download("public/Lettres/" . $LettreName);
+                return Storage::download("public/Jobs/Lettres/" . $LettreName);
             }
         }
     }

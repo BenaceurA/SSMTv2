@@ -35,7 +35,9 @@ Route::get('/createJob', [jobAdminController::class, 'jobCreationIndex'])->middl
 
 Route::get('/createInternship', [internshipAdminController::class, 'internshipCreationIndex'])->middleware("auth");
 
-Route::get('/jobs', [jobAdminController::class, 'jobApplicationsIndex'])->middleware(["auth"]);
+Route::get('/BDemploi', [jobAdminController::class, 'jobApplicationsIndex'])->middleware(["auth"]);
+
+Route::get('/BDstage', [internshipAdminController::class, 'internshipApplicationsIndex'])->middleware(["auth"]);
 
 Route::get('/settings', [settingsController::class, 'settingsIndex'])->middleware("auth");
 
