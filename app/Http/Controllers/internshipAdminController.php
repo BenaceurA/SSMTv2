@@ -149,8 +149,8 @@ class internshipAdminController extends Controller
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
         if ($permission->SC_S) {
             foreach ($request->all() as $key => $value) {
-                $query =  DB::table('internships')->where('id', $value)->get(["CV", "Lettre_motivation"])->first();
-                Storage::delete(["public/CVs/" . $query->CV, "public/Lettres/" . $query->Lettre_motivation]); //delete files
+                $query =  DB::table('internships')->where('id', $value)->get(["CV"])->first();
+                Storage::delete(["public/Internships/CVs/" . $query->CV]); //delete files
             }
             return Internship::destroy($request->all());
         } else {
@@ -189,20 +189,6 @@ class internshipAdminController extends Controller
             $id = $request->query('id');
             $cvName = DB::table('internships')->where('id', $id)->first('CV')->CV;
             return Storage::download("public/Internships/CVs/" . $cvName);
-        }
-    }
-
-    function downloadLetters(Request $request)
-    {
-        $userId = Auth::id();
-        $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
-
-        if ($permission->TL_S) {
-            $id = $request->query('id');
-            $LettreName = DB::table('internships')->where('id', $id)->first('Lettre_motivation')->Lettre_motivation;
-            if ($LettreName) {
-                return Storage::download("public/Internships/Lettres/" . $LettreName);
-            }
         }
     }
 

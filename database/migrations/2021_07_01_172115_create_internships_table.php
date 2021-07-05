@@ -27,11 +27,12 @@ class CreateInternshipsTable extends Migration
             $table->string("Sexe");
             $table->string("Date_de_naissance")->nullable();
             $table->string("Niveau_étude");
-            $table->string("Etablissement_de_formation")->nullable();
-            $table->string("Années_expérience");
+            $table->string("Etablissement_de_formation");
+            $table->string("Type_de_stage");
+            // $table->string("Années_expérience");
             $table->string("CV");
-            $table->string("Lettre_motivation")->nullable();
-            $table->text("Motivation")->nullable();
+            // $table->string("Lettre_motivation")->nullable();
+            // $table->text("Motivation")->nullable();
         });
     }
 

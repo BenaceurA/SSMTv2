@@ -30,9 +30,7 @@ class internshipController extends Controller
         $internship->Date_de_naissance = $data["Date_de_naissance"];
         $internship->Niveau_étude = $data["Niveau_d'étude"];
         $internship->Etablissement_de_formation = $data["Etablissement_de_formation"];
-        $internship->Années_expérience = $data["Années_d'expérience"];
-        $internship->Motivation = $data["Motivation"];
-
+        $internship->Type_de_stage = $data["Type_de_stage"];
         if ($request->hasFile('CV')) { // TODO : CHECK IF DOC/PDF
             $filenameWithExt = $request->file('CV')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
@@ -42,14 +40,6 @@ class internshipController extends Controller
             $internship->CV = $filenameToStore;
         } else {
             return back();
-        }
-        if ($request->hasFile('lettre')) { // TODO : CHECK IF DOC/PDF
-            $filenameWithExt = $request->file('lettre')->getClientOriginalName();
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('lettre')->getClientOriginalExtension();
-            $filenameToStore = $filename . '_' . time() . '.' . $extension;
-            $request->file('lettre')->storeAs('public/Internships/Lettres', $filenameToStore);
-            $internship->Lettre_motivation = $filenameToStore;
         }
 
         $internship->save();

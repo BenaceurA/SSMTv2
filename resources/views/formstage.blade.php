@@ -1,4 +1,4 @@
-<form class="w-full max-w-full md:max-w-5xl lg:max-w-5xl my-5 md:my-10 lg:my-10 mx-5 bg-opacity-90 bg-white p-10 rounded-md" action="/api/postemploi" method="post" enctype="multipart/form-data">
+<form class="w-full max-w-full md:max-w-5xl lg:max-w-5xl my-5 md:my-10 lg:my-10 mx-5 bg-opacity-90 bg-white p-10 rounded-md" action="/api/poststage" method="post" enctype="multipart/form-data">
             @csrf
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start md:w-1/4">

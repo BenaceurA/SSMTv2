@@ -11,9 +11,11 @@
       <button onclick="DownloadCVs()" class="mt-4 w-full shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
         <i id="loadingCVs" class=""></i>Curriculum vitae
       </button>
+      @if($view == "jobs")
       <button onclick="DownloadLetters()" class="mt-4 w-full shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
         <i id="loadingLetters" class=""></i>Lettre de motivation
       </button>
+      @endif
     </div>
     <form method="GET" action="/BDemploi" class="m-0 flex-col">
       <div class="mt-4 flex-col w-auto">
@@ -131,13 +133,6 @@
                 Id
               </th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Curriculum
-              </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Lettre
-              </th>
-              
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Créer
               </th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -149,6 +144,11 @@
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Département
               </th>
+              @if($view == "internships")
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Type de stage
+              </th>
+              @endif
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Nom & Prénom
               </th>
@@ -176,32 +176,38 @@
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Etablissement de formation
               </th>
+              @if($view == "jobs")
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Années d'expérience
               </th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Motivation
               </th>
+              @endif
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Curriculum
+              </th>
+              @if($view == "jobs")
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Lettre
+              </th>
+              @endif
             </tr>
           </thead>
           <tbody class=" bg-white divide-y divide-gray-200">
           @foreach ($data as $row )
             <tr>
-                <td><input id="checkbox-{{$row->id}}" onchange="addId({{$row->id}},@if($row->Lettre_motivation)'{{$row->Lettre_motivation}}'@else null @endif,this)" type="checkbox"></td>
+                <td><input id="checkbox-{{$row->id}}" 
+                @if($view == "jobs")
+                onchange="addId({{$row->id}},@if($row->Lettre_motivation)'{{$row->Lettre_motivation}}'@else null @endif,this)"
+                @endif
+                @if($view == "internships")
+                onchange="addId({{$row->id}},this)" 
+                @endif
+                type="checkbox"></td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     {{$row->id}}
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    <button onclick="DownloadCV({{$row->id}})" class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-2 rounded">Télécharger</button>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    @if($row->Lettre_motivation)
-                    <button onclick="DownloadLetter({{$row->id}})" class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-2 rounded">Télécharger</button>
-                    @else
-                    <span></span>
-                    @endif
-                </td>
-                
+                </td>        
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     {{$row->created_at}}
                 </td>
@@ -214,6 +220,11 @@
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     {{$row->Département}}
                 </td>
+                @if($view == "internships")
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {{$row->Type_de_stage}}
+                </td>
+                @endif
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     {{$row->Nom_Prenom}}
                 </td>
@@ -241,12 +252,26 @@
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     {{$row->Etablissement_de_formation}}
                 </td>
+                @if($view == "jobs")
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     {{$row->Années_expérience}}
                 </td>
                 <td class="max-w-sm overflow-hidden px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     {{$row->Motivation}}
                 </td>
+                @endif
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <button onclick="DownloadCV({{$row->id}})" class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-2 rounded">Télécharger</button>
+                </td>
+                @if($view == "jobs")
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    @if($row->Lettre_motivation)
+                    <button onclick="DownloadLetter({{$row->id}})" class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-2 rounded">Télécharger</button>
+                    @else
+                    <span></span>
+                    @endif
+                </td>
+                @endif
             </tr>
             @endforeach
           </tbody>
@@ -302,6 +327,12 @@
       });
     }
 
+    
+
+
+
+  @if($view == "jobs")
+
     function addId(id,lettre,checkbox){
         if(checkbox.checked == true){
           let obj={};
@@ -314,7 +345,7 @@
         }
         console.log(checkedIds);
     }
-
+    
     function addAll(checkbox){
         let identifier;
         if(checkbox.checked == true){
@@ -345,7 +376,6 @@
         console.log(checkedIds);
     }
 
-  @if($view == "jobs")
     function deleteItems(){
       let loadingDelete = document.getElementById("loadingDelete");
       //retrieve only the ids from checkedIds (disgard letter)
@@ -399,19 +429,57 @@
         alert("Vous n'avez pas l'autorisation!");
       }    
     }
+
+    function DownloadCVs(){
+      if(DownloadCVPerm){
+        checkedIds.forEach(obj =>{
+        DownloadCV(obj["id"]);
+        })
+      }
+      else{
+        alert("Vous n'avez pas l'autorisation!");
+      }   
+    }
+
+    function DownloadLetters(){ 
+      if(DownloadLetterPerm){
+        checkedIds.forEach(obj =>{
+          if(obj["lettre"] !== null) DownloadLetter(obj["id"]);
+        })
+      }
+      else{
+        alert("Vous n'avez pas l'autorisation!");
+      }
+    }
   @endif
 
   @if($view == "internships")
+
+    function addId(id,checkbox){
+        if(checkbox.checked == true){
+            checkedIds.push(id);            
+        }
+        else{
+          checkedIds.splice(checkedIds.indexOf(id),1);
+        }
+        console.log(checkedIds);
+    }
+
+    function addAll(checkbox){
+        @foreach ($data as $row )
+          addId({{$row->id}},checkbox);
+          if(checkbox.checked == true) document.getElementById("checkbox-"+{{$row->id}}).checked = true;
+          else if(checkbox.checked == false) document.getElementById("checkbox-"+{{$row->id}}).checked = false;
+        @endforeach       
+        console.log(checkedIds);
+    }
+
     function deleteItems(){
       let loadingDelete = document.getElementById("loadingDelete");
-      //retrieve only the ids from checkedIds (disgard letter)
-      let ids = [];
-        checkedIds.forEach(obj=>{
-          ids.push(obj.id);
-        })
+
       loadingDelete.className = "fa fa-circle-o-notch fa-spin mr-2";
       axios.delete('/api/deleteInternshipApplications', {
-                data : ids
+                data : checkedIds
             })
             .then(function (response) {
                 if(response.data>0){
@@ -455,28 +523,19 @@
         alert("Vous n'avez pas l'autorisation!");
       }    
     }
-  @endif
 
     function DownloadCVs(){
       if(DownloadCVPerm){
-        checkedIds.forEach(obj =>{
-        DownloadCV(obj["id"]);
+        checkedIds.forEach(id =>{
+        DownloadCV(id);
         })
       }
       else{
         alert("Vous n'avez pas l'autorisation!");
       }   
     }
-    
-    function DownloadLetters(){ 
-      if(DownloadLetterPerm){
-        checkedIds.forEach(obj =>{
-          if(obj["lettre"] !== null) DownloadLetter(obj["id"]);
-        })
-      }
-      else{
-        alert("Vous n'avez pas l'autorisation!");
-      }
-    }
+  @endif
+
+
 </script>
 @endsection
