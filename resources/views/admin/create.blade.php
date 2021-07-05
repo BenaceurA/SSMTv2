@@ -1,9 +1,9 @@
 @extends('admin/layout',['username' => $username])
 
 @section("main")
-<div class="flex-col w-full ">
+<div class="mt-4 flex-col w-full ">
     <div class="flex justify-center ">
-        <form id="form" class="bg-white bg-opacity-90 w-11/12 p-10 rounded-md" method="post" enctype="multipart/form-data">
+        <form id="form" class="bg-white bg-opacity-90 w-11/12 md:w-10/12 p-8 rounded-md" method="post" enctype="multipart/form-data">
             <input id="id" name="id" type="hidden">
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start md:w-1/6">
@@ -115,7 +115,7 @@
         
         {{-- table --}}
 
-        <div class="border-t-4  rounded w-10/12 mr-4 mt-4 flex flex-col">
+        <div class="border-t-4  rounded w-10/12 mr-4 mt-4 mb-4 flex flex-col">
         <div class="overflow-x-auto max-w-full">
 
         <table class="border-b-4 table-auto divide-y divide-gray-200">    
