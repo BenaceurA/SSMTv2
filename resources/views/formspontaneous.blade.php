@@ -265,25 +265,12 @@
                     </label>
                 </div>
                 <div class="md:w-3/4">
-                    <select required class="border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Type_de_stage" id="Type_de_stage">
-                        <option value="" disabled selected hidden>-Choisir-</option>
-                        <option value="Conventionné">Conventionné</option>
-                        <option value="Libre">Libre</option>
-                    </select>
-                </div>
-            </div>
-            <div class="md:flex md:items-center mb-6">
-                <div class="flex justify-start  md:w-1/4">
-                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Département">
-                        Poste
-                    </label>
-                </div>
-                <div class="md:w-3/4">
                     <select required class="border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Département" id="Département">
                         <option value="" disabled selected hidden>-Choisir-</option>
                         <option value="Département d'Audit contrôle gestion et audit interne">Département d'Audit contrôle gestion et audit interne</option>
                         <option value="Département d’informatique">Département d’informatique</option>
                         <option value="Département d'Hygiène Sécurité Environnement">Département d'Hygiène Sécurité Environnement</option>
+                        <option value="Département d'administration et finance">Département d'administration et finance</option>
                         <option value="Département gestion matériel">Département gestion matériel</option>
                         <option value="Département de la comptabilité">Département de la comptabilité</option>
                         <option value="Département de finance">Département de finance</option>
@@ -299,25 +286,17 @@
                         <option value="Département topographe">Département topographe</option>
                         <option value="Département administration marchés publiques">Département administration marchés publiques</option>
                     </select>
+                    
                 </div>
             </div>
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start  md:w-1/4">
-                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="">
-                        Période de stage
+                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Département">
+                        Poste
                     </label>
                 </div>
-                <div class="flex md:w-1/4 md:mr-8">
-                    <label class="block text-gray-500 font-bold md:text-right mt-auto mb-auto pr-4" for="Period_start">
-                        Du
-                    </label>
-                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Period_start" id="Period_start" type="date">
-                </div>
-                <div class="flex md:w-1/4">
-                    <label class="block text-gray-500 font-bold md:text-right mt-auto mb-auto pr-4" for="Period_end">
-                        Au
-                    </label>
-                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Period_end" id="Period_end" type="date">
+                <div class="md:w-3/4">
+                    <input required class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Nom_Prenom" id="Nom_Prenom" type="text">
                 </div>
             </div>
             <div class="md:flex md:items-center mb-6">
