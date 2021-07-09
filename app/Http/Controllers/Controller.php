@@ -36,7 +36,7 @@ class Controller extends BaseController
                 break;
 
             case "Candidature spontanée":
-                redirect(); //form
+                return redirect("/cs/$data[select2]");
                 break;
         }
     }

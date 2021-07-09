@@ -179,7 +179,7 @@
                     [
                         "Département d'Audit contrôle gestion et audit interne",
                         "Département d’informatique",
-                        "Département d'Hygiène Sécurité Environnement ",
+                        "Département d'Hygiène Sécurité Environnement",
                         "Département gestion matériel",
                         "Département de la comptabilité",
                         "Département de finance",

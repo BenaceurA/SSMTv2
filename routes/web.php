@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\jobController;
 use App\Http\Controllers\internshipController;
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\spontaneousController;
 use App\Http\Controllers\jobAdminController;
 use App\Http\Controllers\internshipAdminController;
 use App\Http\Controllers\settingsController;
@@ -19,6 +20,10 @@ Route::post('/search', [Controller::class, 'search']);
 Route::get('/formulaireEmploi/{id}', [jobController::class, 'JobForm']);
 
 Route::get('/formulaireStage/{id}', [internshipController::class, 'InternshipForm']);
+
+Route::get('/cs/Emploi', [spontaneousController::class, 'SpontaneousJobForm']);
+
+Route::get('/cs/Stage', [spontaneousController::class, 'SpontaneousInternshipForm']);
 
 //admin routes
 

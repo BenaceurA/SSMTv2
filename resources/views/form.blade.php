@@ -26,7 +26,8 @@
 <body class="relative h-screen background-img">
     <div class="flex justify-center ">
          @if($type == "emploi") @include("formemploi");
-         @elseif($type == "stage") @include("formstage"); @endif
+         @elseif($type == "stage") @include("formstage");
+         @elseif($type == "spontaneous") @include("formspontaneous"); @endif
     </div>
     <script>
     </script>

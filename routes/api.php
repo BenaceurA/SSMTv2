@@ -7,6 +7,7 @@ use App\Http\Controllers\jobController;
 use App\Http\Controllers\jobAdminController;
 use App\Http\Controllers\internshipAdminController;
 use App\Http\Controllers\internshipController;
+use App\Http\Controllers\spontaneousController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -62,3 +63,7 @@ Route::get('/DownloadInternshipCVs', [internshipAdminController::class, 'downloa
 Route::get('/DownloadInternshipLetters', [internshipAdminController::class, 'downloadLetters']);
 
 Route::get('/InternshipDescription', [internshipAdminController::class, 'InternshipDescription']);
+
+//--------------------------------------------------------------------------
+
+Route::post('/postSpontaneousInternship', [spontaneousController::class, 'postSpontaneousInternship']);
