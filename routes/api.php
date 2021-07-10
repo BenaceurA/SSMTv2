@@ -8,6 +8,7 @@ use App\Http\Controllers\jobAdminController;
 use App\Http\Controllers\internshipAdminController;
 use App\Http\Controllers\internshipController;
 use App\Http\Controllers\spontaneousController;
+use App\Http\Controllers\spontaneousAdminController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -66,4 +67,6 @@ Route::get('/InternshipDescription', [internshipAdminController::class, 'Interns
 
 //--------------------------------------------------------------------------
 
-Route::post('/postSpontaneousInternship', [spontaneousController::class, 'postSpontaneousInternship']);
+Route::post('/postSpontaneous', [spontaneousController::class, 'postSpontaneous']);
+
+Route::delete('/deleteSpontaneousApplications', [spontaneousAdminController::class, 'deleteSpontaneousApplications']);

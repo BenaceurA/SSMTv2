@@ -151,7 +151,7 @@ class jobAdminController extends Controller
         if ($permission->SC_E) {
             foreach ($request->all() as $key => $value) {
                 $query =  DB::table('jobs')->where('id', $value)->get(["CV", "Lettre_motivation"])->first();
-                Storage::delete(["public/CVs/" . $query->CV, "public/Lettres/" . $query->Lettre_motivation]); //delete files
+                Storage::delete(["public/Jobs/CVs/" . $query->CV, "public/Internships/Lettres/" . $query->Lettre_motivation]); //delete files
             }
             return Job::destroy($request->all());
         } else {

@@ -26,6 +26,26 @@
                     <input required class="bg-white-200 appearance-none border-2 border-white-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Password" id="Password" type="password">
                 </div>
             </div>
+            <div class="md:flex md:items-center mb-8">
+                <div class="flex justify-start md:w-1/4">
+                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Email">
+                        Email
+                    </label>
+                </div>
+                <div class="md:w-3/4">
+                    <input required class="bg-white-200 appearance-none border-2 border-white-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Email" id="Email" type="email">
+                </div>
+            </div>
+            <div class="md:flex md:items-center mb-8">
+                <div class="flex justify-start md:w-1/4">
+                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Confirm_Email">
+                        Confirmer l'email
+                    </label>
+                </div>
+                <div class="md:w-3/4">
+                    <input required class="bg-white-200 appearance-none border-2 border-white-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Confirm_Email" id="Confirm_Email" type="email">
+                </div>
+            </div>
             <!-- RIGHTS !-->
             <div class="md:flex mb-6">
                 <div class="flex justify-start  md:w-1/4">
@@ -144,26 +164,26 @@
                 </div>
                 <div class="md:w-3/4">
                     <div>
-                        <input class="border-2 mr-1 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="TC-CS" id="TC-CS" type="checkbox">
-                        <label class="text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="TC-CS">
+                        <input class="border-2 mr-1 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="TC_CS" id="TC_CS" type="checkbox">
+                        <label class="text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="TC_CS">
                             Télécharger les CVs
                         </label>
                     </div>
                     <div>
-                        <input class="border-2 mr-1 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="TL-CS" id="TL-CS" type="checkbox">
-                        <label class="text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="TL-CS">
+                        <input class="border-2 mr-1 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="TL_CS" id="TL_CS" type="checkbox">
+                        <label class="text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="TL_CS">
                             Télécharger les lettres
                         </label>
                     </div>
                     <div>
-                        <input class="border-2 mr-1 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="SC-E-CS" id="SC-E-CS" type="checkbox">
-                        <label class="text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="SC-E-CS">
+                        <input class="border-2 mr-1 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="SC_E_CS" id="SC_E_CS" type="checkbox">
+                        <label class="text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="SC_E_CS">
                             Supprimer les candidatures d'emploi
                         </label>
                     </div>
                     <div>
-                        <input class="border-2 mr-1 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="SC-S-CS" id="SC-S-CS" type="checkbox">
-                        <label class="text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="SC-S-CS">
+                        <input class="border-2 mr-1 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="SC_S_CS" id="SC_S_CS" type="checkbox">
+                        <label class="text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="SC_S_CS">
                             Supprimer les candidatures de stage
                         </label>
                     </div>

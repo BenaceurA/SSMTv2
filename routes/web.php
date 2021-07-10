@@ -7,6 +7,7 @@ use App\Http\Controllers\adminController;
 use App\Http\Controllers\spontaneousController;
 use App\Http\Controllers\jobAdminController;
 use App\Http\Controllers\internshipAdminController;
+use App\Http\Controllers\spontaneousAdminController;
 use App\Http\Controllers\settingsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,8 @@ Route::get('/createInternship', [internshipAdminController::class, 'internshipCr
 Route::get('/BDemploi', [jobAdminController::class, 'jobApplicationsIndex'])->middleware(["auth"]);
 
 Route::get('/BDstage', [internshipAdminController::class, 'internshipApplicationsIndex'])->middleware(["auth"]);
+
+Route::get('/BDspontaneous', [spontaneousAdminController::class, 'spontaneousApplicationsIndex'])->middleware(["auth"]);
 
 Route::get('/settings', [settingsController::class, 'settingsIndex'])->middleware("auth");
 

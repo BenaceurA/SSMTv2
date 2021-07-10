@@ -1,6 +1,7 @@
 @if ($type2 == "internship")
-    <form class="w-full max-w-full md:max-w-5xl lg:max-w-5xl my-5 md:my-10 lg:my-10 mx-5 bg-opacity-90 bg-white p-10 rounded-md" action="/api/postSpontaneousInternship" method="post" enctype="multipart/form-data">
+    <form class="w-full max-w-full md:max-w-5xl lg:max-w-5xl my-5 md:my-10 lg:my-10 mx-5 bg-opacity-90 bg-white p-10 rounded-md" action="/api/postSpontaneous" method="post" enctype="multipart/form-data">
             @csrf
+            <input hidden value="stage" name="Candidature" id="Candidature">
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start  md:w-1/4">
                     <label class="required block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Type_de_stage">
@@ -85,12 +86,12 @@
             </div>
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start  md:w-1/4">
-                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Téléphone">
+                    <label class="required block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Téléphone">
                         Téléphone
                     </label>
                 </div>
                 <div class="md:w-3/4">
-                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Téléphone" id="Téléphone" type="text">
+                    <input required class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Téléphone" id="Téléphone" type="text">
                 </div>
             </div>
             <div class="md:flex md:items-center mb-6">
@@ -197,24 +198,7 @@
                     <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Etablissement_de_formation" id="Etablissement_de_formation" type="text">
                 </div>
             </div>
-            <div class="md:flex md:items-center mb-6">
-                <div class="flex justify-start  md:w-1/4">
-                    <label class="required block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Années_d'expérience">
-                        Années d'expérience
-                    </label>
-                </div>
-                <div class="md:w-3/4">
-                    <select class="border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Années_d'expérience" id="Années_d'expérience" required>
-                        <option value="" disabled selected hidden>-Choisir-</option>
-                        <option value="Dédutant">Dédutant</option>
-                        <option value="Moins de 1 an">Moins de 1 an</option>
-                        <option value="De 1 à 3 ans">De 1 à 3 ans</option>
-                        <option value="De 3 à 5 ans">De 3 à 5 ans</option>
-                        <option value="De 5 à 10 ans">De 5 à 10 ans</option>
-                        <option value="Plus de 10 ans">Plus de 10 ans</option>
-                    </select>
-                </div>
-            </div>
+            
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start  md:w-1/4">
                     <label class="required block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="CV">
@@ -256,8 +240,9 @@
     </form>
 
 @elseif($type2 == "job")
-    <form class="w-full max-w-full md:max-w-5xl lg:max-w-5xl my-5 md:my-10 lg:my-10 mx-5 bg-opacity-90 bg-white p-10 rounded-md" action="/api/postSpontaneousJob" method="post" enctype="multipart/form-data">
+    <form class="w-full max-w-full md:max-w-5xl lg:max-w-5xl my-5 md:my-10 lg:my-10 mx-5 bg-opacity-90 bg-white p-10 rounded-md" action="/api/postSpontaneous" method="post" enctype="multipart/form-data">
             @csrf
+            <input hidden value="emploi" name="Candidature" id="Candidature">
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start  md:w-1/4">
                     <label class="required block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Type_de_stage">
@@ -281,6 +266,7 @@
                         <option value="Département d'atelier">Département d'atelier</option>
                         <option value="Département bureau méthode maintenance">Département bureau méthode maintenance</option>
                         <option value="Département logistique">Département logistique</option>
+                        <option value="Département pole travaux">Département pole travaux</option>
                         <option value="Département d'exploitation">Département d'exploitation</option>
                         <option value="Département d'étude des prix">Département d'étude des prix</option>
                         <option value="Département topographe">Département topographe</option>
@@ -291,12 +277,12 @@
             </div>
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start  md:w-1/4">
-                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Département">
+                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Poste">
                         Poste
                     </label>
                 </div>
                 <div class="md:w-3/4">
-                    <input required class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Nom_Prenom" id="Nom_Prenom" type="text">
+                    <input required class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Poste" id="Poste" type="text">
                 </div>
             </div>
             <div class="md:flex md:items-center mb-6">

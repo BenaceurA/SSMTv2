@@ -77,8 +77,8 @@
                 BD stage
             </div>
         </a> 
-        <a class="flex-1" href=""> 
-            <div class="menu shadow  hover:bg-gray-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4 border-r">
+        <a class="flex-1" href="/BDspontaneous"> 
+            <div class="menu shadow @if($view == "spontaneous") bg-yellow-500 @endif hover:bg-gray-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4 border-r">
                 Candidatures spontanée
             </div>
         </a> 

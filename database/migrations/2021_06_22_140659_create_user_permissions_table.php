@@ -34,10 +34,10 @@ class CreateUserPermissionsTable extends Migration
             $table->boolean("TL_S");
             $table->boolean("SC_S");
 
-            $table->boolean("TC-CS");
-            $table->boolean("TL-CS");
-            $table->boolean("SC-E-CS");
-            $table->boolean("SC-S-CS");
+            $table->boolean("TC_CS");
+            $table->boolean("TL_CS");
+            $table->boolean("SC_E_CS");
+            $table->boolean("SC_S_CS");
 
             $table->boolean("AU");
         });

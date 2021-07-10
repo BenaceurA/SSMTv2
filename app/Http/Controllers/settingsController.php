@@ -26,9 +26,10 @@ class settingsController extends Controller
         //extract user info
         $name = $data["Username"];
         $password = $data["Password"];
-
+        $email = $data["Email"];
+        $confirmEmail = $data["Confirm_Email"];
         //extract permissions
-        array_splice($data, 0, 3);
+        array_splice($data, 0, 5);
         $permission = $data;
 
         //check if the user already exists return with error
@@ -38,11 +39,18 @@ class settingsController extends Controller
             ]);
         }
 
+        if ($email != $confirmEmail) {
+            return back()->withErrors([
+                'addusererror' => 'L\'email n\'est pas confirmer',
+            ]);
+        }
+
         //insert the user
 
         $user = new User;
         $user->name = $name;
         $user->password = password_hash($password, PASSWORD_BCRYPT);
+        $user->email = $email;
         $user->save();
 
         //insert the user permissions
