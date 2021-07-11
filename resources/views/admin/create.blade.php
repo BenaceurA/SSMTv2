@@ -98,9 +98,9 @@
             </div>
         </form>
     </div>
-    <div class ="box-border flex mt-8 mb-8 w-full">
-        <div class = "w-2/12 m-4 ">
-            <div class="w-full p-4 bg-white bg-opacity-90 border-t-4 border-b-4 rounded">
+    <div class ="box-border text-sm flex mt-8 mb-8 w-full">
+        <div class = "small-width m-4 ">
+            <div class="w-full p-3 bg-white bg-opacity-90 border-t-4 border-b-4 rounded">
                 <button onclick="Delete(checkedIds)" class="w-full shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
                   Supprimer
                 </button>
@@ -115,7 +115,7 @@
         
         {{-- table --}}
 
-        <div class="border-t-4  rounded w-10/12 mr-4 mt-4 mb-4 flex flex-col">
+        <div class="border-t-4 rounded big-width mr-4 mt-4 mb-4 flex flex-col">
         <div class="overflow-x-auto max-w-full">
 
         <table class="border-b-4 table-auto divide-y divide-gray-200">    
