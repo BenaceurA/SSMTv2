@@ -1,5 +1,14 @@
 <form class="w-full max-w-full md:max-w-5xl lg:max-w-5xl my-5 md:my-10 lg:my-10 mx-5 bg-opacity-90 bg-white p-10 rounded-md" action="/api/postemploi" method="post" enctype="multipart/form-data">
             @csrf
+            @if ($errors->any())
+                <div class="mb-8 bg-red-200 p-2">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li class="text-red-800">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start md:w-1/4">
                     <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Poste">

@@ -16,6 +16,11 @@ class internshipController extends Controller
 
     function postStage(Request $request)
     {
+        $request->validate([
+            'CV' => 'mimes:docx,doc,pdf',
+            'lettre' => 'mimes:docx,doc,pdf',
+        ]);
+
         $internship = new Internship;
         $data = $request->input();
         $internship->Poste = $data["Poste"];
@@ -31,7 +36,7 @@ class internshipController extends Controller
         $internship->Niveau_étude = $data["Niveau_d'étude"];
         $internship->Etablissement_de_formation = $data["Etablissement_de_formation"];
         $internship->Type_de_stage = $data["Type_de_stage"];
-        if ($request->hasFile('CV')) { // TODO : CHECK IF DOC/PDF
+        if ($request->hasFile('CV')) {
             $filenameWithExt = $request->file('CV')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('CV')->getClientOriginalExtension();

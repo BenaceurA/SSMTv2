@@ -1,6 +1,15 @@
 @if ($type2 == "internship")
     <form class="w-full max-w-full md:max-w-5xl lg:max-w-5xl my-5 md:my-10 lg:my-10 mx-5 bg-opacity-90 bg-white p-10 rounded-md" action="/api/postSpontaneous" method="post" enctype="multipart/form-data">
             @csrf
+            @if ($errors->any())
+                <div class="mb-8 bg-red-200 p-2">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li class="text-red-800">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <input hidden value="stage" name="Candidature" id="Candidature">
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start  md:w-1/4">
@@ -23,7 +32,7 @@
                     </label>
                 </div>
                 <div class="md:w-3/4">
-                    <select required class="border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Département" id="Département">
+                    <select class="border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Département" id="Département">
                         <option value="" disabled selected hidden>-Choisir-</option>
                         <option value="Département d'Audit contrôle gestion et audit interne">Département d'Audit contrôle gestion et audit interne</option>
                         <option value="Département d’informatique">Département d’informatique</option>
@@ -242,6 +251,15 @@
 @elseif($type2 == "job")
     <form class="w-full max-w-full md:max-w-5xl lg:max-w-5xl my-5 md:my-10 lg:my-10 mx-5 bg-opacity-90 bg-white p-10 rounded-md" action="/api/postSpontaneous" method="post" enctype="multipart/form-data">
             @csrf
+            @if ($errors->any())
+                <div class="mb-8 bg-red-200 p-2">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li class="text-red-800">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <input hidden value="emploi" name="Candidature" id="Candidature">
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start  md:w-1/4">
@@ -282,7 +300,7 @@
                     </label>
                 </div>
                 <div class="md:w-3/4">
-                    <input required class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Poste" id="Poste" type="text">
+                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Poste" id="Poste" type="text">
                 </div>
             </div>
             <div class="md:flex md:items-center mb-6">

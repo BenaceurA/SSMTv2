@@ -17,6 +17,11 @@ class jobController extends Controller
 
     function postEmploi(Request $request)
     {
+        $request->validate([
+            'CV' => 'mimes:docx,doc,pdf',
+            'lettre' => 'mimes:docx,doc,pdf',
+        ]);
+
         $job = new Job;
         $data = $request->input();
         $job->Poste = $data["Poste"];
@@ -34,7 +39,7 @@ class jobController extends Controller
         $job->Années_expérience = $data["Années_d'expérience"];
         $job->Motivation = $data["Motivation"];
 
-        if ($request->hasFile('CV')) { // TODO : CHECK IF DOC/PDF
+        if ($request->hasFile('CV')) {
             $filenameWithExt = $request->file('CV')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('CV')->getClientOriginalExtension();

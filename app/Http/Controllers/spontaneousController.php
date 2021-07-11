@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Spontaneous;
 use Illuminate\Http\Request;
 
+
 class spontaneousController extends Controller
 {
     function SpontaneousJobForm()
@@ -17,6 +18,11 @@ class spontaneousController extends Controller
     }
     function postSpontaneous(Request $request)
     {
+        $request->validate([
+            'CV' => 'mimes:docx,doc,pdf',
+            'lettre' => 'mimes:docx,doc,pdf',
+        ]);
+
         $si = new spontaneous;
         $data = $request->input();
         $si->Candidature = $data["Candidature"];
@@ -32,7 +38,10 @@ class spontaneousController extends Controller
             $si->Années_expérience = $data["Années_d'expérience"];
         }
 
-        $si->Département = $data["Département"];
+        if (isset($data["Département"])) {
+            $si->Département = $data["Département"];
+        }
+
         $si->Nom_Prenom = $data['Nom_Prenom'];
         $si->Adresse_mail = $data["Adresse_mail"];
         $si->Téléphone = $data["Téléphone"];
@@ -44,7 +53,7 @@ class spontaneousController extends Controller
         $si->Etablissement_de_formation = $data["Etablissement_de_formation"];
         $si->Motivation = $data["Motivation"];
 
-        if ($request->hasFile('CV')) { // TODO : CHECK IF DOC/PDF
+        if ($request->hasFile('CV')) {
             $filenameWithExt = $request->file('CV')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('CV')->getClientOriginalExtension();
@@ -54,7 +63,7 @@ class spontaneousController extends Controller
         } else {
             return back();
         }
-        if ($request->hasFile('lettre')) { // TODO : CHECK IF DOC/PDF
+        if ($request->hasFile('lettre')) {
             $filenameWithExt = $request->file('lettre')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('lettre')->getClientOriginalExtension();
