@@ -49,7 +49,7 @@ class spontaneousController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('CV')->getClientOriginalExtension();
             $filenameToStore = $filename . '_' . time() . '.' . $extension;
-            $request->file('CV')->storeAs('public/Jobs/CVs', $filenameToStore);
+            $request->file('CV')->storeAs('public/Spontaneous/CVs', $filenameToStore);
             $si->CV = $filenameToStore;
         } else {
             return back();
@@ -59,7 +59,7 @@ class spontaneousController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('lettre')->getClientOriginalExtension();
             $filenameToStore = $filename . '_' . time() . '.' . $extension;
-            $request->file('lettre')->storeAs('public/Jobs/Lettres', $filenameToStore);
+            $request->file('lettre')->storeAs('public/Spontaneous/Lettres', $filenameToStore);
             $si->Lettre_motivation = $filenameToStore;
         }
 

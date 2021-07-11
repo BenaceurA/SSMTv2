@@ -12,7 +12,6 @@ class spontaneousAdminController extends Controller
 {
     function spontaneousApplicationsIndex(Request $request)
     {
-
         $data = $request->all();
         if (isset($data["Option"])) {
             $option = array_splice($data, 0, 1);
@@ -91,14 +90,40 @@ class spontaneousAdminController extends Controller
             $candidature =  DB::table('spontaneous')->where('id', $value)->get(["Candidature"])->first()->Candidature;
             if ($candidature == "emploi" && $permission->SC_E_CS) {
                 $query =  DB::table('spontaneous')->where('id', $value)->get(["CV", "Lettre_motivation"])->first();
-                Storage::delete(["public/Jobs/CVs/" . $query->CV, "public/Jobs/Lettres/" . $query->Lettre_motivation]); //delete files
+                Storage::delete(["public/Spontaneous/CVs/" . $query->CV, "public/Spontaneous/Lettres/" . $query->Lettre_motivation]); //delete files
                 Spontaneous::destroy($value);
             } elseif ($candidature == "stage" && $permission->SC_S_CS) {
                 $query =  DB::table('spontaneous')->where('id', $value)->get(["CV", "Lettre_motivation"])->first();
-                Storage::delete(["public/Internships/CVs/" . $query->CV, "public/Internships/Lettres/" . $query->Lettre_motivation]); //delete files
+                Storage::delete(["public/Spontaneous/CVs/" . $query->CV, "public/Spontaneous/Lettres/" . $query->Lettre_motivation]); //delete files
                 Spontaneous::destroy($value);
             }
         }
         return 1;
+    }
+
+    function downloadCVs(Request $request)
+    {
+        $userId = Auth::id();
+        $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
+
+        if ($permission->TC_CS) {
+            $id = $request->query('id');
+            $cvName = DB::table('spontaneous')->where('id', $id)->first('CV')->CV;
+            return Storage::download("public/Spontaneous/CVs/" . $cvName);
+        }
+    }
+
+    function downloadLetters(Request $request)
+    {
+        $userId = Auth::id();
+        $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
+
+        if ($permission->TL_CS) {
+            $id = $request->query('id');
+            $LettreName = DB::table('spontaneous')->where('id', $id)->first('Lettre_motivation')->Lettre_motivation;
+            if ($LettreName) {
+                return Storage::download("public/Spontaneous/Lettres/" . $LettreName);
+            }
+        }
     }
 }

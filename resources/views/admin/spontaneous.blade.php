@@ -385,7 +385,7 @@
       if(DownloadCVPerm){
         var link = document.createElement("a");
         link.download = "";
-        link.href = '/api/DownloadJobLetters?id='+id;
+        link.href = '/api/DownloadSpontaneousLetters?id='+id;
         document.body.appendChild(link);
         link.click();
         link.remove();
@@ -398,7 +398,7 @@
       if(DownloadLetterPerm){
         var link = document.createElement("a");
         link.download = "";
-        link.href = '/api/DownloadJobCVs?id='+id;
+        link.href = '/api/DownloadSpontaneousCVs?id='+id;
         document.body.appendChild(link);
         link.click();
         link.remove();

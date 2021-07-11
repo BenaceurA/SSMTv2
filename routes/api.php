@@ -70,3 +70,7 @@ Route::get('/InternshipDescription', [internshipAdminController::class, 'Interns
 Route::post('/postSpontaneous', [spontaneousController::class, 'postSpontaneous']);
 
 Route::delete('/deleteSpontaneousApplications', [spontaneousAdminController::class, 'deleteSpontaneousApplications']);
+
+Route::get('/DownloadSpontaneousCVs', [spontaneousAdminController::class, 'downloadCVs']);
+
+Route::get('/DownloadSpontaneousLetters', [spontaneousAdminController::class, 'downloadLetters']);
