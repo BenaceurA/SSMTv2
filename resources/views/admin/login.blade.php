@@ -26,8 +26,8 @@
       <input id="remember" type="hidden" name="remember" value="false">
       <div class="rounded-md shadow-sm -space-y-px">
         <div>
-          <label for="name" class="sr-only">Email address</label>
-          <input id="username" name="name" type="name" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="username">
+          <label for="name" class="sr-only">Username</label>
+          <input id="username" name="name" type="name" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Username">
         </div>
         <div>
           <label for="password" class="sr-only">Password</label>
@@ -44,7 +44,7 @@
         </div>
 
         <div class="text-sm">
-          <a href="#" class="font-medium text-yellow-600 hover:text-yellow-500">
+          <a href="/forgotPassword" class="font-medium text-yellow-600 hover:text-yellow-500">
             Mot de passe oubliés?
           </a>
         </div>

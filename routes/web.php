@@ -52,3 +52,11 @@ Route::get('/settings', [settingsController::class, 'settingsIndex'])->middlewar
 Route::post('/addUser', [settingsController::class, 'addUser']);
 
 Route::post('/modifyPassword', [settingsController::class, 'modifyPassword']);
+
+Route::get('forgotPassword', [adminController::class, 'getForgotPassword']);
+
+Route::post('forgotPassword', [adminController::class, 'postForgotPassword'])->middleware('guest')->name('password.email');
+
+Route::get("resetPassword/{token}", [adminController::class, 'getResetPassword'])->middleware('guest')->name('password.reset');
+
+Route::post("resetPassword", [adminController::class, 'postResetPassword'])->middleware('guest')->name('password.update');
