@@ -18,6 +18,11 @@
     <strong class="font-bold">{{ $message }}</strong>
     </div>
     @enderror
+    @if(Session::has("status"))
+    <div id="status" class="bg-green-100 border border-greenred-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+    <strong class="font-bold">{{ Session::get("status") }}</strong>
+    </div>
+    @endif
     <form class="mt-8 space-y-6" action="/forgotPassword" method="POST">
     @csrf
       <div class="rounded-md shadow-sm -space-y-px">

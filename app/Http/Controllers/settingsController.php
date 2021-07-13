@@ -16,7 +16,7 @@ class settingsController extends Controller
     {
         $id = Auth::id();
 
-        $add_user_perm = DB::table("user_permissions")->where('user_id', $id)->first('AU')->AU;
+        $add_user_perm = 1;
         return view("/admin/paramètres/settingsIndex", ["view" => "settings", "add_user_perm" => $add_user_perm, "username" => adminController::getUsername()]);
     }
     function addUser(Request $request)
@@ -35,15 +35,22 @@ class settingsController extends Controller
         //check if the user already exists return with error
         if (DB::table("users")->where('name', $name)->first()) {
             return back()->withErrors([
-                'addusererror' => 'le nom existe deja',
+                'addusererror' => "Le nom d'utilisateur existe déjà",
+            ]);
+        }
+
+        if (DB::table("users")->where('email', $email)->first()) {
+            return back()->withErrors([
+                'addusererror' => "L'email existe déjà",
             ]);
         }
 
         if ($email != $confirmEmail) {
             return back()->withErrors([
-                'addusererror' => 'L\'email n\'est pas confirmer',
+                'addusererror' => "L'email n'est pas confirmer",
             ]);
         }
+
 
         //insert the user
 
@@ -60,7 +67,7 @@ class settingsController extends Controller
             $user_permissions->$key = 1;
         }
         $user_permissions->save();
-        return back();
+        return back()->with(["success" => "L'utilisateur a été ajouté"]);
     }
 
     function modifyPassword(Request $request)

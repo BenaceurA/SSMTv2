@@ -1,10 +1,15 @@
    <form class="w-full bg-opacity-90 bg-white p-10 pt-5 rounded-md" action="/addUser" method="post" enctype="multipart/form-data">
         @csrf
         @error("addusererror")
-        <div class="mb-4">
-        <strong class="text-red-700 font-bold">{{ $message }}</strong>
-        </div>
+            <div id="error" class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <strong class="font-bold">{{ $message }}</strong>
+            </div>
         @enderror
+        @if(Session::has("success"))
+            <div id="status" class="bg-green-100 border border-greenred-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                <strong class="font-bold">{{ Session::get("success") }}</strong>
+            </div>
+        @endif
         <h1 class="block text-gray-500 font-bold mb-5 text-xl pr-4">Ajouter un nouveau utilisateur</h1>
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start md:w-1/4">
