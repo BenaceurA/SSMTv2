@@ -34,7 +34,7 @@
 </head>
 
 <body class="relative h-screen background-img">
-    <div class="mt-16 flex justify-center ">
+    <div class="text-sm md:text-sm lg:text-base mb-8 mt-16 flex justify-center ">
          @if($type == "emploi") @include("formemploi");
          @elseif($type == "stage") @include("formstage");
          @elseif($type == "spontaneous") @include("formspontaneous"); @endif

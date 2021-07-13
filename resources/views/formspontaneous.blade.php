@@ -1,5 +1,5 @@
 @if ($type2 == "internship")
-    <form class="w-full max-w-full md:max-w-5xl lg:max-w-5xl my-5 md:my-10 lg:my-10 mx-5 bg-opacity-90 bg-white p-10 rounded-md" action="/api/postSpontaneous" method="post" enctype="multipart/form-data">
+    <form class="w-full max-w-full md:max-w-5xl lg:max-w-5xl my-5 md:my-10 lg:my-10 mx-5 bg-opacity-90 bg-white p-5 md:p-10 lg:p-10 rounded-md" action="/api/postSpontaneous" method="post" enctype="multipart/form-data">
             @csrf
             @if ($errors->any())
                 <div class="mb-8 bg-red-200 p-2">
@@ -249,7 +249,7 @@
     </form>
 
 @elseif($type2 == "job")
-    <form class="w-full max-w-full md:max-w-5xl lg:max-w-5xl my-5 md:my-10 lg:my-10 mx-5 bg-opacity-90 bg-white p-10 rounded-md" action="/api/postSpontaneous" method="post" enctype="multipart/form-data">
+    <form class="w-full max-w-full md:max-w-5xl lg:max-w-5xl my-5 md:my-10 lg:my-10 mx-5 bg-opacity-90 bg-white p-5 md:p-10 lg:p-10 rounded-md" action="/api/postSpontaneous" method="post" enctype="multipart/form-data">
             @csrf
             @if ($errors->any())
                 <div class="mb-8 bg-red-200 p-2">
