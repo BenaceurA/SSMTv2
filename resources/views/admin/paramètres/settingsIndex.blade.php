@@ -9,6 +9,9 @@
 @if($add_user_perm == true)
     @include('/admin/paramètres/add_user_layout')
 @endif
-  
+@if($delete_user_perm == true)
+    @include('/admin/paramètres/delete_user_layout')
+@endif
+
 </div>
 @endsection

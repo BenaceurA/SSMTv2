@@ -16,8 +16,15 @@ class settingsController extends Controller
     {
         $id = Auth::id();
 
-        $add_user_perm = 1;
-        return view("/admin/paramètres/settingsIndex", ["view" => "settings", "add_user_perm" => $add_user_perm, "username" => adminController::getUsername()]);
+        $add_user_perm = DB::table("user_permissions")->where('user_id', $id)->first('AU')->AU;
+        $delete_user_perm = DB::table("user_permissions")->where('user_id', $id)->first('DU')->DU;
+
+        return view("/admin/paramètres/settingsIndex", [
+            "view" => "settings",
+            "add_user_perm" => $add_user_perm,
+            "delete_user_perm" => $delete_user_perm,
+            "username" => adminController::getUsername()
+        ]);
     }
     function addUser(Request $request)
     {

@@ -6,7 +6,7 @@
             </div>
         @enderror
         @if(Session::has("success"))
-            <div id="status" class="bg-green-100 border border-greenred-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+            <div id="status" class="mb-4 bg-green-100 border border-greenred-400 text-green-700 px-4 py-3 rounded relative" role="alert">
                 <strong class="font-bold">{{ Session::get("success") }}</strong>
             </div>
         @endif
@@ -203,6 +203,18 @@
                 <div class="md:w-3/4">
                     <div>
                         <input class="border-2 mr-1 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="AU" id="AU" type="checkbox">
+                    </div>
+                </div>
+            </div>
+            <div class="md:flex mb-6">
+                <div class="flex justify-start  md:w-1/4">
+                    <label  class="required block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="DU">
+                        Supprimer les utilisateurs
+                    </label>
+                </div>
+                <div class="md:w-3/4">
+                    <div>
+                        <input class="border-2 mr-1 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="DU" id="DU" type="checkbox">
                     </div>
                 </div>
             </div>

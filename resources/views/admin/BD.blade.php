@@ -121,7 +121,7 @@
   </div>
 </div>
 
-<div class="big-width ml-4 mr-4 mt-4 flex flex-col">
+<div class="big-width ml-4 mr-4 mt-4 flex flex-col relative">
   <div class="overflow-x-scroll max-w-full  border-b-4 rounded mb-4">
     <div class=" align-middle inline-block">
       <div class="shadow overflow-hidden border-b border-gray-200">
@@ -195,7 +195,7 @@
             </tr>
           </thead>
           <tbody class=" bg-white divide-y divide-gray-200">
-          @foreach ($data as $row )
+          @forelse ($data as $row )
             <tr>
                 <td><input id="checkbox-{{$row->id}}" 
                 @if($view == "jobs")
@@ -273,7 +273,9 @@
                 </td>
                 @endif
             </tr>
-            @endforeach
+            @empty
+              <h3 class="w-full rounded px-4 py-4 font-medium absolute text-center text-white bg-opacity-80 top-28 ">Base de données vide</h3>
+            @endforelse
           </tbody>
         </table>
       </div>
@@ -326,10 +328,6 @@
         @endif
       });
     }
-
-    
-
-
 
   @if($view == "jobs")
 
