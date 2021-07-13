@@ -3,6 +3,7 @@
 use App\Http\Controllers\adminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\settingsController;
 use App\Http\Controllers\jobController;
 use App\Http\Controllers\jobAdminController;
 use App\Http\Controllers\internshipAdminController;
@@ -41,8 +42,6 @@ Route::get('/DownloadJobCVs', [jobAdminController::class, 'downloadCVs']);
 
 Route::get('/DownloadJobLetters', [jobAdminController::class, 'downloadLetters']);
 
-Route::get('/getPermissions', [adminController::class, 'getPermissions']);
-
 Route::get('/jobDescription', [jobAdminController::class, 'jobDescription']);
 
 //--------------------------------------------------------------------------
@@ -74,3 +73,9 @@ Route::delete('/deleteSpontaneousApplications', [spontaneousAdminController::cla
 Route::get('/DownloadSpontaneousCVs', [spontaneousAdminController::class, 'downloadCVs']);
 
 Route::get('/DownloadSpontaneousLetters', [spontaneousAdminController::class, 'downloadLetters']);
+
+//--------------------------------------------------------------------------
+
+Route::get('/getPermissions', [adminController::class, 'getPermissions']);
+
+Route::delete('/deleteUser/{id}', [settingsController::class, 'deleteUser']);

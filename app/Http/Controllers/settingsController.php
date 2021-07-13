@@ -19,10 +19,12 @@ class settingsController extends Controller
         $add_user_perm = DB::table("user_permissions")->where('user_id', $id)->first('AU')->AU;
         $delete_user_perm = DB::table("user_permissions")->where('user_id', $id)->first('DU')->DU;
 
+        $users = DB::table("users")->get(['id', 'name', 'email', 'created_at'])->all();
         return view("/admin/paramètres/settingsIndex", [
             "view" => "settings",
             "add_user_perm" => $add_user_perm,
             "delete_user_perm" => $delete_user_perm,
+            "users" => $users,
             "username" => adminController::getUsername()
         ]);
     }
@@ -57,7 +59,6 @@ class settingsController extends Controller
                 'addusererror' => "L'email n'est pas confirmer",
             ]);
         }
-
 
         //insert the user
 
@@ -101,5 +102,14 @@ class settingsController extends Controller
         return back()->withErrors([
             'pwdsuccess' => 'votre mot de passe a été changé',
         ]);
+    }
+
+    function deleteUser($id)
+    {
+        $exception = DB::transaction(function () use ($id) {
+            User_Permissions::destroy(User_Permissions::where("user_id", $id)->first()->id);
+            return User::destroy($id);
+        }, 5);
+        return $exception === 1;
     }
 }
