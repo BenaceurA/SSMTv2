@@ -86,8 +86,14 @@ class spontaneousAdminController extends Controller
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
         foreach ($request->all() as $key => $value) {
+
+            //check if candidature exists
+            $candidature =  DB::table('spontaneous')->where('id', $value)->get(["Candidature"])->first();
+            if ($candidature == null) {
+                return response("reset content", 205);
+            }
+            $candidature = $candidature->Candidature;
             //check if emploi or stage then get permission
-            $candidature =  DB::table('spontaneous')->where('id', $value)->get(["Candidature"])->first()->Candidature;
             if ($candidature == "emploi" && $permission->SC_E_CS) {
                 $query =  DB::table('spontaneous')->where('id', $value)->get(["CV", "Lettre_motivation"])->first();
                 Storage::delete(["public/Spontaneous/CVs/" . $query->CV, "public/Spontaneous/Lettres/" . $query->Lettre_motivation]); //delete files
@@ -98,7 +104,7 @@ class spontaneousAdminController extends Controller
                 Spontaneous::destroy($value);
             }
         }
-        return 1;
+        return response("ok", 200);
     }
 
     function downloadCVs(Request $request)
@@ -125,5 +131,13 @@ class spontaneousAdminController extends Controller
                 return Storage::download("public/Spontaneous/Lettres/" . $LettreName);
             }
         }
+    }
+
+    function applicationExists($id)
+    {
+        if ((DB::table('spontaneous')->where('id', $id)->get(["Candidature"])->first()) == null) {
+            return response("not found", 404);
+        }
+        return response("ok", 200);;
     }
 }

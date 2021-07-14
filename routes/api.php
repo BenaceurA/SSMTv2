@@ -44,6 +44,8 @@ Route::get('/DownloadJobLetters', [jobAdminController::class, 'downloadLetters']
 
 Route::get('/jobDescription', [jobAdminController::class, 'jobDescription']);
 
+Route::get('/jobApplicationExists', [jobAdminController::class, 'applicationExists']);
+
 //--------------------------------------------------------------------------
 
 Route::post('/poststage', [internshipController::class, 'postStage']);
@@ -64,6 +66,8 @@ Route::get('/DownloadInternshipLetters', [internshipAdminController::class, 'dow
 
 Route::get('/InternshipDescription', [internshipAdminController::class, 'InternshipDescription']);
 
+Route::get('/internshipApplicationExists', [internshipAdminController::class, 'applicationExists']);
+
 //--------------------------------------------------------------------------
 
 Route::post('/postSpontaneous', [spontaneousController::class, 'postSpontaneous']);
@@ -73,6 +77,8 @@ Route::delete('/deleteSpontaneousApplications', [spontaneousAdminController::cla
 Route::get('/DownloadSpontaneousCVs', [spontaneousAdminController::class, 'downloadCVs']);
 
 Route::get('/DownloadSpontaneousLetters', [spontaneousAdminController::class, 'downloadLetters']);
+
+Route::get('/spontaneousApplicationExists/{id}', [spontaneousAdminController::class, 'applicationExists']);
 
 //--------------------------------------------------------------------------
 
