@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Internship;
+use App\Mail\ApplicationReceived;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class internshipController extends Controller
 {
@@ -48,6 +50,10 @@ class internshipController extends Controller
         }
 
         $internship->save();
+
+        if (isset($data["Adresse_mail"])) {
+            Mail::to($data["Adresse_mail"])->send(new ApplicationReceived("Merci de votre candidature : $data[Poste]", $data['Nom_Prenom'], $data["Sexe"]));
+        }
 
         return redirect("/");
     }

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Spontaneous;
 use Illuminate\Http\Request;
-
+use App\Mail\ApplicationReceived;
+use Illuminate\Support\Facades\Mail;
 
 class spontaneousController extends Controller
 {
@@ -73,6 +74,10 @@ class spontaneousController extends Controller
         }
 
         $si->save();
+
+        if (isset($data["Adresse_mail"])) {
+            Mail::to($data["Adresse_mail"])->send(new ApplicationReceived("Merci de votre candidature spontanée", $data['Nom_Prenom'], $data["Sexe"]));
+        }
 
         return redirect("/");
     }

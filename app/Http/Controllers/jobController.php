@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Mail\ApplicationReceived;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class jobController extends Controller
 {
@@ -59,6 +61,11 @@ class jobController extends Controller
         }
 
         $job->save();
+
+        //send mail
+        if (isset($data["Adresse_mail"])) {
+            Mail::to($data["Adresse_mail"])->send(new ApplicationReceived("Merci de votre candidature : $data[Poste]", $data['Nom_Prenom'],  $data["Sexe"]));
+        }
 
         return redirect("/");
     }
