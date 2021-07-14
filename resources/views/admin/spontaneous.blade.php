@@ -371,19 +371,15 @@
                 if(response.status == 200){
                     location.reload();
                 }
-                else if(response.status == 205){
-                    location.reload();
-                }
                 else{
                   loadingDelete.className = "";
                 }
             })
             .catch(function (error) {
                 loadingDelete.className = "";
-                if(error.response.status == 405){
+                if(error.response.status == 403){
                     window.alertify.alert("Erreur","Vous n'avez pas l'autorisation!");
                 }
-                
             });   
     }
 

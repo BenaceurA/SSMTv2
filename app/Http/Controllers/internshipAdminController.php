@@ -147,14 +147,19 @@ class internshipAdminController extends Controller
     {
         $userId = Auth::id();
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
+
         if ($permission->SC_S) {
             foreach ($request->all() as $key => $value) {
-                $query =  DB::table('internships')->where('id', $value)->get(["CV"])->first();
-                Storage::delete(["public/Internships/CVs/" . $query->CV]); //delete files
+                $candidature =  DB::table('internships')->where('id', $value)->first();
+                if ($candidature != null) {
+                    $query =  DB::table('internships')->where('id', $value)->get(["CV"])->first();
+                    Storage::delete(["public/Internships/CVs/" . $query->CV]); //delete files
+                    Internship::destroy($value);
+                }
             }
-            return Internship::destroy($request->all());
+            return response("", 200);
         } else {
-            return response("", 405);
+            return response("", 403);
         }
     }
 
@@ -196,5 +201,13 @@ class internshipAdminController extends Controller
     {
         $description = DB::table('internship_offers')->where('id', $request->all()["id"])->first()->Description;
         return $description;
+    }
+
+    function applicationExists($id)
+    {
+        if ((DB::table('internships')->where('id', $id)->first()) == null) {
+            return response("not found", 404);
+        }
+        return response("ok", 200);
     }
 }

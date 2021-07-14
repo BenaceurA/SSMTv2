@@ -44,7 +44,7 @@ Route::get('/DownloadJobLetters', [jobAdminController::class, 'downloadLetters']
 
 Route::get('/jobDescription', [jobAdminController::class, 'jobDescription']);
 
-Route::get('/jobApplicationExists', [jobAdminController::class, 'applicationExists']);
+Route::get('/jobApplicationExists/{id}', [jobAdminController::class, 'applicationExists']);
 
 //--------------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ Route::get('/DownloadInternshipLetters', [internshipAdminController::class, 'dow
 
 Route::get('/InternshipDescription', [internshipAdminController::class, 'InternshipDescription']);
 
-Route::get('/internshipApplicationExists', [internshipAdminController::class, 'applicationExists']);
+Route::get('/internshipApplicationExists/{id}', [internshipAdminController::class, 'applicationExists']);
 
 //--------------------------------------------------------------------------
 

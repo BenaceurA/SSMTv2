@@ -86,22 +86,21 @@ class spontaneousAdminController extends Controller
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
         foreach ($request->all() as $key => $value) {
-
             //check if candidature exists
             $candidature =  DB::table('spontaneous')->where('id', $value)->get(["Candidature"])->first();
-            if ($candidature == null) {
-                return response("reset content", 205);
-            }
-            $candidature = $candidature->Candidature;
-            //check if emploi or stage then get permission
-            if ($candidature == "emploi" && $permission->SC_E_CS) {
-                $query =  DB::table('spontaneous')->where('id', $value)->get(["CV", "Lettre_motivation"])->first();
-                Storage::delete(["public/Spontaneous/CVs/" . $query->CV, "public/Spontaneous/Lettres/" . $query->Lettre_motivation]); //delete files
-                Spontaneous::destroy($value);
-            } elseif ($candidature == "stage" && $permission->SC_S_CS) {
-                $query =  DB::table('spontaneous')->where('id', $value)->get(["CV", "Lettre_motivation"])->first();
-                Storage::delete(["public/Spontaneous/CVs/" . $query->CV, "public/Spontaneous/Lettres/" . $query->Lettre_motivation]); //delete files
-                Spontaneous::destroy($value);
+            if ($candidature != null) {
+                $candidature = $candidature->Candidature;
+                //check if emploi or stage then get permission
+                if ($candidature == "emploi" && $permission->SC_E_CS) {
+                    $query =  DB::table('spontaneous')->where('id', $value)->get(["CV", "Lettre_motivation"])->first();
+                    Storage::delete(["public/Spontaneous/CVs/" . $query->CV, "public/Spontaneous/Lettres/" . $query->Lettre_motivation]); //delete files
+                    Spontaneous::destroy($value);
+                } elseif ($candidature == "stage" && $permission->SC_S_CS) {
+                    $query =  DB::table('spontaneous')->where('id', $value)->get(["CV", "Lettre_motivation"])->first();
+                    Storage::delete(["public/Spontaneous/CVs/" . $query->CV, "public/Spontaneous/Lettres/" . $query->Lettre_motivation]); //delete files
+                    Spontaneous::destroy($value);
+                }
+                // don't return 403, just don't delete 
             }
         }
         return response("ok", 200);
@@ -135,7 +134,7 @@ class spontaneousAdminController extends Controller
 
     function applicationExists($id)
     {
-        if ((DB::table('spontaneous')->where('id', $id)->get(["Candidature"])->first()) == null) {
+        if ((DB::table('spontaneous')->where('id', $id)->first()) == null) {
             return response("not found", 404);
         }
         return response("ok", 200);;

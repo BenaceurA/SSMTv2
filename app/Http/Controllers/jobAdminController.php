@@ -148,14 +148,19 @@ class jobAdminController extends Controller
     {
         $userId = Auth::id();
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
+
         if ($permission->SC_E) {
             foreach ($request->all() as $key => $value) {
-                $query =  DB::table('jobs')->where('id', $value)->get(["CV", "Lettre_motivation"])->first();
-                Storage::delete(["public/Jobs/CVs/" . $query->CV, "public/Internships/Lettres/" . $query->Lettre_motivation]); //delete files
+                $candidature =  DB::table('jobs')->where('id', $value)->first();
+                if ($candidature != null) {
+                    $query =  DB::table('jobs')->where('id', $value)->get(["CV", "Lettre_motivation"])->first();
+                    Storage::delete(["public/Jobs/CVs/" . $query->CV, "public/Internships/Lettres/" . $query->Lettre_motivation]); //delete files
+                    Job::destroy($value);
+                }
             }
-            return Job::destroy($request->all());
+            return response("", 200);
         } else {
-            return response("", 405);
+            return response("", 403);
         }
     }
 
@@ -211,5 +216,13 @@ class jobAdminController extends Controller
     {
         $description = DB::table('job_offers')->where('id', $request->all()["id"])->first()->Description;
         return $description;
+    }
+
+    function applicationExists($id)
+    {
+        if ((DB::table('jobs')->where('id', $id)->first()) == null) {
+            return response("not found", 404);
+        }
+        return response("ok", 200);;
     }
 }

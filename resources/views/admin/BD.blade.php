@@ -386,7 +386,7 @@
                 data : ids
             })
             .then(function (response) {
-                if(response.data>0){
+                if(response.status == 200){
                     location.reload();
                 }
                 else{
@@ -394,38 +394,56 @@
                 }
             })
             .catch(function (error) {
-                if(error.response.status == 405){
-                    // he's not allowed to create new posts
-                    window.alert("Vous n'avez pas l'autorisation!");
+              loadingDelete.className = "";
+                if(error.response.status == 403){
+                    window.alertify.alert("Erreur","Vous n'avez pas l'autorisation!");
                 }
             });   
     }
 
     function DownloadLetter(id){
-      if(DownloadCVPerm){
-        var link = document.createElement("a");
-        link.download = "";
-        link.href = '/api/DownloadJobLetters?id='+id;
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-      } else{
-        alert("Vous n'avez pas l'autorisation!");
-      }  
+      axios.get('/api/jobApplicationExists/'+id)
+        .then(function(response){
+          if(DownloadLetterPerm){
+            var link = document.createElement("a");
+            link.download = "";
+            link.href = '/api/DownloadJobLetters?id='+id;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+          } 
+          else{
+            window.alertify.alert("Erreur","Vous n'avez pas l'autorisation!");
+          }  
+        })
+        .catch(function(error){
+          if(error.response.status == 404){
+            window.alertify.alert('Erreur',"Candidature [ id : "+id+" ] n'existe pas! Actualisez la page.");
+          }
+        });    
     }
 
     function DownloadCV(id){
-      if(DownloadLetterPerm){
-        var link = document.createElement("a");
-        link.download = "";
-        link.href = '/api/DownloadJobCVs?id='+id;
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-      }
-      else{
-        alert("Vous n'avez pas l'autorisation!");
-      }    
+      axios.get('/api/jobApplicationExists/'+id)
+        .then(function(response){
+          if(DownloadCVPerm){
+            var link = document.createElement("a");
+            link.download = "";
+            link.href = '/api/DownloadJobCVs?id='+id;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+          }
+          else{
+            window.alertify.alert("Erreur","Vous n'avez pas l'autorisation!");
+          }
+        })
+        .catch(function(error){
+          if(error.response.status == 404){
+            window.alertify.alert('Erreur',"Candidature [ id : "+id+" ] n'existe pas! Actualisez la page.");
+          }
+        });
+          
     }
 
     function DownloadCVs(){
@@ -435,7 +453,7 @@
         })
       }
       else{
-        alert("Vous n'avez pas l'autorisation!");
+        window.alertify.alert("Erreur","Vous n'avez pas l'autorisation!");
       }   
     }
 
@@ -446,7 +464,7 @@
         })
       }
       else{
-        alert("Vous n'avez pas l'autorisation!");
+        window.alertify.alert("Erreur","Vous n'avez pas l'autorisation!");
       }
     }
   @endif
@@ -480,7 +498,7 @@
                 data : checkedIds
             })
             .then(function (response) {
-                if(response.data>0){
+                if(response.status == 200){
                     location.reload();
                 }
                 else{
@@ -488,38 +506,32 @@
                 }
             })
             .catch(function (error) {
-                if(error.response.status == 405){
-                    // he's not allowed to create new posts
-                    window.alert("Vous n'avez pas l'autorisation!");
+                if(error.response.status == 403){
+                    window.alertify.alert("Erreur","Vous n'avez pas l'autorisation!");
                 }
             });   
     }
 
-    function DownloadLetter(id){
-      if(DownloadCVPerm){
-        var link = document.createElement("a");
-        link.download = "";
-        link.href = '/api/DownloadInternshipLetters?id='+id;
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-      } else{
-        alert("Vous n'avez pas l'autorisation!");
-      }  
-    }
-
     function DownloadCV(id){
-      if(DownloadLetterPerm){
-        var link = document.createElement("a");
-        link.download = "";
-        link.href = '/api/DownloadInternshipCVs?id='+id;
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-      }
-      else{
-        alert("Vous n'avez pas l'autorisation!");
-      }    
+      axios.get('/api/internshipApplicationExists/'+id)
+        .then(function(response){
+          if(DownloadCVPerm){
+            var link = document.createElement("a");
+            link.download = "";
+            link.href = '/api/DownloadInternshipCVs?id='+id;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+          }
+          else{
+            window.alertify.alert("Erreur","Vous n'avez pas l'autorisation!");
+          } 
+        })
+        .catch(function(error){
+          if(error.response.status == 404){
+            window.alertify.alert('Erreur',"Candidature [ id : "+id+" ] n'existe pas! Actualisez la page.");
+          }
+        })      
     }
 
     function DownloadCVs(){
@@ -529,11 +541,10 @@
         })
       }
       else{
-        alert("Vous n'avez pas l'autorisation!");
+        window.alertify.alert("Erreur","Vous n'avez pas l'autorisation!");
       }   
     }
   @endif
-
 
 </script>
 @endsection
