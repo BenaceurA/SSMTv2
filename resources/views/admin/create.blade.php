@@ -207,6 +207,7 @@
 </div>
 
     <script>
+        let sending = false;
         CKEDITOR.replace('editor1');
         let checkedIds = [];
         
@@ -352,26 +353,29 @@
         }
         
         function Send(){
-            axios.post('/api/createJobOffer', {
-                Offre: document.getElementById("Offre").value,
-                Direction: document.getElementById("Direction").value,
-                Département:document.getElementById("Département").value,
-                Description:CKEDITOR.instances.editor1.getData(),
-                Activation:document.querySelector('input[name="Activation"]:checked').value    
-            })
-            .then(function (response) {
-                if(response.status == 200){
-                    location.reload();
-                }
-            })
-            .catch(function (error) {
-                if(error.response.status == 405){
-                    window.alertify.alert("Erreur","Vous n'avez pas l'autorisation!");
-                }
-                else if(error.response.status == 422){
-                    window.alertify.alert("Erreur","Tous les champs sont obligatoires!");
-                }
-            });  
+            if(sending == false){
+                sending = true;
+                axios.post('/api/createJobOffer', {
+                    Offre: document.getElementById("Offre").value,
+                    Direction: document.getElementById("Direction").value,
+                    Département:document.getElementById("Département").value,
+                    Description:CKEDITOR.instances.editor1.getData(),
+                    Activation:document.querySelector('input[name="Activation"]:checked').value    
+                })
+                .then(function (response) {
+                    if(response.status == 200){
+                        location.reload();
+                    }
+                })
+                .catch(function (error) {
+                    if(error.response.status == 405){
+                        window.alertify.alert("Erreur","Vous n'avez pas l'autorisation!");
+                    }
+                    else if(error.response.status == 422){
+                        window.alertify.alert("Erreur","Tous les champs sont obligatoires!");
+                    }
+                }); 
+            }        
         }
 
         function Update(){
@@ -547,29 +551,32 @@
             return false;
         }
         
-        function Send(){
-            axios.post('/api/createInternshipOffer', {
-                Offre: document.getElementById("Offre").value,
-                Direction: document.getElementById("Direction").value,
-                Département:document.getElementById("Département").value,
-                Description:CKEDITOR.instances.editor1.getData(),
-                Activation:document.querySelector('input[name="Activation"]:checked').value    
-            })
-            .then(function (response) {
-                if(response.status == 200){
-                    location.reload();
-                }
-            })
-            .catch(function (error) {
-                if(error.response.status == 405){
-                    // he's not allowed to create new posts
-                    window.alertify.alert("Erreur","Vous n'avez pas l'autorisation!");
-                }
-                else if(error.response.status == 422){
-                    // he's not allowed to create new posts
-                    window.alertify.alert("Erreur","Tous les champs sont obligatoires!");
-                }
-            });  
+        function Send(){         
+            if(sending == false){
+                sending = true;
+                axios.post('/api/createInternshipOffer', {
+                    Offre: document.getElementById("Offre").value,
+                    Direction: document.getElementById("Direction").value,
+                    Département:document.getElementById("Département").value,
+                    Description:CKEDITOR.instances.editor1.getData(),
+                    Activation:document.querySelector('input[name="Activation"]:checked').value    
+                })
+                .then(function (response) {
+                    if(response.status == 200){
+                        location.reload();
+                    }
+                })
+                .catch(function (error) {
+                    if(error.response.status == 405){
+                        // he's not allowed to create new posts
+                        window.alertify.alert("Erreur","Vous n'avez pas l'autorisation!");
+                    }
+                    else if(error.response.status == 422){
+                        // he's not allowed to create new posts
+                        window.alertify.alert("Erreur","Tous les champs sont obligatoires!");
+                    }
+                });  
+            } 
         }
 
         function Update(){
