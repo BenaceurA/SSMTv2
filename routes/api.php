@@ -86,6 +86,6 @@ Route::get('/spontaneousApplicationExists/{id}', [spontaneousAdminController::cl
 
 //--------------------------------------------------------------------------
 
-Route::get('/getPermissions', [adminController::class, 'getPermissions']);
+Route::get('/getPermissions/{id}', [adminController::class, 'getPermissions']);
 
 Route::delete('/deleteUser/{id}', [settingsController::class, 'deleteUser']);

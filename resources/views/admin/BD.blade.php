@@ -311,8 +311,8 @@
           Age.name = "";
         }
     });
-    //GET DOWNLOAD PERMISIONS AND STORE THEM FOR CHECKING
-    axios.get('/api/getPermissions')
+    //CACHE DOWNLOAD PERMISIONS FOR CHECKING
+    axios.get('/api/getPermissions/'+{{$userID}})
       .then(function (response) {
         
         //get permission based on the loaded view
@@ -383,7 +383,10 @@
         })
       loadingDelete.className = "fa fa-circle-o-notch fa-spin mr-2";
       axios.delete('/api/deleteJobApplications', {
-                data : ids
+                data : {
+                    userID:{{$userID}},
+                    ids:ids
+                    }
             })
             .then(function (response) {
                 if(response.status == 200){
@@ -407,7 +410,7 @@
           if(DownloadLetterPerm){
             var link = document.createElement("a");
             link.download = "";
-            link.href = '/api/DownloadJobLetters?id='+id;
+            link.href = '/api/DownloadJobLetters?id='+id+'&userID='+{{$userID}};
             document.body.appendChild(link);
             link.click();
             link.remove();
@@ -429,7 +432,7 @@
           if(DownloadCVPerm){
             var link = document.createElement("a");
             link.download = "";
-            link.href = '/api/DownloadJobCVs?id='+id;
+            link.href = '/api/DownloadJobCVs?id='+id+'&userID='+{{$userID}};
             document.body.appendChild(link);
             link.click();
             link.remove();
@@ -495,7 +498,10 @@
 
       loadingDelete.className = "fa fa-circle-o-notch fa-spin mr-2";
       axios.delete('/api/deleteInternshipApplications', {
-                data : checkedIds
+                data : {
+                    userID:{{$userID}},
+                    ids:checkedIds
+                    }
             })
             .then(function (response) {
                 if(response.status == 200){
@@ -519,7 +525,7 @@
           if(DownloadCVPerm){
             var link = document.createElement("a");
             link.download = "";
-            link.href = '/api/DownloadInternshipCVs?id='+id;
+            link.href = '/api/DownloadInternshipCVs?id='+id+'&userID='+{{$userID}};
             document.body.appendChild(link);
             link.click();
             link.remove();

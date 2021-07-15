@@ -304,12 +304,9 @@
           Age.name = "";
         }
     });
-    //GET DOWNLOAD PERMISIONS AND STORE THEM FOR CHECKING
-    axios.get('/api/getPermissions')
+    //CACHE PERMISIONS FOR CHECKING
+    axios.get('/api/getPermissions/'+{{$userID}})
       .then(function (response) {
-        
-        //get permission based on the loaded view
-
         DownloadCVPerm = response.data.TC_CS;
         DownloadLetterPerm = response.data.TL_CS;
       });
@@ -367,7 +364,10 @@
         })
       loadingDelete.className = "fa fa-circle-o-notch fa-spin mr-2";
       axios.delete('/api/deleteSpontaneousApplications', {
-                data : ids
+                data : {
+                    userID:{{$userID}},
+                    ids:ids
+                    }
             })
             .then(function (response) {
                 if(response.status == 200){
@@ -392,7 +392,7 @@
             if(DownloadCVPerm){
               var link = document.createElement("a");
               link.download = "";
-              link.href = '/api/DownloadSpontaneousLetters?id='+id;
+              link.href = '/api/DownloadSpontaneousLetters?id='+id+'&userID='+{{$userID}};
               document.body.appendChild(link);
               link.click();
               link.remove();
@@ -417,7 +417,7 @@
             if(DownloadLetterPerm){
               var link = document.createElement("a");
               link.download = "";
-              link.href = '/api/DownloadSpontaneousCVs?id='+id;
+              link.href = '/api/DownloadSpontaneousCVs?id='+id+'&userID='+{{$userID}};
               document.body.appendChild(link);
               link.click();
               link.remove();

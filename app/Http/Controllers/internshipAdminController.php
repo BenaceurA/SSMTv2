@@ -14,7 +14,12 @@ class internshipAdminController extends Controller
     function internshipCreationIndex()
     {
         $result = DB::table('internship_offers')->get();
-        return view("/admin/create", ["view" => "createInternships", "data" => $result, "username" => adminController::getUsername()]);
+        return view("/admin/create", [
+            "view" => "createInternships",
+            "userID" => Auth::id(),
+            "data" => $result,
+            "username" => adminController::getUsername()
+        ]);
     }
 
     function internshipApplicationsIndex(Request $request)
@@ -84,7 +89,12 @@ class internshipAdminController extends Controller
             $result = DB::table('internships')->where($data)->get();
         }
 
-        return view("/admin/BD", ["view" => "internships", "data" => $result, "username" => adminController::getUsername()]);
+        return view("/admin/BD", [
+            "view" => "internships",
+            "userID" => Auth::id(),
+            "data" => $result,
+            "username" => adminController::getUsername()
+        ]);
     }
 
     function createInternshipOffer(Request $request)
@@ -97,7 +107,7 @@ class internshipAdminController extends Controller
             'Description' => 'required',
             'Activation' => 'required',
         ]);
-        $userId = Auth::id();
+        $userId = $request["userID"];
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
         if ($permission->AO_S) {
@@ -117,7 +127,7 @@ class internshipAdminController extends Controller
 
     function updateInternshipOffer(Request $request)
     {
-        $userId = Auth::id();
+        $userId = $request["userID"];
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
         if ($permission->MO_S) {
@@ -145,11 +155,12 @@ class internshipAdminController extends Controller
 
     function deleteInternshipApplications(Request $request)
     {
-        $userId = Auth::id();
+        $userId = $request["userID"];
+        $data = $request["ids"];
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
         if ($permission->SC_S) {
-            foreach ($request->all() as $key => $value) {
+            foreach ($data as $key => $value) {
                 $candidature =  DB::table('internships')->where('id', $value)->first();
                 if ($candidature != null) {
                     $query =  DB::table('internships')->where('id', $value)->get(["CV"])->first();
@@ -176,11 +187,12 @@ class internshipAdminController extends Controller
 
     function deleteInternshipOffers(Request $request)
     {
-        $userId = Auth::id();
+        $data = $request["ids"];
+        $userId = $request["userID"];
+
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
         if ($permission->SO_S) {
-            $data = $request->all();
             return DB::table("internship_offers")->whereIn("id", $data)->delete();
         } else {
             return response("", 405);
@@ -189,7 +201,7 @@ class internshipAdminController extends Controller
 
     function downloadCVs(Request $request)
     {
-        $userId = Auth::id();
+        $userId = $request->query("userID");
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
         if ($permission->TC_S) {

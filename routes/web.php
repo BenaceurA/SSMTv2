@@ -28,6 +28,10 @@ Route::get('/cs/Stage', [spontaneousController::class, 'SpontaneousInternshipFor
 
 //admin routes
 
+Route::get('/admin', function () {
+    return redirect('/BDemploi');
+})->middleware("auth");
+
 Route::get('/login', [adminController::class, 'login'])->name("login")->middleware("guest");
 
 Route::get('/logout', function () {

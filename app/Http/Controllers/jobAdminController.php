@@ -14,7 +14,12 @@ class jobAdminController extends Controller
     function jobCreationIndex()
     {
         $result = DB::table('job_offers')->get();
-        return view("/admin/create", ["view" => "createJobs", "data" => $result, "username" => adminController::getUsername()]);
+        return view("/admin/create", [
+            "view" => "createJobs",
+            "userID" => Auth::id(),
+            "data" => $result,
+            "username" => adminController::getUsername()
+        ]);
     }
 
     function jobApplicationsIndex(Request $request)
@@ -84,7 +89,12 @@ class jobAdminController extends Controller
             $result = DB::table('jobs')->where($data)->get();
         }
 
-        return view("/admin/BD", ["view" => "jobs", "data" => $result, "username" => adminController::getUsername()]);
+        return view("/admin/BD", [
+            "view" => "jobs",
+            "userID" => Auth::id(),
+            "data" => $result,
+            "username" => adminController::getUsername()
+        ]);
     }
 
     function createJobOffer(Request $request)
@@ -97,7 +107,7 @@ class jobAdminController extends Controller
             'Description' => 'required',
             'Activation' => 'required',
         ]);
-        $userId = Auth::id();
+        $userId = $request["userID"];
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
         if ($permission->AO_E) {
@@ -117,8 +127,7 @@ class jobAdminController extends Controller
 
     function updateJobOffer(Request $request)
     {
-
-        $userId = Auth::id();
+        $userId = $request["userID"];
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
         if ($permission->MO_E) {
@@ -146,11 +155,12 @@ class jobAdminController extends Controller
 
     function deleteJobApplications(Request $request)
     {
-        $userId = Auth::id();
+        $userId = $request["userID"];
+        $data = $request["ids"];
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
         if ($permission->SC_E) {
-            foreach ($request->all() as $key => $value) {
+            foreach ($data as $key => $value) {
                 $candidature =  DB::table('jobs')->where('id', $value)->first();
                 if ($candidature != null) {
                     $query =  DB::table('jobs')->where('id', $value)->get(["CV", "Lettre_motivation"])->first();
@@ -177,11 +187,12 @@ class jobAdminController extends Controller
 
     function deleteJobOffers(Request $request)
     {
-        $userId = Auth::id();
+        $data = $request["ids"];
+        $userId = $request["userID"];
+
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
         if ($permission->SO_E) {
-            $data = $request->all();
             DB::table("job_offers")->whereIn("id", $data)->delete();
             return response("ok", 200);
         } else {
@@ -191,7 +202,7 @@ class jobAdminController extends Controller
 
     function downloadCVs(Request $request)
     {
-        $userId = Auth::id();
+        $userId = $request->query("userID");
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
         if ($permission->TC_E) {
@@ -203,7 +214,7 @@ class jobAdminController extends Controller
 
     function downloadLetters(Request $request)
     {
-        $userId = Auth::id();
+        $userId = $request->query("userID");
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
         if ($permission->TL_E) {

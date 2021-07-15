@@ -77,15 +77,21 @@ class spontaneousAdminController extends Controller
             $result = DB::table('spontaneous')->where($data)->get();
         }
 
-        return view("/admin/spontaneous", ["view" => "spontaneous", "data" => $result, "username" => adminController::getUsername()]);
+        return view("/admin/spontaneous", [
+            "view" => "spontaneous",
+            "data" => $result,
+            "userID" => Auth::id(),
+            "username" => adminController::getUsername()
+        ]);
     }
 
     function deleteSpontaneousApplications(Request $request)
     {
-        $userId = Auth::id();
+        $userId = $request["userID"];
+        $data = $request["ids"];
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
-        foreach ($request->all() as $key => $value) {
+        foreach ($data as $key => $value) {
             //check if candidature exists
             $candidature =  DB::table('spontaneous')->where('id', $value)->get(["Candidature"])->first();
             if ($candidature != null) {
@@ -100,7 +106,7 @@ class spontaneousAdminController extends Controller
                     Storage::delete(["public/Spontaneous/CVs/" . $query->CV, "public/Spontaneous/Lettres/" . $query->Lettre_motivation]); //delete files
                     Spontaneous::destroy($value);
                 }
-                // don't return 403, just don't delete 
+                // don't return 403, just don't delete :)
             }
         }
         return response("ok", 200);
@@ -108,7 +114,7 @@ class spontaneousAdminController extends Controller
 
     function downloadCVs(Request $request)
     {
-        $userId = Auth::id();
+        $userId = $request->query("userID");
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
         if ($permission->TC_CS) {
@@ -120,7 +126,7 @@ class spontaneousAdminController extends Controller
 
     function downloadLetters(Request $request)
     {
-        $userId = Auth::id();
+        $userId = $request->query("userID");
         $permission = DB::table("user_permissions")->where('user_id', $userId)->first();
 
         if ($permission->TL_CS) {
@@ -137,6 +143,6 @@ class spontaneousAdminController extends Controller
         if ((DB::table('spontaneous')->where('id', $id)->first()) == null) {
             return response("not found", 404);
         }
-        return response("ok", 200);;
+        return response("ok", 200);
     }
 }

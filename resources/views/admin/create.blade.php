@@ -279,7 +279,10 @@
 
         function Delete(ids){
             axios.delete('/api/deleteJobs', {
-                data : ids
+                data : {
+                    userID:{{$userID}},
+                    ids:ids
+                    }
             })
             .then(function (response) {
                 if(response.status == 200){
@@ -356,6 +359,7 @@
             if(sending == false){
                 sending = true;
                 axios.post('/api/createJobOffer', {
+                    userID : {{$userID}},
                     Offre: document.getElementById("Offre").value,
                     Direction: document.getElementById("Direction").value,
                     Département:document.getElementById("Département").value,
@@ -380,6 +384,7 @@
 
         function Update(){
             axios.put('/api/updateJobOffer', {
+                userID: {{$userID}},
                 id : document.getElementById("id").value,
                 Offre: document.getElementById("Offre").value,
                 Direction: document.getElementById("Direction").value,
@@ -480,7 +485,10 @@
 
         function Delete(ids){
             axios.delete('/api/deleteInternships', {
-                data : ids
+                data : {
+                    userID:{{$userID}},
+                    ids:ids
+                    }
             })
             .then(function (response) {
                 if(response.status == 200){
@@ -555,6 +563,7 @@
             if(sending == false){
                 sending = true;
                 axios.post('/api/createInternshipOffer', {
+                    userID : {{$userID}},
                     Offre: document.getElementById("Offre").value,
                     Direction: document.getElementById("Direction").value,
                     Département:document.getElementById("Département").value,
@@ -581,6 +590,7 @@
 
         function Update(){
             axios.put('/api/updateInternshipOffer', {
+                userID: {{$userID}},
                 id : document.getElementById("id").value,
                 Offre: document.getElementById("Offre").value,
                 Direction: document.getElementById("Direction").value,
