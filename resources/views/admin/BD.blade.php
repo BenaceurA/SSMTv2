@@ -506,6 +506,7 @@
                 }
             })
             .catch(function (error) {
+                loadingDelete.className = "";
                 if(error.response.status == 403){
                     window.alertify.alert("Erreur","Vous n'avez pas l'autorisation!");
                 }

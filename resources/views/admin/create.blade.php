@@ -269,8 +269,7 @@
             })
             .catch(function (error) {
                 if(error.response.status == 405){
-                    // he's not allowed to create new posts
-                    window.alert("Vous n'avez pas l'autorisation!");
+                    window.alertify.alert("Erreur","Vous n'avez pas l'autorisation!");
                 }
             });
         }
@@ -287,7 +286,7 @@
             .catch(function (error) {
                 if(error.response.status == 405){
                     // he's not allowed to create new posts
-                    window.alert("Vous n'avez pas l'autorisation!");
+                    window.alertify.alert("Erreur","Vous n'avez pas l'autorisation!");
                 }
             });  
         }
@@ -356,12 +355,10 @@
             })
             .catch(function (error) {
                 if(error.response.status == 405){
-                    // he's not allowed to create new posts
-                    window.alert("Vous n'avez pas l'autorisation!");
+                    window.alertify.alert("Erreur","Vous n'avez pas l'autorisation!");
                 }
                 else if(error.response.status == 422){
-                    // he's not allowed to create new posts
-                    window.alert("Tous les champs sont obligatoires!");
+                    window.alertify.alert("Erreur","Tous les champs sont obligatoires!");
                 }
             });  
         }
@@ -381,7 +378,7 @@
             .catch(function (error) {
                 if(error.response.status == 405){
                     //he's not allowed to update posts
-                    window.alert("Vous n'avez pas l'autorisation!");
+                    window.alertify.alert("Erreur","Vous n'avez pas l'autorisation!");
                 }
             });  
         }
@@ -461,7 +458,7 @@
             .catch(function (error) {
                 if(error.response.status == 405){
                     // he's not allowed to create new posts
-                    window.alert("Vous n'avez pas l'autorisation!");
+                    window.alertify.alert("Erreur","Vous n'avez pas l'autorisation!");
                 }
             });
         }
@@ -478,7 +475,7 @@
             .catch(function (error) {
                 if(error.response.status == 405){
                     // he's not allowed to create new posts
-                    window.alert("Vous n'avez pas l'autorisation!");
+                    window.alertify.alert("Erreur","Vous n'avez pas l'autorisation!");
                 }
             });  
         }
@@ -548,11 +545,11 @@
             .catch(function (error) {
                 if(error.response.status == 405){
                     // he's not allowed to create new posts
-                    window.alert("Vous n'avez pas l'autorisation!");
+                    window.alertify.alert("Erreur","Vous n'avez pas l'autorisation!");
                 }
                 else if(error.response.status == 422){
                     // he's not allowed to create new posts
-                    window.alert("Tous les champs sont obligatoires!");
+                    window.alertify.alert("Erreur","Tous les champs sont obligatoires!");
                 }
             });  
         }
@@ -572,7 +569,7 @@
             .catch(function (error) {
                 if(error.response.status == 405){
                     //he's not allowed to update posts
-                    window.alert("Vous n'avez pas l'autorisation!");
+                    window.alertify.alert("Erreur","Vous n'avez pas l'autorisation!");
                 }
             });  
         }
