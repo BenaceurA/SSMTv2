@@ -250,10 +250,12 @@
         }
 
 @if($view == "createJobs")
-        function Activate(ids,option){ 
+        function Activate(ids,option){
+            console.log(ids);
+            console.log(option);
             axios.post('/api/activateJobs', [option,ids])
             .then(function (response) {
-                if(response.data>0){
+                if(response.status == 200){
                     console.log(response.data);
                     ids.forEach(el => {
                             let btn =  document.getElementById("availableBtn-"+el);
@@ -279,7 +281,7 @@
                 data : ids
             })
             .then(function (response) {
-                if(response.data>0){
+                if(response.status == 200){
                     location.reload();
                 }
             })
@@ -292,39 +294,48 @@
         }
 
         function Modify(ofr,drc,dep,id){
-            //SOLUTION : get the description from the API in JSON and set it to the editor
-            CKEDITOR.instances.editor1.setData("Chargement...");
-            axios.get('/api/jobDescription?id='+id)
-                .then(function (response) {
-                    CKEDITOR.instances.editor1.setData(response.data);
-                    console.log();
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
+            axios.get('/api/jobOfferExists/'+id)
+                .then(function(response){
+                    //SOLUTION : get the description from the API in JSON and set it to the editor
+                    CKEDITOR.instances.editor1.setData("Chargement...");
+                    axios.get('/api/jobDescription?id='+id)
+                        .then(function (response) {
+                            CKEDITOR.instances.editor1.setData(response.data);
+                            console.log();
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        })
 
-            document.getElementById("Offre").value = ofr;
-            document.getElementById("Direction").value=drc;
-            loadDepartements() // load departemens before selecting
-            document.getElementById("Département").value=dep;
-            document.getElementById("id").value = id;
-            let formBtn = document.getElementById("formBtn");
-            formBtn.innerHTML = "Modifer";
-            formBtn.onclick = ()=>{Update()};
-            if(document.getElementById("cancelBtn") == null){
-                let cancelBtn = document.createElement("Button");
-                cancelBtn.id = "cancelBtn";
-                cancelBtn.type = "button";
-                cancelBtn.innerHTML = "Cancel";
-                cancelBtn.style.marginLeft = "20px";
-                cancelBtn.onclick = ()=>{
-                    cancelModify();
-                }
-                cancelBtn.className= "shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded";
-                document.getElementById("btnDiv").appendChild(cancelBtn);
-            }
+                    document.getElementById("Offre").value = ofr;
+                    document.getElementById("Direction").value=drc;
+                    loadDepartements() // load departemens before selecting
+                    document.getElementById("Département").value=dep;
+                    document.getElementById("id").value = id;
+                    let formBtn = document.getElementById("formBtn");
+                    formBtn.innerHTML = "Modifer";
+                    formBtn.onclick = ()=>{Update()};
+                    if(document.getElementById("cancelBtn") == null){
+                        let cancelBtn = document.createElement("Button");
+                        cancelBtn.id = "cancelBtn";
+                        cancelBtn.type = "button";
+                        cancelBtn.innerHTML = "Cancel";
+                        cancelBtn.style.marginLeft = "20px";
+                        cancelBtn.onclick = ()=>{
+                            cancelModify();
+                        }
+                        cancelBtn.className= "shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded";
+                        document.getElementById("btnDiv").appendChild(cancelBtn);
+                    }
+                    
+                    window.scrollTo(0, 0);
+                })
+                .catch(function(error){
+                    if(error.response.status == 404){
+                        window.alertify.alert('Erreur',"Candidature [ id : "+id+" ] n'existe pas! Actualisez la page.");
+                    }
+                })
             
-            window.scrollTo(0, 0);
         }
 
         function cancelModify(){
@@ -441,7 +452,7 @@
         function Activate(ids,option){ 
             axios.post('/api/activateInternships', [option,ids])
             .then(function (response) {
-                if(response.data>0){
+                if(response.status == 200){
                     console.log(response.data);
                     ids.forEach(el => {
                             let btn =  document.getElementById("availableBtn-"+el);
@@ -468,7 +479,7 @@
                 data : ids
             })
             .then(function (response) {
-                if(response.data>0){
+                if(response.status == 200){
                     location.reload();
                 }
             })
@@ -481,39 +492,46 @@
         }
 
         function Modify(ofr,drc,dep,id){
-            //SOLUTION : get the description from the API in JSON and set it to the editor
-            CKEDITOR.instances.editor1.setData("Chargement...");
-            axios.get('/api/InternshipDescription?id='+id)
-                .then(function (response) {
-                    CKEDITOR.instances.editor1.setData(response.data);
-                    console.log();
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
+            axios.get('/api/internshipOfferExists/'+id)
+                .then(function(response){
+                    //SOLUTION : get the description from the API in JSON and set it to the editor
+                    CKEDITOR.instances.editor1.setData("Chargement...");
+                    axios.get('/api/InternshipDescription?id='+id)
+                        .then(function (response) {
+                            CKEDITOR.instances.editor1.setData(response.data);
+                            console.log();
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        })
 
-            document.getElementById("Offre").value = ofr;
-            document.getElementById("Direction").value=drc;
-            loadDepartements() // load departemens before selecting
-            document.getElementById("Département").value=dep;
-            document.getElementById("id").value = id;
-            let formBtn = document.getElementById("formBtn");
-            formBtn.innerHTML = "Modifer";
-            formBtn.onclick = ()=>{Update()};
-            if(document.getElementById("cancelBtn") == null){
-                let cancelBtn = document.createElement("Button");
-                cancelBtn.id = "cancelBtn";
-                cancelBtn.type = "button";
-                cancelBtn.innerHTML = "Cancel";
-                cancelBtn.style.marginLeft = "20px";
-                cancelBtn.onclick = ()=>{
-                    cancelModify();
-                }
-                cancelBtn.className= "shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded";
-                document.getElementById("btnDiv").appendChild(cancelBtn);
-            }
-            
-            window.scrollTo(0, 0);
+                    document.getElementById("Offre").value = ofr;
+                    document.getElementById("Direction").value=drc;
+                    loadDepartements() // load departemens before selecting
+                    document.getElementById("Département").value=dep;
+                    document.getElementById("id").value = id;
+                    let formBtn = document.getElementById("formBtn");
+                    formBtn.innerHTML = "Modifer";
+                    formBtn.onclick = ()=>{Update()};
+                    if(document.getElementById("cancelBtn") == null){
+                        let cancelBtn = document.createElement("Button");
+                        cancelBtn.id = "cancelBtn";
+                        cancelBtn.type = "button";
+                        cancelBtn.innerHTML = "Cancel";
+                        cancelBtn.style.marginLeft = "20px";
+                        cancelBtn.onclick = ()=>{
+                            cancelModify();
+                        }
+                        cancelBtn.className= "shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded";
+                        document.getElementById("btnDiv").appendChild(cancelBtn);
+                    }         
+                    window.scrollTo(0, 0);
+                })
+                .catch(function(error){
+                    if(error.response.status == 404){
+                        window.alertify.alert('Erreur',"Candidature [ id : "+id+" ] n'existe pas! Actualisez la page.");
+                    }
+                })        
         }
 
         function cancelModify(){

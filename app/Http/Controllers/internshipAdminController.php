@@ -169,7 +169,9 @@ class internshipAdminController extends Controller
         $activation = $array[0];
         $data = $array[1];
 
-        return DB::table("internship_offers")->whereIn("id", $data)->update(['Activation' => $activation]);
+        DB::table("internship_offers")->whereIn("id", $data)->update(['Activation' => $activation]);
+
+        return response("ok", 200);
     }
 
     function deleteInternshipOffers(Request $request)
@@ -206,6 +208,14 @@ class internshipAdminController extends Controller
     function applicationExists($id)
     {
         if ((DB::table('internships')->where('id', $id)->first()) == null) {
+            return response("not found", 404);
+        }
+        return response("ok", 200);
+    }
+
+    function offerExists($id)
+    {
+        if ((DB::table('internship_offers')->where('id', $id)->first()) == null) {
             return response("not found", 404);
         }
         return response("ok", 200);

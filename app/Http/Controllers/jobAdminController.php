@@ -170,7 +170,9 @@ class jobAdminController extends Controller
         $activation = $array[0];
         $data = $array[1];
 
-        return DB::table("job_offers")->whereIn("id", $data)->update(['Activation' => $activation]);
+        DB::table("job_offers")->whereIn("id", $data)->update(['Activation' => $activation]);
+
+        return response("ok", 200);
     }
 
     function deleteJobOffers(Request $request)
@@ -180,7 +182,8 @@ class jobAdminController extends Controller
 
         if ($permission->SO_E) {
             $data = $request->all();
-            return DB::table("job_offers")->whereIn("id", $data)->delete();
+            DB::table("job_offers")->whereIn("id", $data)->delete();
+            return response("ok", 200);
         } else {
             return response("", 405);
         }
@@ -223,6 +226,14 @@ class jobAdminController extends Controller
         if ((DB::table('jobs')->where('id', $id)->first()) == null) {
             return response("not found", 404);
         }
-        return response("ok", 200);;
+        return response("ok", 200);
+    }
+
+    function offerExists($id)
+    {
+        if ((DB::table('job_offers')->where('id', $id)->first()) == null) {
+            return response("not found", 404);
+        }
+        return response("ok", 200);
     }
 }
