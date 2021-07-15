@@ -110,7 +110,7 @@
                         </div>
                     </div>
                     
-                    <button onclick="" class="w-full md:w-1/5 lg:w-1/5 shadow-lg bg-yellow-500 hover:bg-yellow-400 focus:shadow-outline focus:outline-none font-bold text-white rounded py-2 px-auto " type="submit" value="Lancer">
+                    <button class="w-full md:w-1/5 lg:w-1/5 shadow-lg bg-yellow-500 hover:bg-yellow-400 focus:shadow-outline focus:outline-none font-bold text-white rounded py-2 px-auto " type="submit" value="Lancer">
                         Lancer
                     </button>
                 </form>

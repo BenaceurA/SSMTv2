@@ -23,14 +23,26 @@ class Controller extends BaseController
     function search(Request $request)
     {
         $data = $request->input();
+
         switch ($data["select1"]) {
             case "Offre d'emploi":
-                $query = DB::table('job_offers')->where(['Département' => $data["select2"], 'Activation' => 1]);
+
+                if ($data["select2"] != null) {
+                    $query = DB::table('job_offers')->where(['Département' => $data["select2"], 'Activation' => 1]);
+                } else {
+                    $query = DB::table('job_offers')->where(['Activation' => 1]);
+                }
                 $result = $query->get();
                 return view("offres")->with(["result" => $result, "type" => "emploi"]);
                 break;
+
             case "Offre de stage":
-                $query = DB::table('internship_offers')->where(['Département' => $data["select2"], 'Activation' => 1]);
+
+                if ($data["select2"] != null) {
+                    $query = DB::table('internship_offers')->where(['Département' => $data["select2"], 'Activation' => 1]);
+                } else {
+                    $query = DB::table('internship_offers')->where(['Activation' => 1]);
+                }
                 $result = $query->get();
                 return view("offres")->with(["result" => $result, "type" => "stage"]);
                 break;

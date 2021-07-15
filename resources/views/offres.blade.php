@@ -110,7 +110,7 @@
     </div>
     @else
         <div class="flex justify-center w-full absolute">
-            <div class="my-20 py-2 px-4 rounded text-sm md:text-sm lg:text-base bg-white bg-opacity-95">
+            <div class="my-40 py-2 px-4 rounded text-sm md:text-sm lg:text-base text-white bg-opacity-95">
                 Aucune offre n’est disponible actuellement.
             </div>
         </div>
