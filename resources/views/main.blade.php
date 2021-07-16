@@ -21,9 +21,12 @@
             background: url('img/background.png');
             background-repeat: no-repeat;
             background-size: cover;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
             background-position: center center;
             background-attachment: fixed;
-            height: 96%;
+            height:100vh;
         }
         .select {
             appearance :none;
@@ -82,16 +85,16 @@
     </style>
 </head>
 
-<body class="text-md relative h-full">
-    <div class="h-screen flex-col">
+<body class="w-screen text-md relative h-screen">
+    <div class="w-screen h-screen flex-col">
         <div class="absolute text-white">
         </div>
-        <div class="absolute h-screen w-screen flex-wrap flex justify-center content-center">
-            <div class=" h-auto flex justify-center" style="width: 60%;">
-                <form class="flex flex-col md:flex-row lg:flex-row justify-center w-full" action="/search" method="POST">
+        <div class="min-w-full absolute h-screen w-screen flex-wrap flex justify-center content-center">
+            <div class="w-4/5 md:w-3/5 lg:w-3/5 h-auto flex justify-center">
+                <form class="flex flex-col md:flex-row lg:flex-row justify-center w-full" onsubmit="return validateForm()" action="/search" method="POST" name="Form">
                     @csrf
                     <div class="z-10 relative inline mr-2 p-0 w-full mb-6 md:mb-0 lg:mb-0 md:w-2/5 text-md " >
-                        <input onclick="showSelect1()"  readonly placeholder="Qu'est-ce que tu cherches ?" class="select shadow-lg rounded py-2  px-5" type="text" name="select1" id="select1">
+                        <input onclick="showSelect1()" readonly placeholder="Qu'est-ce que tu cherches ?" class="select shadow-lg rounded py-2  px-5" type="text" name="select1" id="select1">
                         <div id="select1Elements" style="display:none;" class="bg-opacity-85 w-full bg-white absolute top-12 md:top-12 lg:top-12 right-0 rounded">
                             <ul>
                                 <li onclick="select1('Offre d\'emploi')" class="border-b cursor-pointer hover:bg-gray-100 pl-4 pb-2 pt-2 rounded ">Offre d'emploi</li>
@@ -116,7 +119,7 @@
                 </form>
             </div>
         </div>
-        <div class="background-img text-white ">
+        <div id="bg" class="background-img text-white ">
         </div>
         <div id="navbar" class="top-0 absolute text-white bg-opacity-90 bg-black w-full" style="height: 7%;">
             <div class="w-full h-full flex justify-center mt-auto">
@@ -128,7 +131,7 @@
                 </div>
             </div>
         </div>
-        <div class="text-white bg-black w-full" style="height: 4%;">
+        <div class="bottom-0 fixed text-white bg-black w-full" style="height: 4%;">
             <div class="h-full flex justify-center mt-auto">
                 <div class="text-xs md:text-sm lg:text-base mt-auto mb-auto">
                     <span class=" mr-2">ADRESSE</span>
@@ -244,23 +247,32 @@
             ul.appendChild(li);
         })
     }
-    
-    {{-- let firstAnimation = true;
+
+    function validateForm() {
+        let select1 = document.forms["Form"]["select1"].value;
+        let select2 = document.forms["Form"]["select2"].value;
+        if (select1 == "") {
+            return false;
+        }
+    }
+    {{-- document.addEventListener('mousemove' , animate);
+    let firstAnimation = true;
     let navbarDown = false;
-    function animate(e){
-        let navbar = document.getElementById("navbar");
+    let navbar = document.getElementById("navbar");
+    function animate(e){       
         if(e.pageY <= 120){
             if(firstAnimation == false){
                 navbarDown = true;
-                navbar.className = "-top-20 animate-down absolute text-white bg-opacity-50 bg-black w-full";
+                navbar.className = "-top-20 animate-down absolute text-white bg-opacity-90 bg-black w-full";
                 window.removeEventListener('mousemove',animate);
-                setTimeout(()=>{ window.addEventListener('mousemove',animate); }, 1000);
+                console.log("removed");
+                setTimeout(()=>{ window.addEventListener('mousemove',animate); console.log("added");}, 3000);
             }  
         }
         else if(e.pageY > 120){
             if(firstAnimation == false && navbarDown == true){
                 navbarDown = false;
-                navbar.className = "-top-20 animate-up absolute text-white bg-opacity-50 bg-black w-full";
+                navbar.className = "-top-20 animate-up absolute text-white bg-opacity-90 bg-black w-full";
 
             }
             firstAnimation  = false;            

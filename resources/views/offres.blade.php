@@ -21,6 +21,7 @@
             background-size: cover;
             background-position: center center;
             background-attachment: fixed;
+            height: 100vh;
         }
         .wrapper{
             
@@ -138,5 +139,6 @@
     function expand(e){
         e.classList.toggle("h-40");
     }
+
 </script>
 </html>
