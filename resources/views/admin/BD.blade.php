@@ -2,23 +2,24 @@
 
 @section('main')
 
-<div class="small-width text-sm mt-4 ml-4 ">
-  <div class = "fixed small-width bg-white p-4 bg-opacity-90 border-t-4 border-b-4 rounded mb-4">
+
+<div class="small-width text-sm mt-4 ml-4 " style="font-size:13px;">
+  <div class = "fixed small-width bg-white rounded px-3 py-3 bg-opacity-90">
     <div class="w-full">
-      <button onclick="deleteItems()" class=" w-full shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+      <button onclick="deleteItems()" class="w-full shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
         <i id="loadingDelete" class=""></i>Supprimer
       </button>
-      <button onclick="DownloadCVs()" class="mt-4 w-full shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+      <button onclick="DownloadCVs()" class="mt-2 w-full shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
         <i id="loadingCVs" class=""></i>Curriculum vitae
       </button>
       @if($view == "jobs")
-      <button onclick="DownloadLetters()" class="mt-4 w-full shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+      <button onclick="DownloadLetters()" class="mt-2 w-full shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
         <i id="loadingLetters" class=""></i>Lettre de motivation
       </button>
       @endif
     </div>
-    <form method="GET" action="/BDemploi" class="m-0 flex-col">
-      <div class="mt-4 flex-col w-auto">
+    <form method="GET" action="/BDstage" class="m-0 flex-col">
+      <div class="mt-3 flex-col w-auto">
         <label class="whitespace-nowrap text-gray-500 font-bold ">
           Option
         </label>
@@ -27,7 +28,7 @@
             <option value="OR">OR</option>
         </select>
       </div>
-      <div class="mt-4 flex-col w-auto">
+      <div class="mt-3 flex-col w-auto">
         <label class="whitespace-nowrap text-gray-500 font-bold">
           Année d’expérience
         </label>
@@ -41,7 +42,7 @@
           <option value="Plus de 10 ans">Plus de 10 ans</option>
         </select>
       </div>
-      <div class="mt-4 flex-col w-auto">
+      <div class="mt-3 flex-col w-auto">
         <label class="whitespace-nowrap text-gray-500 font-bold ">
           Niveau d’étude
         </label>
@@ -54,7 +55,7 @@
             <option value="Bac+5 et plus">Bac+5 et plus</option>
         </select>
       </div>
-      <div class="mt-4 flex-col w-auto">
+      <div class="mt-3 flex-col w-auto">
         <label class="whitespace-nowrap text-gray-500 font-bold ">
           Sexe
         </label>
@@ -64,7 +65,7 @@
             <option value="Féminin">Féminin</option>
         </select>
       </div>
-      <div class="mt-4 flex-col w-auto">
+      <div class="mt-3 flex-col w-auto">
         <label class="whitespace-nowrap text-gray-500 font-bold ">
           Ville
         </label>
@@ -100,7 +101,7 @@
             <option value="Tétouan">Tétouan</option>
         </select>
       </div>
-      <div class="mt-4 flex-col w-auto">
+      <div class="mt-3 flex-col w-auto">
         <label class="whitespace-nowrap text-gray-500 font-bold ">
           Age
         </label>
@@ -114,7 +115,7 @@
             <option value="42+">42+</option>     
         </select>
       </div>
-      <button id="submitFilter" class="mt-8 w-full shadow bg-yellow-500 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+      <button id="submitFilter" class="mt-3 w-full shadow bg-yellow-500 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
         Filter
       </button>
     </form>

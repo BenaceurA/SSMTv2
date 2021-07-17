@@ -39,10 +39,10 @@
         }
 
         .small-width{
-            width : 17%;
+            width : 14%;
         }
         .big-width{
-            width : 80%;
+            width : 82%;
         }
         @media only screen and (min-width: 1650px) {
             .small-width{
@@ -96,7 +96,7 @@
             </div>
         </a>
     </div>
-    <div style="height:90.3%;" class="mt-4 flex justify-center box-border">
+    <div style="height:90.3%;" class="mt-2 flex justify-center box-border">
         @yield("main")
     </div>
 </div>
