@@ -4,7 +4,7 @@
 
 
 <div class="small-width text-sm mt-4 ml-4 " style="font-size:13px;">
-  <div class = "fixed small-width bg-white rounded px-3 py-3 bg-opacity-90">
+  <div class = "fixed overflow-y-auto small-width bg-white rounded px-3 py-3 bg-opacity-90" style="max-height:85vh;">
     <div class="w-full">
       <button onclick="deleteItems()" class="w-full shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
         <i id="loadingDelete" class=""></i>Supprimer
