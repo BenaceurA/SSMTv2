@@ -18,7 +18,7 @@
       </button>
       @endif
     </div>
-    <form method="GET" action="/BDstage" class="m-0 flex-col">
+    <form method="GET" @if($view == "jobs")action="/BDemploi"@endif @if($view == "internships")action="/BDstage"@endif class="m-0 flex-col">
       <div class="mt-3 flex-col w-auto">
         <label class="whitespace-nowrap text-gray-500 font-bold ">
           Option
@@ -28,6 +28,7 @@
             <option value="OR">OR</option>
         </select>
       </div>
+      @if($view == "jobs")
       <div class="mt-3 flex-col w-auto">
         <label class="whitespace-nowrap text-gray-500 font-bold">
           Année d’expérience
@@ -42,6 +43,7 @@
           <option value="Plus de 10 ans">Plus de 10 ans</option>
         </select>
       </div>
+      @endif
       <div class="mt-3 flex-col w-auto">
         <label class="whitespace-nowrap text-gray-500 font-bold ">
           Niveau d’étude
@@ -292,13 +294,17 @@
     window.onload = ()=>{
       let sf = document.getElementById("submitFilter");
       document.addEventListener("submit",()=>{
+      @if($view == "jobs")  
       let AE = document.getElementById("AE");
+      @endif
       let NE = document.getElementById("NE");
       let Sexe = document.getElementById("Sexe");
       let Ville = document.getElementById("Ville");
+        @if($view == "jobs") 
         if(AE.value == 'null'){
           AE.name = "";
         }
+        @endif
         if(NE.value == 'null'){
           NE.name = "";
         }
