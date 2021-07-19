@@ -247,4 +247,10 @@ class jobAdminController extends Controller
         }
         return response("ok", 200);
     }
+
+    function jobApplicationMotivation($id)
+    {
+        $motivation = DB::table('jobs')->where('id', $id)->first()->Motivation;
+        return $motivation;
+    }
 }

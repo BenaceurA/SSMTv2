@@ -1,3 +1,11 @@
+
+<IfModule mod_expires.c>
+
+ ExpiresActive on
+ ExpiresByType image/png "access plus 60 days"
+
+</IfModule>
+
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
@@ -19,3 +27,7 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+
+
+

@@ -62,7 +62,7 @@
                     <div>
                         <input class="border-2 mr-1 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="AO_E" id="AO_E" type="checkbox">
                         <label class="text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="AO_E">
-                            Ajouter un offre d'emploi
+                            Ajouter une offre d'emploi
                         </label>
                     </div>
                     <div>
@@ -89,7 +89,7 @@
                     <div>
                         <input class="border-2 mr-1 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="AO_S" id="AO_S" type="checkbox">
                         <label class="text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="AO_S">
-                            Ajouter un offre de stage
+                            Ajouter une offre de stage
                         </label>
                     </div>
                     <div>

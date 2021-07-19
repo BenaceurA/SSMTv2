@@ -48,6 +48,8 @@ Route::get('/jobApplicationExists/{id}', [jobAdminController::class, 'applicatio
 
 Route::get('/jobOfferExists/{id}', [jobAdminController::class, 'offerExists']);
 
+Route::get('/jobApplicationMotivation/{id}', [jobAdminController::class, 'jobApplicationMotivation']);
+
 //--------------------------------------------------------------------------
 
 Route::post('/poststage', [internshipController::class, 'postStage']);
