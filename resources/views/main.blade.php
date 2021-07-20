@@ -69,6 +69,14 @@
             from {top: 0px;}
             to {top: -70px;}
         }
+        .fade{
+            animation-name: fade;
+            animation-duration: 3s;
+        }
+        @keyframes fade{
+            from{opacity:100%;}
+            to{opacity:0%;}
+        }
         #logo{
             image-rendering: pixelated;
             image-rendering: -moz-crisp-edges;         /* Firefox */
@@ -87,10 +95,16 @@
 </head>
 
 <body class="w-screen text-md relative h-screen">
+
     <div class="w-screen h-screen flex-col">
+    
         <div class="absolute text-white">
         </div>
-        <div class="min-w-full absolute h-screen w-screen flex-wrap flex justify-center content-center">
+        
+        <div class="min-w-full absolute h-screen w-screen flex-wrap flex justify-center content-center">       
+            <div id="status" class="top-24 p-3 rounded  absolute "></div>
+            
+
             <div class="w-4/5 md:w-3/5 lg:w-3/5 h-auto flex justify-center">
                 <form class="flex flex-col md:flex-row lg:flex-row justify-center w-full" onsubmit="return validateForm()" action="/search" method="POST" name="Form">
                     @csrf
@@ -255,6 +269,18 @@
         if (select1 == "") {
             return false;
         }
+    }
+
+    let url = new URL(window.location.href);
+    let status = url.searchParams.get("status");
+    if(status != null){
+        let status = document.getElementById("status")
+        status.innerHTML = "Votre candidature a bien été envoyée";
+        status.classList.add("bg-green-200");
+        setTimeout(()=>{       
+            status.classList.add("fade");
+            status.classList.add("opacity-0");
+            },3000);    
     }
     {{-- document.addEventListener('mousemove' , animate);
     let firstAnimation = true;

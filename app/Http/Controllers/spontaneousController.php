@@ -73,12 +73,12 @@ class spontaneousController extends Controller
             $si->Lettre_motivation = $filenameToStore;
         }
 
-        $si->save();
+        $si->save(); // check this
 
         if (isset($data["Adresse_mail"])) {
             Mail::to($data["Adresse_mail"])->send(new ApplicationReceived("Merci de votre candidature spontanée", $data['Nom_Prenom'], $data["Sexe"]));
         }
 
-        return redirect("/");
+        return redirect("/?status=success");
     }
 }

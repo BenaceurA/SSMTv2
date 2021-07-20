@@ -67,6 +67,6 @@ class jobController extends Controller
             Mail::to($data["Adresse_mail"])->send(new ApplicationReceived("Merci de votre candidature : $data[Poste]", $data['Nom_Prenom'],  $data["Sexe"]));
         }
 
-        return redirect("/");
+        return redirect("/?status=success");
     }
 }
