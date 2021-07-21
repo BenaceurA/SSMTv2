@@ -9,13 +9,17 @@
     <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
 
         *{
-            font-family: 'Roboto', sans-serif;
-            font-weight: bold;
+            font-family: 'Rubik','Roboto', sans-serif;
+             
         }
 
         .background-img {
@@ -41,15 +45,20 @@
             line-height: inherit;
             cursor: pointer;
         }
-
+        
         .select:focus {
             
             outline: none;
 
         }
+        input[type="text"]
+        {
+            font-weight:600;
+        }
         .select::placeholder{
             color:black;
             opacity :0.9;
+            font-weight:600;
         }
         .animate-down{
             top : 0px;
@@ -94,7 +103,7 @@
     </style>
 </head>
 
-<body class="w-screen text-md relative h-screen">
+<body class="w-screen relative h-screen">
 
     <div class="w-screen h-screen flex-col">
     
@@ -105,12 +114,12 @@
             <div id="status" class="top-24 p-3 rounded  absolute "></div>
             
 
-            <div class="w-4/5 md:w-3/5 lg:w-3/5 h-auto flex justify-center">
+            <div class=" w-4/5 md:w-3/5 lg:w-3/5 h-auto flex justify-center">
                 <form class="flex flex-col md:flex-row lg:flex-row justify-center w-full" onsubmit="return validateForm()" action="/search" method="POST" name="Form">
                     @csrf
                     <div class="z-10 relative inline mr-2 p-0 w-full mb-6 md:mb-0 lg:mb-0 md:w-2/5 text-md " >
                         <input onclick="showSelect1()" readonly placeholder="Qu'est-ce que tu cherches ?" class="select shadow-lg rounded py-2  px-5" type="text" name="select1" id="select1">
-                        <div id="select1Elements" style="display:none;" class="bg-opacity-85 w-full bg-white absolute top-12 md:top-12 lg:top-12 right-0 rounded">
+                        <div id="select1Elements" style="display:none;" class="font-semibold bg-opacity-85 w-full bg-white absolute top-12 md:top-12 lg:top-12 right-0 rounded">
                             <ul>
                                 <li onclick="select1('Offre d\'emploi')" class="border-b cursor-pointer hover:bg-gray-100 pl-4 pb-2 pt-2 rounded ">Offre d'emploi</li>
                                 <li onclick="select1('Offre de stage')" class="border-b cursor-pointer hover:bg-gray-100 pl-4 pb-2 pt-2 rounded ">Offre de stage</li>
@@ -121,7 +130,7 @@
 
                     <div class="relative inline mr-2 w-full mb-8 md:mb-0 lg:mb-0 md:w-2/5 text-md" >
                         <input onclick="showSelect2()" readonly placeholder="Quel département ?" class="select shadow-lg rounded py-2  px-5" type="text" name="select2" id="select2">
-                        <div  id="select2Elements" class="overflow-y-auto max-h-60 bg-opacity-100 w-full bg-white absolute top-12 md:top-12 lg:top-12 right-0 rounded">
+                        <div  id="select2Elements" class="font-semibold overflow-y-auto max-h-60 bg-opacity-100 w-full bg-white absolute top-12 md:top-12 lg:top-12 right-0 rounded">
                             <ul>
                                 
                             <ul>
@@ -141,14 +150,14 @@
                 <div class="flex justify-between w-9/12 h-full mt-auto mb-auto">
                     <a class="flex" href="/"><img class="mt-auto mb-auto" id="logo" src="img/logo.png"></a>
                     <div class = "cursor-pointer mt-auto mb-auto">
-                        <a class="">À propos</a>
+                        <a class="font-semibold">À propos</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="bottom-0 fixed text-white bg-black w-full" style="height: 4%;">
+        <div class="bottom-0 fixed text-white bg-black w-full" style="height: 5%;">
             <div class="h-full flex justify-center mt-auto">
-                <div class="text-xs md:text-sm lg:text-base mt-auto mb-auto">
+                <div class="font-semibold text-xs md:text-sm lg:text-base mt-auto mb-auto">
                     <span class=" mr-2">ADRESSE</span>
                     <span>Imm Larki, 2eme Etage, Blachache M'haita - Taroudant</span>
                 </div>

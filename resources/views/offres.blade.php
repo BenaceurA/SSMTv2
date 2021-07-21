@@ -9,11 +9,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
         
         *{
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Rubik','Roboto', sans-serif;
         }
         .background-img {
             background: url('img/background.png');
@@ -27,7 +32,7 @@
             
         }
         .offre{
-            background-color : rgba(255,255,255,80%); 
+            {{-- background-color : rgba(255,255,255,80%);  --}}
         }
         ul{
             list-style-type: disc; 
@@ -61,22 +66,22 @@
     </style>
 </head>
 
-<body class="text-sm md:text-sm lg:text-base background-img h-full">
+<body class="text-base md:text-base lg:text-base background-img h-full">
 
     @if(count($result)>0)
     <div class =" flex justify-center w-full absolute">
-        <div class="my-20 wrapper p-5 pt-0 rounded flex-col max-w-full md:w-2/3">
+        <div class="my-10 md:my-20 wrapper p-5 pt-0 rounded flex-col max-w-full md:w-2/3">
         @foreach($result as $r)
-        <div onclick="expand(this)" class="overflow-hidden h-40 cursor-pointer offre w-full mt-10 shadow-2xl rounded p-4">
+        <div onclick="expand(this)" class="h-52 sm:h-44 md:h-40 bg-white bg-opacity-90 hover:bg-opacity-90 hover:bg-yellow-50 overflow-hidden  cursor-pointer offre w-full mt-10 shadow-2xl rounded p-4">
             <div class="flex">
-                <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Sexe">
+                <label class="block text-gray-600 font-semibold md:text-right mb-1 md:mb-0 pr-4" for="Sexe">
                 Poste :
                 </label>
                 {!!$r->Offre!!}
             </div>
             <br>
             <div class="flex">
-                <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Sexe">
+                <label class="block text-gray-600 font-semibold md:text-right mb-1 md:mb-0 pr-4" for="Sexe">
                 Direction :
                 </label>
                {!!$r->Direction!!}
@@ -84,13 +89,13 @@
         
             <br>
             <div class="flex">
-                <label class="whitespace-nowrap block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Sexe">
+                <label class="whitespace-nowrap block text-gray-600 font-semibold md:text-right mb-1 md:mb-0 pr-4" for="Sexe">
                 Département :
                 </label>
                {!!$r->Département!!}
             </div>
 
-            <div class="max-w-full">
+            <div class="mt-6 mb-6 max-w-full">
             <br>
             {!!$r->Description!!}
             <br>
@@ -121,14 +126,14 @@
                 <div class="flex justify-between w-9/12 h-full mt-auto mb-auto">
                     <a class="flex" href="/"><img class="mt-auto mb-auto" id="logo" src="img/logo.png"></a>
                     <div class = "cursor-pointer mt-auto mb-auto">
-                        <a class="">À propos</a>
+                        <a class="font-semibold">À propos</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="bottom-0 fixed text-white bg-black w-full" style="height: 4%;">
+        <div class="bottom-0 fixed text-white bg-black w-full" style="height: 5%;">
             <div class="h-full flex justify-center mt-auto">
-                <div class="text-xs md:text-sm lg:text-base mt-auto mb-auto">
+                <div class="font-semibold text-xs md:text-sm lg:text-base mt-auto mb-auto">
                     <span class=" mr-2">ADRESSE</span>
                     <span>Imm Larki, 2eme Etage, Blachache M'haita - Taroudant</span>
                 </div>
@@ -137,7 +142,10 @@
 </body>
 <script>
     function expand(e){
-        e.classList.toggle("h-40");
+        e.classList.toggle("md:h-40");
+        e.classList.toggle("sm:h-44");
+        e.classList.toggle("h-52");
+        e.classList.toggle("bg-yellow-50");
     }
 
 </script>
