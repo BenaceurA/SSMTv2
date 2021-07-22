@@ -2,7 +2,7 @@
 
 @section('main')
 
-<div id="motivationModal" class="shadow-2xl hidden z-10 overflow-y-auto absolute bg-gray-100 rounded  p-10" style="max-height:70vh;width:50vw;">
+<div id="motivationModal" onclick="event.stopPropagation()" class="shadow-2xl hidden z-10 overflow-y-auto absolute bg-gray-100 rounded  p-10" style="max-height:70vh;width:50vw;">
   <div id="motivation">
   
   </div>
@@ -489,11 +489,13 @@
     }
 
     function Motivation(id){
+      
       axios.get('/api/jobApplicationMotivation/'+id)
         .then(function (response) {
+          let modal = document.getElementById("motivationModal"); 
           document.getElementById("motivation").innerHTML = "<pre>"+ response.data; +"</pre>";
-          document.getElementById("motivationModal").classList.remove("hidden");
-          document.getElementById("motivationModal").classList.add("block");
+          modal.classList.remove("hidden");
+
       })
         .catch(function (error) {
             console.log(error);
@@ -501,11 +503,17 @@
     }
 
     function closeMotivation(){
-      document.getElementById("motivationModal").classList.remove("block");
-      document.getElementById("motivationModal").classList.add("hidden");
+      let modal = document.getElementById("motivationModal"); 
+      modal.classList.add("hidden");
       document.getElementById("motivation").innerHTML = "";
     }
 
+    document.onclick = function(e){
+      let modal = document.getElementById("motivationModal");
+      if(e.target.id !== 'motivationModal'){
+        closeMotivation();
+      } 
+    };
   @endif
 
   @if($view == "internships")
