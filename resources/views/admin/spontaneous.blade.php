@@ -2,6 +2,16 @@
 
 @section('main')
 
+<div id="motivationModal" class="shadow-2xl hidden z-10 overflow-y-auto absolute bg-gray-100 rounded  p-10" style="max-height:70vh;width:50vw;">
+  <div id="motivation">
+  
+  </div>
+  <button onclick="closeMotivation()" class="w-3/12 mt-4 bottom-4 shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+        Fermer
+  </button>
+</div>
+
+
 <div class="small-width text-sm mt-4 ml-4 " style="font-size:13px;">
   <div class = "fixed overflow-y-auto small-width bg-white px-3 py-3 bg-opacity-90 rounded" style="max-height:85vh;">
     <div class="w-full">
@@ -262,7 +272,9 @@
                     {{$row->Années_expérience}}
                 </td>
                 <td class="max-w-sm overflow-hidden px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {{$row->Motivation}}
+                  @if($row->Motivation) 
+                    <button onclick="Motivation({{$row->id}})" class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded">Voir</button>
+                  @endif
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     <button onclick="DownloadCV({{$row->id}})" class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-2 rounded">Télécharger</button>
@@ -469,6 +481,24 @@
       else{
         window.alertify.alert("Erreur","Vous n'avez pas l'autorisation!");
       }
+    }
+
+    function Motivation(id){
+      axios.get('/api/spontaneousApplicationMotivation/'+id)
+        .then(function (response) {
+          document.getElementById("motivation").innerHTML = "<pre>"+ response.data; +"</pre>";
+          document.getElementById("motivationModal").classList.remove("hidden");
+          document.getElementById("motivationModal").classList.add("block");
+      })
+        .catch(function (error) {
+            console.log(error);
+      })
+    }
+
+    function closeMotivation(){
+      document.getElementById("motivationModal").classList.remove("block");
+      document.getElementById("motivationModal").classList.add("hidden");
+      document.getElementById("motivation").innerHTML = "";
     }
 </script>
 @endsection

@@ -145,4 +145,10 @@ class spontaneousAdminController extends Controller
         }
         return response("ok", 200);
     }
+
+    function spontaneousApplicationMotivation($id)
+    {
+        $motivation = DB::table('spontaneous')->where('id', $id)->first()->Motivation;
+        return $motivation;
+    }
 }

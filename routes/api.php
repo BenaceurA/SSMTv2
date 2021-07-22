@@ -86,6 +86,7 @@ Route::get('/DownloadSpontaneousLetters', [spontaneousAdminController::class, 'd
 
 Route::get('/spontaneousApplicationExists/{id}', [spontaneousAdminController::class, 'applicationExists']);
 
+Route::get('/spontaneousApplicationMotivation/{id}', [spontaneousAdminController::class, 'spontaneousApplicationMotivation']);
 //--------------------------------------------------------------------------
 
 Route::get('/getPermissions/{id}', [adminController::class, 'getPermissions']);
