@@ -132,7 +132,7 @@
   </div>
 </div>
 
-<div class="big-width ml-4 mr-4 mt-4 flex flex-col relative">
+<div class="big-width ml-4 mr-4 mt-4 flex flex-col relative" style="height:88vh;">
   <div class="overflow-x-scroll max-w-full  border-b-4 rounded mb-4">
     <div class=" align-middle inline-block">
       <div class="shadow overflow-hidden border-b border-gray-200">
