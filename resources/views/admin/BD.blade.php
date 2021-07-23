@@ -128,11 +128,16 @@
       <button id="submitFilter" class="mt-3 w-full shadow bg-yellow-500 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
         Filter
       </button>
+      <a @if($view == "jobs")href="/BDemploi"@endif @if($view == "internships")href="/BDstage"@endif>
+      <button id="resetFilter" class="mt-3 w-full shadow bg-yellow-500 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+        Réinitialiser
+      </button>
+      </a>
     </form>
   </div>
 </div>
 
-<div class="big-width ml-4 mr-4 mt-4 flex flex-col relative" style="height:88vh;">
+<div class="big-width ml-4 mr-4 mt-4 flex flex-col relative" style="max-height:88vh;">
   <div class="overflow-x-scroll max-w-full  border-b-4 rounded mb-4">
     <div class=" align-middle inline-block">
       <div class="shadow overflow-hidden border-b border-gray-200">
@@ -292,8 +297,9 @@
           </tbody>
         </table>
       </div>
-    </div>
+    </div>      
   </div>
+  {{ $data->links() }}
 </div>
 
 <script>
@@ -302,14 +308,26 @@
     let DownloadLetterPerm = 0;
 
     window.onload = ()=>{
-      let sf = document.getElementById("submitFilter");
-      document.addEventListener("submit",()=>{
+      let url = new URL(window.location.href);
+
       @if($view == "jobs")  
       let AE = document.getElementById("AE");
+      AE.value = url.searchParams.get("Années_expérience");
       @endif
+
       let NE = document.getElementById("NE");
+      NE.value = url.searchParams.get("Niveau_étude");
+
       let Sexe = document.getElementById("Sexe");
+      Sexe.value = url.searchParams.get("Sexe");
+
       let Ville = document.getElementById("Ville");
+      Ville.value = url.searchParams.get("Ville");
+      
+      let Age = document.getElementById("Age");
+      Age.value = url.searchParams.get("Date_de_naissance");
+
+      document.addEventListener("submit",()=>{
         @if($view == "jobs") 
         if(AE.value == 'null'){
           AE.name = "";

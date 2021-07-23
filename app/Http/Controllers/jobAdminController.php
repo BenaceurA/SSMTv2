@@ -25,6 +25,17 @@ class jobAdminController extends Controller
     function jobApplicationsIndex(Request $request)
     {
         $data = $request->all();
+        $query_cache = $data; //save original query to append it later to pagination
+
+        //get the page number and remove it from $data
+        $page = 1;
+        if (isset($data["page"])) {
+            $i = array_search("page", array_keys($data));
+            $page = array_splice($data, $i, 1);
+            $page = $page["page"];
+        }
+
+        //if this is true then the filter was set
         if (isset($data["Option"])) {
             $option = array_splice($data, 0, 1);
             if (isset($data["Date_de_naissance"])) {
@@ -84,9 +95,14 @@ class jobAdminController extends Controller
                         break;
                 }
             }
-            $result = $result->get();
+            $result = $result
+                ->paginate(15, ['*'], 'page', $page)
+                ->appends($query_cache); //append the query cached to the pagination links
         } else {
-            $result = DB::table('jobs')->where($data)->get();
+            //filter is not set
+            $result = DB::table('jobs')
+                ->where($data)
+                ->paginate(15, ['*'], 'page', $page);
         }
 
         return view("/admin/BD", [

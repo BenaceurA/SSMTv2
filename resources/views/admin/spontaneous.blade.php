@@ -135,6 +135,11 @@
       <button id="submitFilter" class="mt-3 w-full shadow bg-yellow-500 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
         Filter
       </button>
+      <a href="/BDspontaneous">
+      <button id="resetFilter" class="mt-3 w-full shadow bg-yellow-500 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+        Réinitialiser
+      </button>
+      </a>
     </form>
   </div>
 </div>
@@ -295,6 +300,7 @@
       </div>
     </div>
   </div>
+  {{ $data->links() }}
 </div>
 <script>
 
@@ -303,14 +309,28 @@
     let DownloadLetterPerm = 0;
 
     window.onload = ()=>{
-      // prevent empty fields from getting sent 
-      let sf = document.getElementById("submitFilter");
-      document.addEventListener("submit",()=>{
+      let url = new URL(window.location.href);
+
       let AE = document.getElementById("AE");
+      AE.value = url.searchParams.get("Années_expérience");
+
       let NE = document.getElementById("NE");
+      NE.value = url.searchParams.get("Niveau_étude");
+
       let Sexe = document.getElementById("Sexe");
+      Sexe.value = url.searchParams.get("Sexe");
+
       let Ville = document.getElementById("Ville");
+      Ville.value = url.searchParams.get("Ville");
+
+      let Age = document.getElementById("Age");
+      Age.value = url.searchParams.get("Date_de_naissance");
+
       let Candidature = document.getElementById("Candidature");
+      Candidature.value = url.searchParams.get("Candidature");
+
+      document.addEventListener("submit",()=>{
+      
         if(AE.value == 'null'){
           AE.name = "";
         }
