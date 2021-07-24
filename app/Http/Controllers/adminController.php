@@ -75,8 +75,7 @@ class adminController extends Controller
             'name' => ['required'],
             'password' => ['required'],
         ]);
-
-        if (Auth::attempt($credentials, false/*$request->remember*/)) {
+        if (Auth::attempt($credentials, $request->remember)) {
             $request->session()->regenerate();
             return redirect()->action([jobAdminController::class, 'jobApplicationsIndex']);
         }
