@@ -36,6 +36,17 @@
             <option value="OR">OR</option>
         </select>
       </div>
+      <div class="mt-3 flex-col w-auto">
+        <label class="whitespace-nowrap text-gray-500 font-bold ">
+          Poste
+        </label>
+        <select id="Poste" class="mt-1 border-gray-200 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Poste">
+            <option selected hidden value="null"></option>
+            @foreach ($offers as $offer )
+                <option value="{{$offer->Poste}}">{{$offer->Poste}}</option>
+            @endforeach           
+        </select>
+      </div>
       @if($view == "jobs")
       <div class="mt-3 flex-col w-auto">
         <label class="whitespace-nowrap text-gray-500 font-bold">
@@ -309,6 +320,9 @@
 
     window.onload = ()=>{
       let url = new URL(window.location.href);
+
+      let Poste = document.getElementById("Poste");
+      Poste.value = url.searchParams.get("Poste");
 
       @if($view == "jobs")  
       let AE = document.getElementById("AE");

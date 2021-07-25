@@ -103,10 +103,13 @@ class internshipAdminController extends Controller
                 ->paginate(15, ['*'], 'page', $page);
         }
 
+        $offers = DB::table("internships")->get(["Poste"])->unique();
+
         return view("/admin/BD", [
             "view" => "internships",
             "userID" => Auth::id(),
             "data" => $result,
+            "offers" => $offers,
             "username" => adminController::getUsername()
         ]);
     }

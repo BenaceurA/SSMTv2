@@ -105,10 +105,13 @@ class jobAdminController extends Controller
                 ->paginate(15, ['*'], 'page', $page);
         }
 
+        $offers = DB::table("jobs")->get(["Poste"])->unique();
+
         return view("/admin/BD", [
             "view" => "jobs",
             "userID" => Auth::id(),
             "data" => $result,
+            "offers" => $offers,
             "username" => adminController::getUsername()
         ]);
     }
