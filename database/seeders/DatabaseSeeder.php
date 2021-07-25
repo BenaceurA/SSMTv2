@@ -25,19 +25,19 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'AO_E'  => 1,
             'MO_E' => 1,
-            'SO_E ' => 1,
+            'SO_E' => 1,
 
             'AO_S'  => 1,
             'MO_S'  => 1,
-            'SO_S ' => 1,
+            'SO_S' => 1,
 
             'TC_E'  => 1,
             'TL_E'  => 1,
             'SC_E'  => 1,
 
-            'TC_S ' => 1,
+            'TC_S' => 1,
             'TL_S'  => 1,
-            'SC_S ' => 1,
+            'SC_S' => 1,
 
             'TC_CS'  => 1,
             'TL_CS'  => 1,
