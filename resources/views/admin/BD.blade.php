@@ -342,6 +342,9 @@
       Age.value = url.searchParams.get("Date_de_naissance");
 
       document.addEventListener("submit",()=>{
+        if(Poste.value == 'null'){
+          Poste.name = "";
+        }
         @if($view == "jobs") 
         if(AE.value == 'null'){
           AE.name = "";
