@@ -45,7 +45,7 @@ class jobController extends Controller
             $filenameWithExt = $request->file('CV')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('CV')->getClientOriginalExtension();
-            $filenameToStore = $filename . '_' . time() . '.' . $extension;
+            $filenameToStore = $filename . '_' . microtime() . '.' . $extension;
             $request->file('CV')->storeAs('public/Jobs/CVs', $filenameToStore);
             $job->CV = $filenameToStore;
         } else {
@@ -55,7 +55,7 @@ class jobController extends Controller
             $filenameWithExt = $request->file('lettre')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('lettre')->getClientOriginalExtension();
-            $filenameToStore = $filename . '_' . time() . '.' . $extension;
+            $filenameToStore = $filename . '_' . microtime() . '.' . $extension;
             $request->file('lettre')->storeAs('public/Jobs/Lettres', $filenameToStore);
             $job->Lettre_motivation = $filenameToStore;
         }
