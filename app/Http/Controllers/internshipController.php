@@ -42,7 +42,7 @@ class internshipController extends Controller
             $filenameWithExt = $request->file('CV')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('CV')->getClientOriginalExtension();
-            $filenameToStore = $filename . '_' . time() . '.' . $extension;
+            $filenameToStore = $filename . '_' . microtime() . '.' . $extension;
             $request->file('CV')->storeAs('public/Internships/CVs', $filenameToStore);
             $internship->CV = $filenameToStore;
         } else {
