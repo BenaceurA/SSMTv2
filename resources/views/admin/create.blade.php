@@ -15,6 +15,7 @@
                     <input class=" appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Offre" id="Offre" type="text">
                 </div>
             </div>
+
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start  md:w-1/6">
                     <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Direction">
@@ -25,10 +26,13 @@
                     <select onchange="loadDepartements()" class=" appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Direction" id="Direction">
                         <option selected hidden disabled value="null"></option>
                         <option value="Direction générale">Direction générale</option>
-                        <option value="Administration">Administration</option>
+                        <option value="Administrative et financière">Administrative et financière</option>
+                        <option value="Gestion Matériels et DGA">Gestion Matériels et DGA</option>
+                        <option value="Exploitation">Exploitation</option>
                     </select>
                 </div>
             </div>
+
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start  md:w-1/6">
                     <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Département">
@@ -39,28 +43,11 @@
                 <div class="md:w-5/6">
                     <select class=" appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" name="Département" id="Département">
                         <option selected hidden disabled value="null"></option>
-                        {{-- <option value="Département d'Audit contrôle gestion et audit interne">Département d'Audit contrôle gestion et audit interne</option>
-                        <option value="Département d’informatique">Département d’informatique</option>
-                        <option value="Département d'Hygiène Sécurité Environnement">Département d'Hygiène Sécurité Environnement </option>
-                        <option value="Département d'administration et finance">Département d'administration et finance</option>
-                        <option value="Département gestion matériel">Département gestion matériel</option>
-                        <option value="Département de la comptabilité">Département de la comptabilité</option>
-                        <option value="Département de finance">Département de finance</option>
-                        <option value="Département administratif et juridique">Département administratif et juridique</option>
-                        <option value="Département administratif des ventes">Département administratif des ventes</option>
-                        <option value="Département de ressources humaines">Département de ressources humaines</option>
-                        <option value="Département d'achats">Département d'achats</option>
-                        <option value="Département Gestion Matériels">Département Gestion Matériels</option>
-                        <option value="Département d'atelier">Département d'atelier</option>
-                        <option value="Département bureau méthode maintenance">Département bureau méthode maintenance</option>
-                        <option value="Département logistique">Département logistique</option>
-                        <option value="Département d'exploitation ">Département d'exploiatation</option>
-                        <option value="Département d'étude des prix">Département d'étude des prix</option>
-                        <option value="Département topographe">Département topographe</option>
-                        <option value="Département administration marchés publiques">Département administration marchés publiques</option> --}}
+
                     </select>
                 </div>
             </div>
+
             <div class="md:flex md:items-center mb-6">
                 <div class="flex justify-start  md:w-1/6">
                     <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Département">
@@ -426,32 +413,29 @@
             switch(direction.value) {
                 case "Direction générale":
                     load([
-                        "Département d'Audit contrôle gestion et audit interne",
-                        "Département d’informatique",
-                        "Département d'Hygiène Sécurité Environnement",
-                        "Département d'administration et finance",
-                        "Département gestion matériel"
+                        "Audit contrôle gestion",
+                        "Système d'information",
                     ]);
                     break;
-                case "Administration":
+                case "Administrative et financière":
                     load([
-                        "Département d'Audit contrôle gestion et audit interne",
-                        "Département d’informatique",
-                        "Département d'Hygiène Sécurité Environnement",
-                        "Département de la comptabilité",
-                        "Département de finance",
-                        "Département administratif et juridique",
-                        "Département administratif des ventes",
-                        "Département de ressources humaines",
-                        "Département d'achats",
-                        "Département gestion matériel",
-                        "Département d'atelier",
-                        "Département bureau méthode maintenance",
-                        "Département logistique",
-                        "Département d'exploiatation",
-                        "Département d'étude des prix",
-                        "Département topographe",
-                        "Département administration marchés publiques"
+                        "Comptabilité",
+                        "Ressources Humaines",
+                        "Achats et stocks",
+                    ]);
+                    break;
+                case "Gestion Matériels et DGA":
+                    load([
+                        "Atelier",
+                        "Maintenance",
+                        "Logistique",
+                    ]);
+                    break;
+                case "Exploitation":
+                    load([
+                        "Ingénierie de méthode",
+                        "Etudes des prix",
+                        "Chantier",
                     ]);
                     break;
                 }
@@ -632,31 +616,36 @@
             switch(direction.value) {
                 case "Direction générale":
                     load([
-                        "Département d'Audit contrôle gestion et audit interne",
-                        "Département d’informatique",
-                        "Département d'Hygiène Sécurité Environnement",
-                        "Département gestion matériel"
+                        "Audit contrôle gestion",
+                        "Système d'information",
+                        "Qualité Hygiène Sécurité Environnement",
                     ]);
                     break;
-                case "Administration":
+                case "Administrative et financière":
                     load([
-                        "Département d'Audit contrôle gestion et audit interne",
-                        "Département d’informatique",
-                        "Département d'Hygiène Sécurité Environnement",
-                        "Département de la comptabilité",
-                        "Département de finance",
-                        "Département administratif et juridique",
-                        "Département administratif des ventes",
-                        "Département de ressources humaines",
-                        "Département d'achats",
-                        "Département gestion matériel",
-                        "Département d'atelier",
-                        "Département bureau méthode maintenance",
-                        "Département logistique",
-                        "Département d'exploiatation",
-                        "Département d'étude des prix",
-                        "Département topographe",
-                        "Département administration marchés publiques"
+                        "Comptabilité",
+                        "Ressources Humaines",
+                        "Achats et stocks",
+                        "Finance",
+                        "Gestion Administrative et juridique",
+                        "Gestion Administrative des ventes",
+                    ]);
+                    break;
+                case "Gestion Matériels et DGA":
+                    load([
+                        "Atelier",
+                        "Bureau de Méthode Maintenance",
+                        "Logistique",
+                        "Industries fixes",
+                    ]);
+                    break;
+                case "Exploitation":
+                    load([
+                        "Bureau Ingénierie de méthode",
+                        "Gestion des affaires",
+                        "Chiffrage",
+                        "Support",
+                        "Administration des marchés publiques",
                     ]);
                     break;
                 }

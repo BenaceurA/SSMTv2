@@ -27,7 +27,7 @@ class Controller extends BaseController
         switch ($data["select1"]) {
             case "Offre d'emploi":
 
-                if ($data["select2"] != null) {
+                if (($data["select2"] != "Tous les départements") && ($data["select2"] != NULL)) {
                     $query = DB::table('job_offers')->where(['Département' => $data["select2"], 'Activation' => 1]);
                 } else {
                     $query = DB::table('job_offers')->where(['Activation' => 1]);
@@ -38,7 +38,7 @@ class Controller extends BaseController
 
             case "Offre de stage":
 
-                if ($data["select2"] != null) {
+                if (($data["select2"] != "Tous les départements") && ($data["select2"] != NULL)) {
                     $query = DB::table('internship_offers')->where(['Département' => $data["select2"], 'Activation' => 1]);
                 } else {
                     $query = DB::table('internship_offers')->where(['Activation' => 1]);
