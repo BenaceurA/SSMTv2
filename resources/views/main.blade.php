@@ -180,47 +180,41 @@
             case "Offre d'emploi":
                 console.log("1");
                 loadSelect2(
-                    [   "Département d'Audit contrôle gestion et audit interne",
-                        "Département d’informatique",
-                        "Département d'Hygiène Sécurité Environnement ",
-                        "Département d'administration et finance",
-                        "Département gestion matériel",
-                        "Département de la comptabilité",
-                        "Département de finance",
-                        "Département administratif et juridique",
-                        "Département administratif des ventes",
-                        "Département de ressources humaines",
-                        "Département d'achats",
-                        "Département d'atelier",
-                        "Département bureau méthode maintenance",
-                        "Département logistique",
-                        "Département d'exploitation",
-                        "Département d'étude des prix",
-                        "Département topographe",
-                        "Département administration marchés publiques"
+                    [   "Audit contrôle gestion",
+                        "Système d'information",
+                        "Comptabilité",
+                        "Ressources Humaines",
+                        "Achats et stocks",
+                        "Atelier",
+                        "Maintenance",
+                        "Logistique",
+                        "Ingénierie de méthode",
+                        "Etudes des prix",
+                        "Chantier",
                     ]);
                 break;
             case "Offre de stage":
                 console.log("2");
                 loadSelect2(
                     [
-                        "Département d'Audit contrôle gestion et audit interne",
-                        "Département d’informatique",
-                        "Département d'Hygiène Sécurité Environnement",
-                        "Département gestion matériel",
-                        "Département de la comptabilité",
-                        "Département de finance",
-                        "Département administratif et juridique",
-                        "Département administratif des ventes",
-                        "Département de ressources humaines",
-                        "Département d'achats",
-                        "Département d'atelier",
-                        "Département bureau méthode maintenance",
-                        "Département logistique",
-                        "Département d'exploitation",
-                        "Département d'étude des prix",
-                        "Département topographe",
-                        "Département administration marchés publiques"
+                        "Audit contrôle gestion",
+                        "Système d'information",
+                        "Qualité Hygiène Sécurité Environnement",
+                        "Comptabilité",
+                        "Ressources Humaines",
+                        "Achats et stocks",
+                        "Finance",
+                        "Gestion Administrative et juridique",
+                        "Gestion Administrative des ventes",
+                        "Atelier",
+                        "Bureau de Méthode Maintenance",
+                        "Logistique",
+                        "Industries fixes",
+                        "Bureau Ingénierie de méthode",
+                        "Gestion des affaires",
+                        "Chiffrage",
+                        "Support",
+                        "Administration des marchés publiques"
                     ]);
                 break;
             case "Candidature spontanée":
@@ -258,6 +252,16 @@
             ul.removeChild(child);
             child = ul.firstElementChild;
         }
+
+        let li = document.createElement("li");
+            li.innerHTML = "Tous les département";
+            li.className = "border-b cursor-pointer hover:bg-gray-100 pl-4 pb-2 pt-2 rounded";
+            li.onclick = ()=>{
+                Select2.value = "Tous les départements";
+                Select2.style.backgroundColor ="white";
+                Select2.style.opacity ="85%";
+            }
+            ul.appendChild(li);
 
         elements.forEach(element=>{
             let li = document.createElement("li");
