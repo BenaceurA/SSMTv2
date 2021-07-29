@@ -18,6 +18,11 @@ class HttpsProtocol
     public function handle(Request $request, Closure $next)
     {
 
+        Request::setTrustedProxies(
+            [$request->getClientIp()],
+            Request::HEADER_X_FORWARDED_TRAEFIK
+        );
+
         if (!$request->secure() && App::environment() === 'production') {
             return redirect()->secure($request->getRequestUri());
         }
