@@ -180,7 +180,9 @@
             case "Offre d'emploi":
                 console.log("1");
                 loadSelect2(
-                    [   "Audit contrôle gestion",
+                    [   
+                        "Tous les département",
+                        "Audit contrôle gestion",
                         "Système d'information",
                         "Comptabilité",
                         "Ressources Humaines",
@@ -197,6 +199,7 @@
                 console.log("2");
                 loadSelect2(
                     [
+                        "Tous les département",
                         "Audit contrôle gestion",
                         "Système d'information",
                         "Qualité Hygiène Sécurité Environnement",
@@ -252,16 +255,6 @@
             ul.removeChild(child);
             child = ul.firstElementChild;
         }
-
-        let li = document.createElement("li");
-            li.innerHTML = "Tous les département";
-            li.className = "border-b cursor-pointer hover:bg-gray-100 pl-4 pb-2 pt-2 rounded";
-            li.onclick = ()=>{
-                Select2.value = "Tous les départements";
-                Select2.style.backgroundColor ="white";
-                Select2.style.opacity ="85%";
-            }
-            ul.appendChild(li);
 
         elements.forEach(element=>{
             let li = document.createElement("li");
