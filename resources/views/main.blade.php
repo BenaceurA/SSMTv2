@@ -181,7 +181,7 @@
                 console.log("1");
                 loadSelect2(
                     [   
-                        "Tous les département",
+                        "Tous les départements",
                         "Audit contrôle gestion",
                         "Système d'information",
                         "Comptabilité",
@@ -199,7 +199,7 @@
                 console.log("2");
                 loadSelect2(
                     [
-                        "Tous les département",
+                        "Tous les départements",
                         "Audit contrôle gestion",
                         "Système d'information",
                         "Qualité Hygiène Sécurité Environnement",
