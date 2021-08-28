@@ -26,6 +26,7 @@ Route::get('/cs/Emploi', [spontaneousController::class, 'SpontaneousJobForm']);
 
 Route::get('/cs/Stage', [spontaneousController::class, 'SpontaneousInternshipForm']);
 
+Route::view('/about', 'about');
 //admin routes
 
 Route::get('/admin', function () {

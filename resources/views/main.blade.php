@@ -150,7 +150,7 @@
                 <div class="flex justify-between w-9/12 h-full mt-auto mb-auto">
                     <a class="flex" href="/"><img class="mt-auto mb-auto" id="logo" src="img/logo.png"></a>
                     <div class = "cursor-pointer mt-auto mb-auto">
-                        <a class="font-semibold">À propos</a>
+                        <a href="/about" class="font-semibold">À propos</a>
                     </div>
                 </div>
             </div>
