@@ -63,6 +63,9 @@
             white-space: -o-pre-wrap;    /* Opera 7 */
             word-wrap: break-word;       /* Internet Explorer 5.5+ */
         }
+        label::after{
+            content : ":";
+        }
     </style>
 </head>
 
@@ -72,17 +75,17 @@
     <div class =" flex justify-center w-full absolute">
         <div class="my-10 md:my-20 wrapper p-5 pt-0 rounded flex-col max-w-full md:w-2/3">
         @foreach($result as $r)
-        <div onclick="expand(this)" class="h-52 sm:h-44 md:h-40 bg-white bg-opacity-90 hover:bg-opacity-100 overflow-hidden  cursor-pointer offre w-full mt-10 shadow-2xl rounded p-4">
+        <div onclick="expand(this)" class="h-44 sm:h-44 md:h-40 bg-white bg-opacity-90 hover:bg-opacity-100 overflow-hidden  cursor-pointer offre w-full mt-10 shadow-2xl rounded p-4">
             <div class="flex">
                 <label class="block text-gray-600 font-semibold md:text-right mb-1 md:mb-0 pr-4" for="Sexe">
-                Poste :
+                Poste
                 </label>
                 {!!$r->Offre!!}
             </div>
             <br>
             <div class="flex">
                 <label class="block text-gray-600 font-semibold md:text-right mb-1 md:mb-0 pr-4" for="Sexe">
-                Direction :
+                Direction
                 </label>
                {!!$r->Direction!!}
             </div>
@@ -90,7 +93,7 @@
             <br>
             <div class="flex">
                 <label class="whitespace-nowrap block text-gray-600 font-semibold md:text-right mb-1 md:mb-0 pr-4" for="Sexe">
-                Département :
+                Département
                 </label>
                {!!$r->Département!!}
             </div>
@@ -144,7 +147,7 @@
     function expand(e){
         e.classList.toggle("md:h-40");
         e.classList.toggle("sm:h-44");
-        e.classList.toggle("h-52");
+        e.classList.toggle("h-44");
         e.classList.toggle("bg-opacity-90");
     }
 
