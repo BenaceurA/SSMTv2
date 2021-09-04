@@ -111,8 +111,7 @@
         </div>
         
         <div class="min-w-full absolute h-screen w-screen flex-wrap flex justify-center content-center">       
-            <div id="status" class="top-24 p-3 rounded  absolute "></div>
-            
+            <div id="status" class="top-24 p-3 rounded  absolute "></div>      
 
             <div class=" w-4/5 md:w-3/5 lg:w-3/5 h-auto flex justify-center">
                 <form class="flex flex-col md:flex-row lg:flex-row justify-center w-full" onsubmit="return validateForm()" action="/search" method="POST" name="Form">
@@ -145,24 +144,8 @@
         </div>
         <div id="bg" class="background-img text-white ">
         </div>
-        <div id="navbar" class="top-0 absolute text-white bg-opacity-90 bg-black w-full" style="height: 7%;">
-            <div class="w-full h-full flex justify-center mt-auto">
-                <div class="flex justify-between w-9/12 h-full mt-auto mb-auto">
-                    <a class="flex" href="/"><img class="mt-auto mb-auto" id="logo" src="img/logo.png"></a>
-                    <div class = "cursor-pointer mt-auto mb-auto">
-                        <a href="/about" class="font-semibold">À propos</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="bottom-0 fixed text-white bg-black w-full" style="height: 5%;">
-            <div class="h-full flex justify-center mt-auto">
-                <div class="font-semibold text-xs md:text-sm lg:text-base mt-auto mb-auto">
-                    <span class=" mr-2">ADRESSE</span>
-                    <span>Imm Larki, 2eme Etage, Blachache M'haita - Taroudant</span>
-                </div>
-            </div>
-        </div>
+        @include("top-bar")
+        @include("bottom-bar")
     </div>
 </body>
 <script>
@@ -288,30 +271,6 @@
             status.classList.add("opacity-0");
             },3000);    
     }
-    {{-- document.addEventListener('mousemove' , animate);
-    let firstAnimation = true;
-    let navbarDown = false;
-    let navbar = document.getElementById("navbar");
-    function animate(e){       
-        if(e.pageY <= 120){
-            if(firstAnimation == false){
-                navbarDown = true;
-                navbar.className = "-top-20 animate-down absolute text-white bg-opacity-90 bg-black w-full";
-                window.removeEventListener('mousemove',animate);
-                console.log("removed");
-                setTimeout(()=>{ window.addEventListener('mousemove',animate); console.log("added");}, 3000);
-            }  
-        }
-        else if(e.pageY > 120){
-            if(firstAnimation == false && navbarDown == true){
-                navbarDown = false;
-                navbar.className = "-top-20 animate-up absolute text-white bg-opacity-90 bg-black w-full";
-
-            }
-            firstAnimation  = false;            
-        }
-          
-    } --}}
 
 </script>
 
