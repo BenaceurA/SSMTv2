@@ -70,24 +70,7 @@
             </div>       
         </div>
     </div>
-
-    <div id="navbar" class="top-0 fixed text-white bg-opacity-90 bg-black w-full" style="height: 7%;">
-        <div class="w-full h-full flex justify-center mt-auto">
-            <div class="flex justify-between w-9/12 h-full mt-auto mb-auto">
-                <a class="flex" href="/"><img class="mt-auto mb-auto" id="logo" src="img/logo.png"></a>
-                <div class = "cursor-pointer mt-auto mb-auto">
-                    <a class="font-semibold">À propos</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="bottom-0 fixed text-white bg-black w-full" style="height: 5%;">
-        <div class="h-full flex justify-center mt-auto">
-            <div class="font-semibold text-xs md:text-sm lg:text-base mt-auto mb-auto">
-                <span class=" mr-2">ADRESSE</span>
-                <span>Imm Larki, 2eme Etage, Blachache M'haita - Taroudant</span>
-            </div>
-        </div>
-    </div>
+    @include("top-bar");
+    @include("bottom-bar")  
 </body>
 </html>
