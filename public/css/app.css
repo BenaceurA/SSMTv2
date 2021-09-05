@@ -11486,7 +11486,7 @@ video {
 }
 
 .text-xs {
-  font-size: .45rem;
+  font-size: .65rem;
 }
 
 .text-sm {
@@ -11547,6 +11547,10 @@ video {
 .text-9xl {
   font-size: 8rem;
   line-height: 1;
+}
+
+.text-xss {
+  font-size: .45rem;
 }
 
 .leading-3 {
@@ -42766,7 +42770,7 @@ video {
   }
 
   .sm\:text-xs {
-    font-size: .45rem;
+    font-size: .65rem;
   }
 
   .sm\:text-sm {
@@ -42827,6 +42831,10 @@ video {
   .sm\:text-9xl {
     font-size: 8rem;
     line-height: 1;
+  }
+
+  .sm\:text-xss {
+    font-size: .45rem;
   }
 
   .sm\:leading-3 {
@@ -73876,7 +73884,7 @@ video {
   }
 
   .md\:text-xs {
-    font-size: .45rem;
+    font-size: .65rem;
   }
 
   .md\:text-sm {
@@ -73937,6 +73945,10 @@ video {
   .md\:text-9xl {
     font-size: 8rem;
     line-height: 1;
+  }
+
+  .md\:text-xss {
+    font-size: .45rem;
   }
 
   .md\:leading-3 {
@@ -104986,7 +104998,7 @@ video {
   }
 
   .lg\:text-xs {
-    font-size: .45rem;
+    font-size: .65rem;
   }
 
   .lg\:text-sm {
@@ -105047,6 +105059,10 @@ video {
   .lg\:text-9xl {
     font-size: 8rem;
     line-height: 1;
+  }
+
+  .lg\:text-xss {
+    font-size: .45rem;
   }
 
   .lg\:leading-3 {
@@ -136096,7 +136112,7 @@ video {
   }
 
   .xl\:text-xs {
-    font-size: .45rem;
+    font-size: .65rem;
   }
 
   .xl\:text-sm {
@@ -136157,6 +136173,10 @@ video {
   .xl\:text-9xl {
     font-size: 8rem;
     line-height: 1;
+  }
+
+  .xl\:text-xss {
+    font-size: .45rem;
   }
 
   .xl\:leading-3 {
@@ -167206,7 +167226,7 @@ video {
   }
 
   .\32xl\:text-xs {
-    font-size: .45rem;
+    font-size: .65rem;
   }
 
   .\32xl\:text-sm {
@@ -167267,6 +167287,10 @@ video {
   .\32xl\:text-9xl {
     font-size: 8rem;
     line-height: 1;
+  }
+
+  .\32xl\:text-xss {
+    font-size: .45rem;
   }
 
   .\32xl\:leading-3 {
