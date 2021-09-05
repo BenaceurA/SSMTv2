@@ -1,4 +1,4 @@
-<div class="bottom-0 absolute text-white bg-black w-full bg-opacity-30" style="height: 7vh;">
+<div class="bottom-0 absolute text-white bg-black w-full bg-opacity-30" style="height: 7vh;font-family: 'Rubik','Roboto', sans-serif;">
     <div class="h-full flex justify-around mt-auto">
         <div class="flex flex-col sm:font-semibold text-xs md:text-sm lg:text-sm mt-auto mb-auto">
             <div class="text-center">TELEPHONE</div>
