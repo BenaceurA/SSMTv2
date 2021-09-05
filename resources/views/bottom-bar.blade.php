@@ -1,20 +1,20 @@
 <div class="bottom-0 absolute text-white bg-black w-full bg-opacity-30" style="height: 7vh;">
     <div class="h-full flex justify-around mt-auto">
-        <div class="font-semibold text-xs md:text-sm lg:text-sm mt-auto mb-auto">
-            <span class=" mr-2">TELEPHONE</span>
-            <span>0528551098</span>
+        <div class="flex flex-col sm:font-semibold text-xs md:text-sm lg:text-sm mt-auto mb-auto">
+            <div class="text-center">TELEPHONE</div>
+            <div class="text-center">0528551098</div>
         </div>
-        <div class="font-semibold text-xs md:text-sm lg:text-sm mt-auto mb-auto">
-            <span class=" mr-2">FAX</span>
-            <span>0528551704</span>
-        </div>    
-        <div class="font-semibold text-xs md:text-sm lg:text-sm mt-auto mb-auto">
-            <span class=" mr-2">EMAIL</span>
-            <span>info@ssmt.ma</span>
+        <div class="flex flex-col sm:font-semibold text-xs md:text-sm lg:text-sm mt-auto mb-auto">
+            <div class="text-center">FAX</div>
+            <div class="text-center">0528551704</div>
         </div>
-        <div class="font-semibold text-xs md:text-sm lg:text-sm mt-auto mb-auto">
-            <span class=" mr-2">ADRESSE</span>
-            <span>Imm Larki, 2eme Etage, Blachache M'haita - Taroudant</span>
-        </div>
+        <div class="flex flex-col sm:font-semibold text-xs md:text-sm lg:text-sm mt-auto mb-auto">
+            <div class="text-center">ADRESSE</div>
+            <div class="text-center">Imm Larki, 2eme Etage, Blachache M'haita - Taroudant</div>
+        </div>   
+        <div class="flex flex-col sm:font-semibold text-xs md:text-sm lg:text-sm mt-auto mb-auto">
+            <div class="text-center">EMAIL</div>
+            <div class="text-center">info@ssmt.ma</div>
+        </div>       
     </div>
 </div>

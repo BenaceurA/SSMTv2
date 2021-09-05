@@ -69,7 +69,7 @@
     </style>
 </head>
 
-<body class="text-base md:text-base lg:text-base background-img h-full">
+<body class="w-screen relative h-screen background-img">
 
     @if(count($result)>0)
     <div class =" flex justify-center w-full absolute">
@@ -118,14 +118,16 @@
         </div>
     </div>
     @else
-        <div class="flex justify-center w-full absolute">
-            <div class="my-40 py-2 px-4 rounded text-sm md:text-sm lg:text-base text-white bg-opacity-95">
-                Aucune offre n’est disponible actuellement.
-            </div>
+    <div class="flex justify-center w-full absolute">
+        <div class="my-40 py-2 px-4 rounded text-sm md:text-sm lg:text-base text-white bg-opacity-95">
+            Aucune offre n’est disponible actuellement.
         </div>
+    </div>
     @endif
+
     @include("top-bar")
     @include("bottom-bar")
+
 </body>
 <script>
     function expand(e){
