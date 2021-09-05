@@ -11486,7 +11486,7 @@ video {
 }
 
 .text-xs {
-  font-size: .65rem;
+  font-size: .45rem;
 }
 
 .text-sm {
@@ -42766,7 +42766,7 @@ video {
   }
 
   .sm\:text-xs {
-    font-size: .65rem;
+    font-size: .45rem;
   }
 
   .sm\:text-sm {
@@ -73876,7 +73876,7 @@ video {
   }
 
   .md\:text-xs {
-    font-size: .65rem;
+    font-size: .45rem;
   }
 
   .md\:text-sm {
@@ -104986,7 +104986,7 @@ video {
   }
 
   .lg\:text-xs {
-    font-size: .65rem;
+    font-size: .45rem;
   }
 
   .lg\:text-sm {
@@ -136096,7 +136096,7 @@ video {
   }
 
   .xl\:text-xs {
-    font-size: .65rem;
+    font-size: .45rem;
   }
 
   .xl\:text-sm {
@@ -167206,7 +167206,7 @@ video {
   }
 
   .\32xl\:text-xs {
-    font-size: .65rem;
+    font-size: .45rem;
   }
 
   .\32xl\:text-sm {

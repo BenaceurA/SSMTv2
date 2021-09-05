@@ -103,7 +103,7 @@
     </style>
 </head>
 
-<body class="w-screen relative h-screen">
+<body class="w-screen relative h-screen background-img">
 
     <div class="w-screen h-screen flex-col">
     
@@ -142,8 +142,7 @@
                 </form>
             </div>
         </div>
-        <div id="bg" class="background-img text-white ">
-        </div>
+
         @include("top-bar")
         @include("bottom-bar")
     </div>
