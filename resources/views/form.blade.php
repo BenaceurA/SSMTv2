@@ -13,12 +13,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200&display=swap" rel="stylesheet">
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
     
-        *{
-            
-        }
+    
         .background-img {
             background: url('../img/background.png');
             background-repeat: no-repeat;
@@ -45,13 +48,12 @@
 </head>
 
 <body class="relative h-screen background-img">
-    <div id="form" class="text-sm md:text-sm lg:text-base pb-16 pt-16 sm:pt-24 flex justify-center ">
+    <div id="form" class="text-sm md:text-sm lg:text-base pb-32 pt-32 sm:pt-48 flex justify-center ">
          @if($type == "emploi") @include("formemploi")
          @elseif($type == "stage") @include("formstage")
          @elseif($type == "spontaneous") @include("formspontaneous") @endif
     </div>
     @include("top-bar")
-    @include("bottom-bar")
 </body>
 
 </html>

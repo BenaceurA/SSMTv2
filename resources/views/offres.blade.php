@@ -10,16 +10,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200&display=swap" rel="stylesheet">
 
     <link href="{{ asset('css/app.css',true) }}" rel="stylesheet">
     <style>
         
-        *{
-            font-family: 'Rubik','Roboto', sans-serif;
-        }
+        
         .background-img {
             background: url('img/background.png');
             background-repeat: no-repeat;
@@ -73,7 +75,7 @@
 
     @if(count($result)>0)
     <div class =" flex justify-center w-full absolute">
-        <div class="my-10 md:my-20 wrapper p-5 pt-0 rounded flex-col max-w-full md:w-2/3">
+        <div class="mt-48 md:mt-48 wrapper pb-5 pt-0 rounded flex-col max-w-full w-4/5 md:w-3/5 lg:w-3/5">
         @foreach($result as $r)
         <div onclick="expand(this)" class="h-44 sm:h-44 md:h-40 bg-white bg-opacity-90 hover:bg-opacity-100 overflow-hidden  cursor-pointer offre w-full mt-10 shadow-2xl rounded p-4">
             <div class="flex">
@@ -126,7 +128,6 @@
     @endif
 
     @include("top-bar")
-    @include("bottom-bar")
 
 </body>
 <script>
