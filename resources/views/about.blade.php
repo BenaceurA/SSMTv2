@@ -14,12 +14,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200&display=swap" rel="stylesheet">
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <style>
-        *{
-            font-family: 'Rubik','Roboto', sans-serif;
-        }
+        
         .background-img {
             background: url('img/background.png');
             background-repeat: no-repeat;
@@ -41,10 +43,10 @@
     </style>
 
 </head>
-<body class="text-sm md:text-base lg:text-base background-img h-full">
+<body class="relative text-sm md:text-base lg:text-base background-img h-full">
     <div class="sm:flex md:flex lg:flex flex-col justify-center h-full w-full absolute">
-        <div class="flex justify-center">
-            <div class="my-8 p-8 rounded max-w-7xl bg-white bg-opacity-90">
+        <div class="flex justify-center mt-24">
+            <div class="my-8 p-8 rounded bg-white bg-opacity-90 w-11/12 lg:w-10/12 xl:w-9/12 2xl:w-7/12">
                 <p class="text-lg mb-8">
                     La société SSMT est une SARL créée en 2003, sa stratégie est basée sur l’octroi d’un espace de travail
                     sain et sécurisé pour ses collaborateurs, et sur le respect de l’environnement vue que, pour nous,
@@ -70,7 +72,6 @@
             </div>       
         </div>
     </div>
-    @include("top-bar");
-    @include("bottom-bar")  
+    @include("top-bar"); 
 </body>
 </html>

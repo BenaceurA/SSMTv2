@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SSMT</title>
     <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}"/>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
@@ -14,13 +15,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <style>
 
-        *{
-            font-family: 'Rubik','Roboto', sans-serif;
-             
-        }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    
+    <style>
 
         .background-img {
             background: url('img/background.png');
@@ -110,26 +113,26 @@
         <div class="absolute text-white">
         </div>
         
-        <div class="min-w-full absolute h-screen w-screen flex-wrap flex justify-center content-center">       
+        <div class="min-w-full absolute h-screen w-screen flex-wrap flex justify-center content-center" style="font-family:'Rubik'">       
             <div id="status" class="top-24 p-3 rounded  absolute "></div>      
 
-            <div class=" w-4/5 md:w-3/5 lg:w-3/5 h-auto flex justify-center">
+            <div class="w-11/12 lg:w-11/12 xl:w-10/12 2xl:w-8/12 h-auto flex justify-center mt-4">
                 <form class="flex flex-col md:flex-row lg:flex-row justify-center w-full" onsubmit="return validateForm()" action="/search" method="POST" name="Form">
                     @csrf
                     <div class="z-10 relative inline mr-2 p-0 w-full mb-6 md:mb-0 lg:mb-0 md:w-2/5 text-md " >
                         <input onclick="showSelect1()" readonly placeholder="Qu'est-ce que tu cherches ?" class="select shadow-lg rounded py-2  px-5" type="text" name="select1" id="select1">
-                        <div id="select1Elements" style="display:none;" class="font-semibold bg-opacity-85 w-full bg-white absolute top-12 md:top-12 lg:top-12 right-0 rounded">
+                        <div id="select1Elements" style="display:none;" class="font-semibold bg-opacity-90 w-full bg-white absolute top-12 md:top-12 lg:top-12 right-0 rounded">
                             <ul>
-                                <li onclick="select1('Offre d\'emploi')" class="border-b cursor-pointer hover:bg-gray-100 pl-4 pb-2 pt-2 rounded ">Offre d'emploi</li>
-                                <li onclick="select1('Offre de stage')" class="border-b cursor-pointer hover:bg-gray-100 pl-4 pb-2 pt-2 rounded ">Offre de stage</li>
-                                <li onclick="select1('Candidature spontanée')" class="border-b cursor-pointer hover:bg-gray-100 pl-4 pb-2 pt-2 rounded ">Candidature spontanée</li>
+                                <li onclick="select1('Offre d\'emploi')" class="border-b border-gray-300 cursor-pointer hover:bg-gray-100 pl-4 pb-2 pt-2 rounded ">Offre d'emploi</li>
+                                <li onclick="select1('Offre de stage')" class="border-b border-gray-300 cursor-pointer hover:bg-gray-100 pl-4 pb-2 pt-2 rounded ">Offre de stage</li>
+                                <li onclick="select1('Candidature spontanée')" class="border-b border-gray-300 cursor-pointer hover:bg-gray-100 pl-4 pb-2 pt-2 rounded ">Candidature spontanée</li>
                             <ul>
                         </div>
                     </div>
 
                     <div class="relative inline mr-2 w-full mb-8 md:mb-0 lg:mb-0 md:w-2/5 text-md" >
                         <input onclick="showSelect2()" readonly placeholder="Quel département ?" class="select shadow-lg rounded py-2  px-5" type="text" name="select2" id="select2">
-                        <div  id="select2Elements" class="font-semibold overflow-y-auto max-h-60 bg-opacity-100 w-full bg-white absolute top-12 md:top-12 lg:top-12 right-0 rounded">
+                        <div  id="select2Elements" class="font-semibold overflow-y-auto max-h-60 bg-opacity-90 w-full bg-white absolute top-12 md:top-12 lg:top-12 right-0 rounded">
                             <ul>
                                 
                             <ul>
@@ -144,7 +147,6 @@
         </div>
 
         @include("top-bar")
-        @include("bottom-bar")
     </div>
 </body>
 <script>
@@ -241,7 +243,7 @@
         elements.forEach(element=>{
             let li = document.createElement("li");
             li.innerHTML = element;
-            li.className = "border-b cursor-pointer hover:bg-gray-100 pl-4 pb-2 pt-2 rounded";
+            li.className = "border-b border-gray-300 cursor-pointer hover:bg-gray-100 pl-4 pb-2 pt-2 rounded";
             li.onclick = ()=>{
                 Select2.value = element;
                 Select2.style.backgroundColor ="white";
