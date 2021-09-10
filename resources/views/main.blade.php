@@ -120,7 +120,7 @@
                     @csrf
                     <div class="z-10 relative inline mr-2 p-0 w-full mb-6 md:mb-0 lg:mb-0 md:w-2/5 text-md " >
                         <input onclick="showSelect1()" readonly placeholder="Qu'est-ce que tu cherches ?" class="select shadow-lg rounded py-2  px-5" type="text" name="select1" id="select1">
-                        <div id="select1Elements" style="display:none;" class="font-semibold bg-opacity-90 w-full bg-white absolute top-12 md:top-12 lg:top-12 right-0 rounded">
+                        <div id="select1Elements" style="display:none;" class="font-semibold xl:bg-opacity-90 w-full bg-white absolute top-12 md:top-12 lg:top-12 right-0 rounded">
                             <ul>
                                 <li onclick="select1('Offre d\'emploi')" class="border-b border-gray-300 cursor-pointer hover:bg-gray-100 pl-4 pb-2 pt-2 rounded ">Offre d'emploi</li>
                                 <li onclick="select1('Offre de stage')" class="border-b border-gray-300 cursor-pointer hover:bg-gray-100 pl-4 pb-2 pt-2 rounded ">Offre de stage</li>
@@ -131,7 +131,7 @@
 
                     <div class="relative inline mr-2 w-full mb-8 md:mb-0 lg:mb-0 md:w-2/5 text-md" >
                         <input onclick="showSelect2()" readonly placeholder="Quel département ?" class="select shadow-lg rounded py-2  px-5" type="text" name="select2" id="select2">
-                        <div  id="select2Elements" class="font-semibold overflow-y-auto max-h-60 bg-opacity-90 w-full bg-white absolute top-12 md:top-12 lg:top-12 right-0 rounded">
+                        <div  id="select2Elements" class="font-semibold overflow-y-auto max-h-60 xl:bg-opacity-90 w-full bg-white absolute top-12 md:top-12 lg:top-12 right-0 rounded">
                             <ul>
                                 
                             <ul>

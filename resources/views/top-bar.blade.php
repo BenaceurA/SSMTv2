@@ -1,27 +1,33 @@
 <div class="top-0 absolute text-sm text-white bg-opacity-70 bg-black w-full" style="height: 108px;font-family: 'Montserrat', sans-serif;">
     <div class="w-full h-full flex justify-center">
-        <div class="flex justify-between  h-full mt-auto mb-auto w-11/12 lg:w-11/12 xl:w-10/12 2xl:w-8/12">
-            <a class="flex pt-2 pb-2" href="/"><img class="mt-auto mb-auto" id="logo" src="{{ asset('/img/logo.png') }}"></a>
+        <div class="flex justify-between h-full mt-auto mb-auto w-11/12 lg:w-11/12 xl:w-10/12 2xl:w-8/12">
+            <a class="flex mr-2 pt-2 pb-2" href="/"><img class="mt-auto mb-auto" id="logo" src="{{ asset('/img/logo.png') }}"></a>
             <div class="flex mt-auto mb-auto">
                 {{-- <div class = "cursor-pointer mr-8 ">             
                     <a id="contactAnchor" onclick="showContact()" class="pt-10 pb-10 font-semibold hover:text-yellow-400 text-yellow-400 border-b-4 border-yellow-400 hover:border-opacity-100" >CONTACT</a>
                 </div> --}}
-                <div class = "cursor-pointer mr-8 ">
-                    <a href="" class="pt-10 pb-10 font-semibold hover:text-yellow-400 border-b-4 border-yellow-400 border-opacity-0 hover:border-opacity-100">Comment venir</a>
+                <div class = "hidden xl:block cursor-pointer mr-4 xl:mr-8">
+                    <a href="/map" class="pt-10 pb-10 font-semibold hover:text-yellow-400 border-b-4 border-yellow-400 border-opacity-0 hover:border-opacity-100">COMMENT VENIR</a>
                 </div>
-                <div class = "cursor-pointer ">
-                    <a href="/about" class="pt-10 pb-10 font-semibold hover:text-yellow-400 border-b-4 border-yellow-400 border-opacity-0 hover:border-opacity-100">À propos</a>
+                <div class = "hidden xl:block cursor-pointer">
+                    <a href="/about" class="pt-10 pb-10 font-semibold hover:text-yellow-400 border-b-4 border-yellow-400 border-opacity-0 hover:border-opacity-100">À PROPOS</a>
                 </div>
-                {{-- <div class = "cursor-pointer">
+                <div onclick="showContact()" class = "xl:hidden cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                         <path fill="#FFFFFF" d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z"/>
                     </svg>
-                </div> --}}
+                </div>
             </div>           
         </div>
     </div>
-    <div id="contact" class="relative w-full h-full flex justify-center bg-yellow-700" style="height: 35px;">
-        <div class="flex justify-between  h-full mt-auto mb-auto w-11/12 lg:w-11/12 xl:w-10/12 2xl:w-8/12">
+    <div id="contact" class="hidden xl:flex relative w-full flex justify-center bg-opacity-80 z-10 bg-black xl:bg-yellow-700 h-64 xl:h-8">
+        <div class="flex flex-col xl:flex-row items-center xl:justify-between h-full mt-auto mb-auto w-11/12 lg:w-11/12 xl:w-10/12 2xl:w-8/12">
+            <div class = "xl:hidden cursor-pointer mt-auto mb-auto">
+                    <a href="" class="font-semibold hover:text-yellow-400 border-b-4 border-yellow-400 border-opacity-0 hover:border-opacity-100" style="font-family:'Arial'">COMMENT VENIR</a>
+            </div>
+            <div class = "xl:hidden cursor-pointer mt-auto mb-auto">
+                    <a href="/about" class=" font-semibold hover:text-yellow-400 border-b-4 border-yellow-400 border-opacity-0 hover:border-opacity-100" style="font-family:'Arial'">À PROPOS</a>
+            </div>
             <div class="font-semibold flex mt-auto mb-auto">
                 <span class="mr-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24"><path fill="#FFFFFF" d="M18.48 22.926l-1.193.658c-6.979 3.621-19.082-17.494-12.279-21.484l1.145-.637 3.714 6.467-1.139.632c-2.067 1.245 2.76 9.707 4.879 8.545l1.162-.642 3.711 6.461zm-9.808-22.926l-1.68.975 3.714 6.466 1.681-.975-3.715-6.466zm8.613 14.997l-1.68.975 3.714 6.467 1.681-.975-3.715-6.467z"/></svg>
@@ -75,16 +81,8 @@
     </div>
 </div>
 <script>
-    {{-- let contact = document.getElementById("contact");
-    let contactAnchor = document.getElementById("contactAnchor");
+    let contact = document.getElementById("contact");
     function showContact(){
-        contact.classList.remove("hidden");
-        contactAnchor.classList.remove("border-opacity-0");
-        contactAnchor.classList.add("text-yellow-400");
+        contact.classList.toggle("hidden");
     }
-    function hideContact(){
-        contact.classList.add("hidden");
-        contactAnchor.classList.add("border-opacity-0");
-        contactAnchor.classList.remove("text-yellow-400");
-    } --}}
 </script>
