@@ -23,7 +23,7 @@
     <div id="contact" class="hidden xl:flex relative w-full flex justify-center bg-opacity-80 z-10 bg-black xl:bg-yellow-700 h-64 xl:h-8">
         <div class="flex flex-col xl:flex-row items-center xl:justify-between h-full mt-auto mb-auto w-11/12 lg:w-11/12 xl:w-10/12 2xl:w-8/12">
             <div class = "xl:hidden cursor-pointer mt-auto mb-auto">
-                    <a href="" class="font-semibold hover:text-yellow-400 border-b-4 border-yellow-400 border-opacity-0 hover:border-opacity-100" style="font-family:'Arial'">COMMENT VENIR</a>
+                    <a target=”_blank” href="https://www.google.com/maps/@30.4860469,-9.271197,16z" class="font-semibold hover:text-yellow-400 border-b-4 border-yellow-400 border-opacity-0 hover:border-opacity-100" style="font-family:'Arial'">COMMENT VENIR</a>
             </div>
             <div class = "xl:hidden cursor-pointer mt-auto mb-auto">
                     <a href="/about" class=" font-semibold hover:text-yellow-400 border-b-4 border-yellow-400 border-opacity-0 hover:border-opacity-100" style="font-family:'Arial'">À PROPOS</a>
