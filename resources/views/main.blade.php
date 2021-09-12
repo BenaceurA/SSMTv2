@@ -113,7 +113,7 @@
         </div>
         
         <div class="min-w-full absolute h-screen w-screen flex-wrap flex justify-center content-center" style="font-family:'Rubik'">       
-            <div id="status" class="top-24 p-3 rounded  absolute "></div>      
+            <div id="status" class="top-36 sm:top-48 p-3 rounded  absolute" style="font-family:'Rubik','Arial';"></div>      
 
             <div class="w-11/12 lg:w-11/12 xl:w-10/12 2xl:w-8/12 h-auto flex justify-center mt-4">
                 <form class="flex flex-col md:flex-row lg:flex-row justify-center w-full" onsubmit="return validateForm()" action="/search" method="POST" name="Form">
@@ -265,7 +265,7 @@
     if(status != null){
         let status = document.getElementById("status")
         status.innerHTML = "Votre candidature a bien été envoyée";
-        status.classList.add("bg-green-200");
+        status.classList.add("bg-yellow-500");
         setTimeout(()=>{       
             status.classList.add("fade");
             status.classList.add("opacity-0");
