@@ -71,13 +71,13 @@
     </style>
 </head>
 
-<body class="w-screen relative h-screen background-img">
+<body class=" relative h-screen background-img">
 
     @if(count($result)>0)
     <div class =" flex justify-center w-full absolute">
-        <div class="mt-48 md:mt-48 wrapper pb-5 pt-0 rounded flex-col max-w-full w-4/5 md:w-3/5 lg:w-3/5">
+        <div class="mt-32 mb-24 xl:mt-48 wrapper pt-0 rounded flex-col max-w-full w-4/5 md:w-3/5 lg:w-3/5" style="font-family:Arial;">
         @foreach($result as $r)
-        <div onclick="expand(this)" class="h-44 sm:h-44 md:h-40 bg-white bg-opacity-90 hover:bg-opacity-100 overflow-hidden  cursor-pointer offre w-full mt-10 shadow-2xl rounded p-4">
+        <div onclick="expand(this)" class="pb-5 h-44 sm:h-44 md:h-40 bg-white bg-opacity-90 hover:bg-opacity-100 overflow-hidden  cursor-pointer offre w-full mt-10 shadow-2xl rounded p-4">
             <div class="flex">
                 <label class="block text-gray-600 font-semibold md:text-right mb-1 md:mb-0 pr-4" for="Sexe">
                 Poste
