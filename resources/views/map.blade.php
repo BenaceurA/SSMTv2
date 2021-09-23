@@ -49,11 +49,12 @@
 </head>
 <body class="relative h-screen w-screen background-img">
     <div class="flex flex-col justify-center h-full">
-        <div class="flex justify-center w-auto mt-36">
+        <div class="flex justify-center w-auto mt-20">
             <div class="hidden xl:block border-4 border-yellow-500">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m8!1m3!1d13753.202141059333!2d-9.2567561!3d30.4842441!3m2!1i1024!2i768!4f13.1!4m7!3e0!4m0!4m4!1s0xdb3d578031b0763%3A0x49cc675a82142c75!3m2!1d30.4858999!2d-9.2700251!5e0!3m2!1sen!2sma!4v1631203930441!5m2!1sen!2sma" width="1024" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </div>
     @include("top-bar")
+    @include("bottom-bar")
 </body>

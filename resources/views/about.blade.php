@@ -48,7 +48,7 @@
         <div class="flex justify-center mt-24">
             <div class="my-8 p-8 rounded bg-black text-gray-200 border-4 border-yellow-500 bg-opacity-50 w-11/12 lg:w-10/12 xl:w-9/12 2xl:w-7/12" style="font-family:'Arial'">
                 <p class="text-lg mb-8">
-                    La société SSMT est une SARL créée en 2003, sa stratégie est basée sur l’octroi d’un espace de travail
+                    La société SSMT est une SARL créée en 2005, sa stratégie est basée sur l’octroi d’un espace de travail
                     sain et sécurisé pour ses collaborateurs, et sur le respect de l’environnement vue que, pour nous,
                     Hommes et machines sont notre capital inestimable. Nos deux activités principales sont la Route et
                     les Matériaux.
@@ -72,6 +72,7 @@
             </div>       
         </div>
     </div>
-    @include("top-bar"); 
+    @include("top-bar")
+    @include("bottom-bar") 
 </body>
 </html>
