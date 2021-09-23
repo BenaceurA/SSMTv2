@@ -47,13 +47,14 @@
     </style>
 </head>
 
-<body class="relative h-screen background-img">
+<body class="relative h-full background-img">
     <div id="form" class="text-sm md:text-sm lg:text-base pb-8 pt-32 sm:pt-48 flex justify-center ">
          @if($type == "emploi") @include("formemploi")
          @elseif($type == "stage") @include("formstage")
          @elseif($type == "spontaneous") @include("formspontaneous") @endif
     </div>
     @include("top-bar")
+    @include("bottom-bar")
 </body>
 
 </html>

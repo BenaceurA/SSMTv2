@@ -147,6 +147,7 @@
         </div>
 
         @include("top-bar")
+        @include("bottom-bar")
     </div>
 </body>
 <script>
