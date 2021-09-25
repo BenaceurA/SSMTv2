@@ -45,8 +45,8 @@
 </head>
 <body class="relative text-sm md:text-base lg:text-base background-img h-full">
     <div class="sm:flex md:flex lg:flex flex-col justify-center h-full w-full absolute">
-        <div class="flex justify-center mt-24">
-            <div class="my-8 p-8 rounded bg-black text-gray-200 border-4 border-yellow-500 bg-opacity-50 w-11/12 lg:w-10/12 xl:w-9/12 2xl:w-7/12" style="font-family:'Arial'">
+        <div onclick="redirectTo('/')" class="flex justify-center mt-20">
+            <div onclick="event.stopPropagation()" class="my-8 p-8 rounded bg-black text-gray-200 border-2 border-yellow-500 bg-opacity-50 w-11/12 lg:w-10/12 xl:w-9/12 2xl:w-7/12" style="font-family:'Arial'">
                 <p class="text-lg mb-8">
                     La société SSMT est une SARL créée en 2005, sa stratégie est basée sur l’octroi d’un espace de travail
                     sain et sécurisé pour ses collaborateurs, et sur le respect de l’environnement vue que, pour nous,
@@ -73,6 +73,11 @@
         </div>
     </div>
     @include("top-bar")
-    @include("bottom-bar") 
+    @include("bottom-bar")
+    <script>
+        function redirectTo(s){
+            window.location.href = s;
+        }
+    </script>
 </body>
 </html>
