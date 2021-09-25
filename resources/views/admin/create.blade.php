@@ -413,7 +413,7 @@
             switch(direction.value) {
                 case "Direction générale":
                     load([
-                        "Audit contrôle gestion",
+                        "Audit et contrôle de gestion",
                         "Système d'information",
                     ]);
                     break;
@@ -616,7 +616,7 @@
             switch(direction.value) {
                 case "Direction générale":
                     load([
-                        "Audit contrôle gestion",
+                        "Audit et contrôle de gestion",
                         "Système d'information",
                         "Qualité Hygiène Sécurité Environnement",
                     ]);

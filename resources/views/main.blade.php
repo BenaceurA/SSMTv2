@@ -166,7 +166,7 @@
                 loadSelect2(
                     [   
                         "Tous les départements",
-                        "Audit contrôle gestion",
+                        "Audit et contrôle de gestion",
                         "Système d'information",
                         "Comptabilité",
                         "Ressources Humaines",
@@ -184,7 +184,7 @@
                 loadSelect2(
                     [
                         "Tous les départements",
-                        "Audit contrôle gestion",
+                        "Audit et contrôle de gestion",
                         "Système d'information",
                         "Qualité Hygiène Sécurité Environnement",
                         "Comptabilité",
