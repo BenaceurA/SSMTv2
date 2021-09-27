@@ -100,7 +100,7 @@
         </a>
         <a class="flex-1" href="/logout">
             <div class="menu shadow  hover:bg-gray-700 focus:shadow-outline focus:outline-none text-white font-bold text-center p-4">
-                Dèconnexion
+                Déconnexion
             </div>
         </a>
     </div>

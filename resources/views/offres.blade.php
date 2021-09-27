@@ -16,7 +16,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -76,7 +76,7 @@
 
     @if(count($result)>0)
     <div class ="relative flex justify-center w-full min-h-screen">
-        <div class=" mt-32 mb-24 xl:mt-32 pt-0 rounded flex-col max-w-full w-4/5 md:w-3/5 lg:w-3/5" style="font-family:'Montserrat';font-size:600">
+        <div class="mt-32 mb-24 xl:mt-32 pt-0 rounded flex-col max-w-full w-4/5 md:w-3/5 lg:w-3/5" style="font-family:'Montserrat',sans-serif;">
         @foreach($result as $r)
         <div onclick="expand(this)" class="pb-5 h-44 sm:h-44 md:h-40 bg-white bg-opacity-90 hover:bg-opacity-100 overflow-hidden  cursor-pointer offre w-full mt-10 shadow-2xl rounded p-4">
             <div class="flex">
@@ -136,7 +136,7 @@
     </div>
     @endif
 
-    @include("top-bar")
+@include("top-bar")
 @include("bottom-bar")
 
 </body>
