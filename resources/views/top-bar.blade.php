@@ -7,10 +7,10 @@
                     <a id="contactAnchor" onclick="showContact()" class="pt-10 pb-10 font-semibold hover:text-yellow-400 text-yellow-400 border-b-4 border-yellow-400 hover:border-opacity-100" >CONTACT</a>
                 </div> --}}
                 <div class = "hidden xl:block cursor-pointer mr-4 xl:mr-8">
-                    <a href="/map" class="pt-10 pb-10 font-semibold hover:text-yellow-400 {{--border-b-4 border-yellow-500 border-opacity-0 hover:border-opacity-100 --}}">COMMENT VENIR</a>
+                    <a href="/map" class="pt-10 pb-10 hover:text-yellow-400 {{--border-b-4 border-yellow-500 border-opacity-0 hover:border-opacity-100 --}}">COMMENT VENIR</a>
                 </div>
                 <div class = "hidden xl:block cursor-pointer">
-                    <a href="/about" class="pt-10 pb-10 font-semibold hover:text-yellow-400 {{--border-b-4 border-yellow-500 border-opacity-0 hover:border-opacity-100--}}">À PROPOS</a>
+                    <a href="/about" class="pt-10 pb-10 hover:text-yellow-400 {{--border-b-4 border-yellow-500 border-opacity-0 hover:border-opacity-100--}}">À PROPOS</a>
                 </div>
                 <div onclick="showContact()" class = "xl:hidden cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
