@@ -18,7 +18,7 @@
         </div>       
     </div>
 </div> --}}
-<div id="contact" class="hidden xl:flex border-t-2 border-yellow-500 text-white fixed bottom-0 w-full flex justify-center bg-opacity-70 bg-black h-64 xl:h-11">
+<div id="contact" class="hidden xl:flex border-t-2 border-yellow-500 text-white fixed bottom-0 w-full flex justify-center bg-opacity-80 bg-black h-64 xl:h-11">
         <div class="flex flex-col xl:flex-row items-center xl:justify-between h-full mt-auto mb-auto w-11/12 lg:w-11/12 xl:w-10/12 2xl:w-8/12">
             <div class = "xl:hidden cursor-pointer mt-auto mb-auto">
                     <a target=”_blank” href="https://www.google.com/maps/@30.4860469,-9.271197,16z" class="font-semibold hover:text-yellow-400 border-b-4 border-yellow-400 border-opacity-0 hover:border-opacity-100" style="font-family:'Arial'">COMMENT VENIR</a>
