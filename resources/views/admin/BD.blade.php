@@ -303,7 +303,7 @@
                 @endif
             </tr>
             @empty
-              <h3 class="w-full rounded px-4 py-4 font-medium absolute text-center text-white bg-opacity-80 top-28 ">Base de données vide</h3>
+              <h3 class="w-full rounded px-4 py-4 font-medium absolute text-center bg-gray-500 bg-opacity-90 text-white top-28 ">Base de données vide</h3>
             @endforelse
           </tbody>
         </table>

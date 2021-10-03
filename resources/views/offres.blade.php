@@ -76,11 +76,11 @@
 
     @if(count($result)>0)
     <div class ="relative flex justify-center w-full min-h-screen">
-        <div class="mt-32 mb-24 xl:mt-32 pt-0 rounded flex-col max-w-full w-4/5 md:w-3/5 lg:w-3/5" style="font-family:'Montserrat',sans-serif;">
+        <div class="mt-32 mb-24 xl:mt-32 pt-0 rounded flex-col max-w-full w-11/12 md:w-3/5 lg:w-3/5" style="font-family:'Montserrat',sans-serif;">
         @foreach($result as $r)
         <div onclick="expand(this)" class="pb-5 h-44 sm:h-44 md:h-40 bg-white bg-opacity-90 hover:bg-opacity-100 overflow-hidden  cursor-pointer offre w-full mt-10 shadow-2xl rounded p-4">
             <div class="flex">
-                <label class="block text-gray-600 font-semibold md:text-right mb-1 md:mb-0 pr-4" for="Sexe">
+                <label class="whitespace-nowrap block text-gray-600 font-semibold md:text-right mb-1 md:mb-0 pr-4" for="Sexe">
                 Poste
                 </label>
                 <span class="font-semibold">
@@ -90,7 +90,7 @@
             </div>
             <br>
             <div class="flex">
-                <label class="block text-gray-600 font-semibold md:text-right mb-1 md:mb-0 pr-4" for="Sexe">
+                <label class="whitespace-nowrap block text-gray-600 font-semibold md:text-right mb-1 md:mb-0 pr-4" for="Sexe">
                 Direction
                 </label>
                 <span class="font-semibold">
