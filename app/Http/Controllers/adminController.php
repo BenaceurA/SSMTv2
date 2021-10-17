@@ -75,13 +75,13 @@ class adminController extends Controller
             'name' => ['required'],
             'password' => ['required'],
         ]);
-        if (Auth::attempt($credentials, $request->remember)) {
+        if (Auth::attempt($credentials, ($request->remember == "true" ? true : false))) {
             $request->session()->regenerate();
             return redirect()->action([jobAdminController::class, 'jobApplicationsIndex']);
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match.',
+            'email' => "Les informations d'identification fournies ne correspondent pas.",
         ]);
     }
     static function getUsername()
