@@ -19,8 +19,8 @@ class internshipController extends Controller
     function postStage(Request $request)
     {
         $request->validate([
-            'CV' => 'mimes:docx,doc,pdf',
-            'lettre' => 'mimes:docx,doc,pdf',
+            'CV' => 'required|max:1024|mimes:docx,doc,pdf',
+            'lettre' => 'max:1024|mimes:docx,doc,pdf',
         ]);
 
         $internship = new Internship;
