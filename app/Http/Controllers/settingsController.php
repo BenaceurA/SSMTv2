@@ -106,7 +106,7 @@ class settingsController extends Controller
 
     function deleteUser($id)
     {
-        if ($id != 5) {
+        if ($id != 1) { //id 1 can't be deleted
             $exception = DB::transaction(function () use ($id) {
                 User_Permissions::destroy(User_Permissions::where("user_id", $id)->first()->id);
                 return User::destroy($id);
