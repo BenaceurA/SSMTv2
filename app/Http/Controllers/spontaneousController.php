@@ -20,8 +20,8 @@ class spontaneousController extends Controller
     function postSpontaneous(Request $request)
     {
         $request->validate([
-            'CV' => 'mimes:docx,doc,pdf',
-            'lettre' => 'mimes:docx,doc,pdf',
+            'CV' => 'required|max:1024|mimes:docx,doc,pdf',
+            'lettre' => 'max:1024|mimes:docx,doc,pdf',
         ]);
 
         $si = new spontaneous;
