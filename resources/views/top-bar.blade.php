@@ -20,12 +20,12 @@
             </div>           
         </div>
     </div>
-    <div id="contact" class="hidden xl:hidden mt-1 relative w-full flex justify-center bg-opacity-100 z-30 bg-black h-64 xl:h-8">
-        <div class="flex flex-col xl:flex-row items-center xl:justify-between h-full mt-auto mb-auto w-11/12 lg:w-11/12 xl:w-10/12 2xl:w-8/12">
-            <div class = "xl:hidden cursor-pointer mt-auto mb-auto">
+    <div id="contact" class="xl:hidden relative w-full flex justify-center bg-opacity-100 z-30 bg-black h-0" style="margin-top:2px; transition: all .3s ease-in-out;">
+        <div id="innerContact" class="overflow-hidden flex flex-col xl:flex-row items-center xl:justify-between h-full mt-auto mb-auto w-11/12 lg:w-11/12 xl:w-10/12 2xl:w-8/12">
+            <div class = "cursor-pointer mt-auto mb-auto">
                     <a target=”_blank” href="https://www.google.com/maps/@30.4860469,-9.271197,16z" class="font-semibold hover:text-yellow-400 border-b-4 border-yellow-500 border-opacity-0 hover:border-opacity-100" style="font-family:'Arial'">COMMENT VENIR</a>
             </div>
-            <div class = "xl:hidden cursor-pointer mt-auto mb-auto">
+            <div class = "cursor-pointer mt-auto mb-auto">
                     <a href="/about" class=" font-semibold hover:text-yellow-400 border-b-4 border-yellow-500 border-opacity-0 hover:border-opacity-100" style="font-family:'Arial'">À PROPOS</a>
             </div>
             <div class="font-semibold flex mt-auto mb-auto">
@@ -33,7 +33,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24"><path fill="#FFFFFF" d="M18.48 22.926l-1.193.658c-6.979 3.621-19.082-17.494-12.279-21.484l1.145-.637 3.714 6.467-1.139.632c-2.067 1.245 2.76 9.707 4.879 8.545l1.162-.642 3.711 6.461zm-9.808-22.926l-1.68.975 3.714 6.466 1.681-.975-3.715-6.466zm8.613 14.997l-1.68.975 3.714 6.467 1.681-.975-3.715-6.467z"/></svg>
                 </span>
                 <span class="mr-2">
-                    Telephone 
+                    Telephone
                 </span>
                 <span style="font-family:'Arial';padding-top:1px;">
                     05 28 55 10 98
@@ -83,6 +83,6 @@
 <script>
     let contact = document.getElementById("contact");
     function showContact(){
-        contact.classList.toggle("hidden");
+        contact.classList.toggle("h-64");     
     }
 </script>
